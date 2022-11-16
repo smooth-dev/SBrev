@@ -1,0 +1,1411 @@
+NumberFormatException
+ 1994-01-17Rabat               Marocaine 01D         FSalarie          20300101AB1236
+StringIndexOutOfBoundsException
+ 1994-01-17
+StringIndexOutOfBoundsException
+ 1994-01-17
+StringIndexOutOfBoundsException
+ 1994-01-17
+StringIndexOutOfBoundsException
+ 1994-01-17
+NumberFormatException
+ 1994-01-17Rabat               Marocaine 10M         MSalarie          20300101AB1236
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17rabat     Marocaine   M         MBANQUIER            DA80448                       BANQUE    EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17Rabat               Marocaine 01D         FSalarie          20300101AB1236
+StringIndexOutOfBoundsException
+ 1994-01-17
+StringIndexOutOfBoundsException
+ 1994-01-17
+StringIndexOutOfBoundsException
+ 1994-01-17
+StringIndexOutOfBoundsException
+ 1994-01-17
+NumberFormatException
+ 1994-01-17Rabat               Marocaine 10M         MSalarie          20300101AB1236
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17rabat     Marocaine   M         MBANQUIER            DA80448                       BANQUE    EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17Rabat               Marocaine 01D         FSalarie          20300101AB1236
+StringIndexOutOfBoundsException
+ 1994-01-17
+StringIndexOutOfBoundsException
+ 1994-01-17
+StringIndexOutOfBoundsException
+ 1994-01-17
+StringIndexOutOfBoundsException
+ 1994-01-17
+NumberFormatException
+ 1994-01-17Rabat               Marocaine 10M         MSalarie          20300101AB1236
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17rabat     Marocaine   M         MBANQUIER            DA80448                       BANQUE    EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17Rabat               Marocaine 01D         FSalarie          20300101AB1236
+StringIndexOutOfBoundsException
+ 1994-01-17
+StringIndexOutOfBoundsException
+ 1994-01-17
+StringIndexOutOfBoundsException
+ 1994-01-17
+StringIndexOutOfBoundsException
+ 1994-01-17
+NumberFormatException
+ 1994-01-17Rabat               Marocaine 10M         MSalarie          20300101AB1236
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17rabat     Marocaine   M         MBANQUIER            DA80448                       BANQUE    EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17Rabat               Marocaine 01D         FSalarie          20300101AB1236
+StringIndexOutOfBoundsException
+ 1994-01-17
+StringIndexOutOfBoundsException
+ 1994-01-17
+StringIndexOutOfBoundsException
+ 1994-01-17
+StringIndexOutOfBoundsException
+ 1994-01-17
+NumberFormatException
+ 1994-01-17Rabat               Marocaine 10M         MSalarie          20300101AB1236
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17rabat     Marocaine   M         MBANQUIER            DA80448                       BANQUE    EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17Rabat               Marocaine 01D         FSalarie          20300101AB1236
+StringIndexOutOfBoundsException
+ 1994-01-17
+StringIndexOutOfBoundsException
+ 1994-01-17
+StringIndexOutOfBoundsException
+ 1994-01-17
+StringIndexOutOfBoundsException
+ 1994-01-17
+NumberFormatException
+ 1994-01-17Rabat               Marocaine 10M         MSalarie          20300101AB1236
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17rabat     Marocaine   M         MBANQUIER            DA80448                       BANQUE    EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17Rabat               Marocaine 01D         FSalarie          20300101AB1236
+StringIndexOutOfBoundsException
+ 1994-01-17
+StringIndexOutOfBoundsException
+ 1994-01-17
+StringIndexOutOfBoundsException
+ 1994-01-17
+StringIndexOutOfBoundsException
+ 1994-01-17
+NumberFormatException
+ 1994-01-17Rabat               Marocaine 10M         MSalarie          20300101AB1236
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17rabat     Marocaine   M         MBANQUIER            DA80448                       BANQUE    EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17Rabat               Marocaine 01D         FSalarie          20300101AB1236
+StringIndexOutOfBoundsException
+ 1994-01-17
+StringIndexOutOfBoundsException
+ 1994-01-17
+StringIndexOutOfBoundsException
+ 1994-01-17
+StringIndexOutOfBoundsException
+ 1994-01-17
+NumberFormatException
+ 1994-01-17Rabat               Marocaine 10M         MSalarie          20300101AB1236
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17rabat     Marocaine   M         MBANQUIER            DA80448                       BANQUE    EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17Rabat               Marocaine 01D         FSalarie          20300101AB1236
+StringIndexOutOfBoundsException
+ 1994-01-17
+StringIndexOutOfBoundsException
+ 1994-01-17
+StringIndexOutOfBoundsException
+ 1994-01-17
+StringIndexOutOfBoundsException
+ 1994-01-17
+NumberFormatException
+ 1994-01-17Rabat               Marocaine 10M         MSalarie          20300101AB1236
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17rabat     Marocaine   M         MBANQUIER            DA80448                       BANQUE    EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17Rabat               Marocaine 01D         FSalarie          20300101AB1236
+StringIndexOutOfBoundsException
+ 1994-01-17
+StringIndexOutOfBoundsException
+ 1994-01-17
+StringIndexOutOfBoundsException
+ 1994-01-17
+StringIndexOutOfBoundsException
+ 1994-01-17
+NumberFormatException
+ 1994-01-17Rabat               Marocaine 10M         MSalarie          20300101AB1236
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17rabat     Marocaine   M         MBANQUIER            DA80448                       BANQUE    EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17Rabat               Marocaine 01D         FSalarie          20300101AB1236
+StringIndexOutOfBoundsException
+ 1994-01-17
+StringIndexOutOfBoundsException
+ 1994-01-17
+StringIndexOutOfBoundsException
+ 1994-01-17
+StringIndexOutOfBoundsException
+ 1994-01-17
+NumberFormatException
+ 1994-01-17Rabat               Marocaine 10M         MSalarie          20300101AB1236
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17rabat     Marocaine   M         MBANQUIER            DA80448                       BANQUE    EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 1965-01-01                                                     DA80448                                 EL YOUSFI BRAHIM
+NumberFormatException
+ 994-01-17rabat     Marocaine 00D         MBANQUIER            DA80448                                 EL YOUSFI BRAHIM
+
+NumberFormatException
+ 1994-01-17rabat     Marocaine 00D         MBANQUIER            DA80448                                 EL YOUSFI BRAHIM
+
+StringIndexOutOfBoundsException
+ 1994-01-17rabat     Marocaine 00D         MBANQUIER            DA80448                                 EL YOUSFI BRAHIM
+
+StringIndexOutOfBoundsException
+ 1994-01-17
+
+NumberFormatException
+ HCONV     123654         123456         87456
+
+NumberFormatException
+ BA3654                                1990-01-30
+
+StringIndexOutOfBoundsException
+ AC
+
+NumberFormatException
+                                                 BOUSKOURA GOLF CITY
+
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+
+NumberFormatException
+ CONV      876455554674444123654
+
+NumberFormatException
+ CONV      876455554674444123654
+
+StringIndexOutOfBoundsException
+ RJ Dossier rejet�
+
+NumberFormatException
+ BA3654                                1990-01-30BOUSKOURA GOLF CITY
+
+NumberFormatException
+                          123654
+
+NumberFormatException
+                          123654
+
+StringIndexOutOfBoundsException
+ AC
+
+NumberFormatException
+ CONV      876455554674444123654         YTY79876
+
+NumberFormatException
+                          123654
+
+NumberFormatException
+                          123654
+
+NumberFormatException
+                          123654
+
+NumberFormatException
+                               OUI
+
+NumberFormatException
+                          123654
+
+NumberFormatException
+                          123654
+
+StringIndexOutOfBoundsException
+ CI101000101
+
+NumberFormatException
+                               OUI
+
+StringIndexOutOfBoundsException
+ CI101000180
+
+StringIndexOutOfBoundsException
+ CI101000080
+
+StringIndexOutOfBoundsException
+ 1994-01-17
+
+NumberFormatException
+ HCONV     123654         123456         87456
+
+NumberFormatException
+ BA3654                                1990-01-30
+
+StringIndexOutOfBoundsException
+ AC
+
+NumberFormatException
+                                                 BOUSKOURA GOLF CITY
+
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+
+NumberFormatException
+ CONV      876455554674444123654
+
+NumberFormatException
+ CONV      876455554674444123654
+
+StringIndexOutOfBoundsException
+ RJ Dossier rejet�
+
+NumberFormatException
+ BA3654                                1990-01-30BOUSKOURA GOLF CITY
+
+NumberFormatException
+                          123654
+
+NumberFormatException
+                          123654
+
+StringIndexOutOfBoundsException
+ AC
+
+NumberFormatException
+ CONV      876455554674444123654         YTY79876
+
+NumberFormatException
+                          123654
+
+NumberFormatException
+                          123654
+
+NumberFormatException
+                          123654
+
+NumberFormatException
+                               OUI
+
+NumberFormatException
+                          123654
+
+NumberFormatException
+                          123654
+
+StringIndexOutOfBoundsException
+ CI101000101
+
+NumberFormatException
+                               OUI
+
+StringIndexOutOfBoundsException
+ CI101000180
+
+StringIndexOutOfBoundsException
+ CI101000080
+
+StringIndexOutOfBoundsException
+ 1994-01-17
+
+NumberFormatException
+ HCONV     123654         123456         87456
+
+NumberFormatException
+ BA3654                                1990-01-30
+
+StringIndexOutOfBoundsException
+ AC
+
+NumberFormatException
+                                                 BOUSKOURA GOLF CITY
+
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+
+NumberFormatException
+ CONV      876455554674444123654
+
+NumberFormatException
+ CONV      876455554674444123654
+
+StringIndexOutOfBoundsException
+ RJ Dossier rejet�
+
+NumberFormatException
+ BA3654                                1990-01-30BOUSKOURA GOLF CITY
+
+NumberFormatException
+                          123654
+
+NumberFormatException
+                          123654
+
+StringIndexOutOfBoundsException
+ AC
+
+NumberFormatException
+ CONV      876455554674444123654         YTY79876
+
+NumberFormatException
+                          123654
+
+NumberFormatException
+                          123654
+
+NumberFormatException
+                          123654
+
+NumberFormatException
+                               OUI
+
+NumberFormatException
+                          123654
+
+NumberFormatException
+                          123654
+
+StringIndexOutOfBoundsException
+ CI101000101
+
+NumberFormatException
+                               OUI
+
+StringIndexOutOfBoundsException
+ CI101000180
+
+StringIndexOutOfBoundsException
+ CI101000080
+
+StringIndexOutOfBoundsException
+ 1994-01-17
+
+NumberFormatException
+ HCONV     123654         123456         87456
+
+NumberFormatException
+ BA3654                                1990-01-30
+
+StringIndexOutOfBoundsException
+ AC
+
+NumberFormatException
+                                                 BOUSKOURA GOLF CITY
+
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+
+NumberFormatException
+ CONV      876455554674444123654
+
+NumberFormatException
+ CONV      876455554674444123654
+
+StringIndexOutOfBoundsException
+ RJ Dossier rejet�
+
+NumberFormatException
+ BA3654                                1990-01-30BOUSKOURA GOLF CITY
+
+NumberFormatException
+                          123654
+
+NumberFormatException
+                          123654
+
+StringIndexOutOfBoundsException
+ AC
+
+NumberFormatException
+ CONV      876455554674444123654         YTY79876
+
+NumberFormatException
+                          123654
+
+NumberFormatException
+                          123654
+
+NumberFormatException
+                          123654
+
+NumberFormatException
+                               OUI
+
+NumberFormatException
+                          123654
+
+NumberFormatException
+                          123654
+
+StringIndexOutOfBoundsException
+ CI101000101
+
+NumberFormatException
+                               OUI
+
+StringIndexOutOfBoundsException
+ CI101000180
+
+StringIndexOutOfBoundsException
+ CI101000080
+
+StringIndexOutOfBoundsException
+ 1994-01-17
+
+NumberFormatException
+ HCONV     123654         123456         87456
+
+NumberFormatException
+ BA3654                                1990-01-30
+
+StringIndexOutOfBoundsException
+ AC
+
+NumberFormatException
+                                                 BOUSKOURA GOLF CITY
+
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+
+NumberFormatException
+ CONV      876455554674444123654
+
+NumberFormatException
+ CONV      876455554674444123654
+
+StringIndexOutOfBoundsException
+ RJ Dossier rejet�
+
+NumberFormatException
+ BA3654                                1990-01-30BOUSKOURA GOLF CITY
+
+NumberFormatException
+                          123654
+
+NumberFormatException
+                          123654
+
+StringIndexOutOfBoundsException
+ AC
+
+NumberFormatException
+ CONV      876455554674444123654         YTY79876
+
+NumberFormatException
+                          123654
+
+NumberFormatException
+                          123654
+
+NumberFormatException
+                          123654
+
+NumberFormatException
+                               OUI
+
+NumberFormatException
+                          123654
+
+NumberFormatException
+                          123654
+
+StringIndexOutOfBoundsException
+ CI101000101
+
+NumberFormatException
+                               OUI
+
+StringIndexOutOfBoundsException
+ CI101000180
+
+StringIndexOutOfBoundsException
+ CI101000080
+
+StringIndexOutOfBoundsException
+ 1994-01-17
+
+NumberFormatException
+ HCONV     123654         123456         87456
+
+NumberFormatException
+ BA3654                                1990-01-30
+
+StringIndexOutOfBoundsException
+ AC
+
+NumberFormatException
+                                                 BOUSKOURA GOLF CITY
+
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+
+NumberFormatException
+ CONV      876455554674444123654
+
+NumberFormatException
+ CONV      876455554674444123654
+
+StringIndexOutOfBoundsException
+ RJ Dossier rejet�
+
+NumberFormatException
+ BA3654                                1990-01-30BOUSKOURA GOLF CITY
+
+NumberFormatException
+                          123654
+
+NumberFormatException
+                          123654
+
+StringIndexOutOfBoundsException
+ AC
+
+NumberFormatException
+ CONV      876455554674444123654         YTY79876
+
+NumberFormatException
+                          123654
+
+NumberFormatException
+                          123654
+
+NumberFormatException
+                          123654
+
+NumberFormatException
+                               OUI
+
+NumberFormatException
+                          123654
+
+NumberFormatException
+                          123654
+
+StringIndexOutOfBoundsException
+ CI101000101
+
+NumberFormatException
+                               OUI
+
+StringIndexOutOfBoundsException
+ CI101000180
+
+StringIndexOutOfBoundsException
+ CI101000080
+
+StringIndexOutOfBoundsException
+ 1994-01-17
+
+NumberFormatException
+ HCONV     123654         123456         87456
+
+NumberFormatException
+ BA3654                                1990-01-30
+
+StringIndexOutOfBoundsException
+ AC
+
+NumberFormatException
+                                                 BOUSKOURA GOLF CITY
+
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+
+StringIndexOutOfBoundsException
+ 1994-01-17
+
+NumberFormatException
+ HCONV     123654         123456         87456
+
+NumberFormatException
+ BA3654                                1990-01-30
+
+StringIndexOutOfBoundsException
+ AC
+
+NumberFormatException
+                                                 BOUSKOURA GOLF CITY
+
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+
+StringIndexOutOfBoundsException
+ 1994-01-17
+
+NumberFormatException
+ HCONV     123654         123456         87456
+
+NumberFormatException
+ BA3654                                1990-01-30
+
+StringIndexOutOfBoundsException
+ 1994-01-17
+
+NumberFormatException
+ HCONV     123654         123456         87456
+
+NumberFormatException
+ BA3654                                1990-01-30
+
+StringIndexOutOfBoundsException
+ AC
+
+NumberFormatException
+                                                 BOUSKOURA GOLF CITY
+
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+
+NumberFormatException
+ CONV      876455554674444123654
+
+StringIndexOutOfBoundsException
+ 1994-01-17
+
+NumberFormatException
+ HCONV     123654         123456         87456
+
+NumberFormatException
+ BA3654                                1990-01-30
+
+StringIndexOutOfBoundsException
+ AC
+
+NumberFormatException
+                                                 BOUSKOURA GOLF CITY
+
+NumberFormatException
+ l, typeMessage=null, typeContratProduction=null, numDossier=null, idSousLigne=null, idUtilisation=null, typeContrat=null, typeEnregistrement=null, codeEnregistrement=05, identifiantEnregistrement=null, numBlocDonneesComplementaires=null, indicateursSaisie=null, zoneGroupe=     0111000000000000000000000000000000000000000000000000000000000000000000000000000000021994-01-17
+)
+NumberFormatException
+ l, typeMessage=null, typeContratProduction=null, numDossier=null, idSousLigne=null, idUtilisation=null, typeContrat=null, typeEnregistrement=null, codeEnregistrement=05, identifiantEnregistrement=null, numBlocDonneesComplementaires=null, indicateursSaisie=null, zoneGroupe=     1411111000000000000000000000000000000000000000000000000000000000000000000000000000ICHCONV     123654         123456         87456
+)
+NumberFormatException
+ l, typeMessage=null, typeContratProduction=null, numDossier=null, idSousLigne=null, idUtilisation=null, typeContrat=null, typeEnregistrement=null, codeEnregistrement=05, identifiantEnregistrement=null, numBlocDonneesComplementaires=null, indicateursSaisie=null, zoneGroupe=     061100100000000000000000000000000000000000000000000000000000000000000000000000000018BA3654                                1990-01-30
+)
+NumberFormatException
+ l, typeMessage=null, typeContratProduction=null, numDossier=null, idSousLigne=null, idUtilisation=null, typeContrat=null, typeEnregistrement=null, codeEnregistrement=05, identifiantEnregistrement=null, numBlocDonneesComplementaires=null, indicateursSaisie=null, zoneGroupe=     111100000000000000000000000000000000000000000000000000000000000000000000000000000003AC
+)
+NumberFormatException
+ l, typeMessage=null, typeContratProduction=null, numDossier=null, idSousLigne=null, idUtilisation=null, typeContrat=null, typeEnregistrement=null, codeEnregistrement=05, identifiantEnregistrement=null, numBlocDonneesComplementaires=null, indicateursSaisie=null, zoneGroupe=     121000010000000000000000000000000000000000000000000000000000000000000000000000000018                                                BOUSKOURA GOLF CITY
+)
+NumberFormatException
+ l, typeMessage=null, typeContratProduction=null, numDossier=null, idSousLigne=null, idUtilisation=null, typeContrat=null, typeEnregistrement=null, codeEnregistrement=05, identifiantEnregistrement=null, numBlocDonneesComplementaires=null, indicateursSaisie=null, zoneGroupe=     0111000000010001100000000000000000000000000000000000000000000000000000000000000000021994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+)
+NumberFormatException
+ l, typeMessage=null, typeContratProduction=null, numDossier=null, idSousLigne=null, idUtilisation=null, typeContrat=null, typeEnregistrement=null, codeEnregistrement=05, identifiantEnregistrement=null, numBlocDonneesComplementaires=null, indicateursSaisie=null, zoneGroupe=     0111000000000000000000000000000000000000000000000000000000000000000000000000000000021994-01-17
+)
+NumberFormatException
+ l, typeMessage=null, typeContratProduction=null, numDossier=null, idSousLigne=null, idUtilisation=null, typeContrat=null, typeEnregistrement=null, codeEnregistrement=05, identifiantEnregistrement=null, numBlocDonneesComplementaires=null, indicateursSaisie=null, zoneGroupe=     1411111000000000000000000000000000000000000000000000000000000000000000000000000000ICHCONV     123654         123456         87456
+)
+NumberFormatException
+ l, typeMessage=null, typeContratProduction=null, numDossier=null, idSousLigne=null, idUtilisation=null, typeContrat=null, typeEnregistrement=null, codeEnregistrement=05, identifiantEnregistrement=null, numBlocDonneesComplementaires=null, indicateursSaisie=null, zoneGroupe=     061100100000000000000000000000000000000000000000000000000000000000000000000000000018BA3654                                1990-01-30
+)
+NumberFormatException
+ l, typeMessage=null, typeContratProduction=null, numDossier=null, idSousLigne=null, idUtilisation=null, typeContrat=null, typeEnregistrement=null, codeEnregistrement=05, identifiantEnregistrement=null, numBlocDonneesComplementaires=null, indicateursSaisie=null, zoneGroupe=     111100000000000000000000000000000000000000000000000000000000000000000000000000000003AC
+)
+NumberFormatException
+ l, typeMessage=null, typeContratProduction=null, numDossier=null, idSousLigne=null, idUtilisation=null, typeContrat=null, typeEnregistrement=null, codeEnregistrement=05, identifiantEnregistrement=null, numBlocDonneesComplementaires=null, indicateursSaisie=null, zoneGroupe=     121000010000000000000000000000000000000000000000000000000000000000000000000000000018                                                BOUSKOURA GOLF CITY
+)
+NumberFormatException
+ l, typeMessage=null, typeContratProduction=null, numDossier=null, idSousLigne=null, idUtilisation=null, typeContrat=null, typeEnregistrement=null, codeEnregistrement=05, identifiantEnregistrement=null, numBlocDonneesComplementaires=null, indicateursSaisie=null, zoneGroupe=     0111000000010001100000000000000000000000000000000000000000000000000000000000000000021994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+)
+NumberFormatException
+                                           07205     0111000000000000000000000000000000000000000000000000000000000000000000000000000000021994-01-17
+
+NumberFormatException
+                                           07205     1411111000000000000000000000000000000000000000000000000000000000000000000000000000ICHCONV     123654         123456         87456
+
+NumberFormatException
+                                           07205     061100100000000000000000000000000000000000000000000000000000000000000000000000000018BA3654                                1990-01-30
+
+NumberFormatException
+                                           07205     111100000000000000000000000000000000000000000000000000000000000000000000000000000003AC
+
+NumberFormatException
+                                           07205     121000010000000000000000000000000000000000000000000000000000000000000000000000000018                                                BOUSKOURA GOLF CITY
+
+NumberFormatException
+                                           07205     0111000000010001100000000000000000000000000000000000000000000000000000000000000000021994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+
+NumberFormatException
+                                           07205     0111000000000000000000000000000000000000000000000000000000000000000000000000000000021994-01-17
+
+NumberFormatException
+                                           07205     1411111000000000000000000000000000000000000000000000000000000000000000000000000000ICHCONV     123654         123456         87456
+
+NumberFormatException
+                                           07205     061100100000000000000000000000000000000000000000000000000000000000000000000000000018BA3654                                1990-01-30
+
+NumberFormatException
+                                           07205     111100000000000000000000000000000000000000000000000000000000000000000000000000000003AC
+
+NumberFormatException
+                                           07205     121000010000000000000000000000000000000000000000000000000000000000000000000000000018                                                BOUSKOURA GOLF CITY
+
+StringIndexOutOfBoundsException
+ 01-17
+
+NumberFormatException
+      123654         123456         87456
+
+NumberFormatException
+ 4                                1990-01-30
+
+StringIndexOutOfBoundsException
+ 01-17
+
+NumberFormatException
+      123654         123456         87456
+
+NumberFormatException
+ 4                                1990-01-30
+
+StringIndexOutOfBoundsException
+ 01-17
+
+NumberFormatException
+      123654         123456         87456
+
+NumberFormatException
+ 4                                1990-01-30
+
+StringIndexOutOfBoundsException
+ 01-17
+
+NumberFormatException
+      123654         123456         87456
+
+NumberFormatException
+ 4                                1990-01-30
+
+NumberFormatException
+      123654         123456         87456
+
+NumberFormatException
+ 4                                1990-01-30
+
+NumberFormatException
+      123654         123456         87456
+
+NumberFormatException
+ 4                                1990-01-30
+
+NumberFormatException
+      123654         123456         87456
+
+NumberFormatException
+ 4                                1990-01-30
+
+NumberFormatException
+                                           07205     1411111000000000000000000000000000000000000000000000000000000000000000000000000000ICHCONV     123654         123456         87456
+
+NumberFormatException
+                                           07205     061100100000000000000000000000000000000000000000000000000000000000000000000000000018BA3654                                1990-01-30
+
+NumberFormatException
+                                           07205     111100000000000000000000000000000000000000000000000000000000000000000000000000000003AC
+
+NumberFormatException
+                                           07205     121000010000000000000000000000000000000000000000000000000000000000000000000000000018                                                BOUSKOURA GOLF CITY
+
+NumberFormatException
+                                           07205     0111000000010001100000000000000000000000000000000000000000000000000000000000000000021994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+
+NumberFormatException
+                                           07205     1111110000000000000000000000000000000000000000000000000000000000000000000000000000ICCONV      876455554674444123654
+
+NumberFormatException
+                                           07205     1111110000000000000000000000000000000000000000000000000000000000000000000000000000ICCONV      876455554674444123654
+
+NumberFormatException
+                                           07205     041110000000000000000000000000000000000000000000000000000000000000000000000000000003RJ Dossier rejet�
+
+NumberFormatException
+                                           07205     121100110000000000000000000000000000000000000000000000000000000000000000000000000018BA3654                                1990-01-30BOUSKOURA GOLF CITY
+
+NumberFormatException
+                                           07205     1110010000000000000000000000000000000000000000000000000000000000000000000000000000IC                         123654
+
+NumberFormatException
+                                           07205     1110010000000000000000000000000000000000000000000000000000000000000000000000000000IC                         123654
+
+NumberFormatException
+                                           07205     021100000000000000000000000000000000000000000000000000000000000000000000000000000003AC
+
+NumberFormatException
+                                           07205     1311111000000000000000000000000000000000000000000000000000000000000000000000000000ICCONV      876455554674444123654         YTY79876
+
+NumberFormatException
+                                           07205     1210010000000000000000000000000000000000000000000000000000000000000000000000000000IC                         123654
+
+NumberFormatException
+                                           07205     1210010000000000000000000000000000000000000000000000000000000000000000000000000000IC                         123654
+
+NumberFormatException
+                                           07205     1210010000000000000000000000000000000000000000000000000000000000000000000000000000IC                         123654
+
+NumberFormatException
+                                           07205     121000010000000000000000000000000000000000000000000000000000000000000000000000000001                              OUI
+
+NumberFormatException
+                                           07205     1210010000000000000000000000000000000000000000000000000000000000000000000000000000IC                         123654
+
+NumberFormatException
+                                           07205     1210010000000000000000000000000000000000000000000000000000000000000000000000000000IC                         123654
+
+NumberFormatException
+                                           07205     031100000000000000000000000000000000000000000000000000000000000000000000000000000019CI101000101
+
+NumberFormatException
+                                           07205     121000010000000000000000000000000000000000000000000000000000000000000000000000000001                              OUI
+
+NumberFormatException
+                                           07205     031100000000000000000000000000000000000000000000000000000000000000000000000000000019CI101000180
+
+NumberFormatException
+                                           07205     031100000000000000000000000000000000000000000000000000000000000000000000000000000019CI101000080
+
+NumberFormatException
+                                           07205     1411111000000000000000000000000000000000000000000000000000000000000000000000000000ICHCONV     123654         123456         87456
+
+NumberFormatException
+                                           07205     061100100000000000000000000000000000000000000000000000000000000000000000000000000018BA3654                                1990-01-30
+
+NumberFormatException
+                                           07205     0111000000010001100000000000000000000000000000000000000000000000000000000000000000021994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+
+NumberFormatException
+                                           07205     0111000000010001100000000000000000000000000000000000000000000000000000000000000000021994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+
+NumberFormatException
+ 1994-01-17                                                     DA80448                                 EL YOUSFI BRAHIM
+
