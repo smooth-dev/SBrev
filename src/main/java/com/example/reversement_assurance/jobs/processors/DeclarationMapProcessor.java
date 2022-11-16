@@ -255,7 +255,7 @@ public class DeclarationMapProcessor implements Tasklet {
             declarationModel.setTypeClient(cre06Value.substring(999, 1004).trim());
             declarationModel.setNumCompteClient(cre06Value.substring(1541, 1575).trim());
             declarationModel.setPopulation(cre06Value.substring(1024, 1029).trim());
-            declarationModel.setNumContratFiliale(cre06Value.substring(290, 325).trim());
+            declarationModel.setNumContratFiliale(cre06Value.substring(291, 325).trim());
             declarationModel.setCodeProduit("0000002");
             declarationModel.setDateEffet(new LocalDate(cre06Value.substring(1718, 1728).trim()));
             declarationModel.setDureeSousc(Integer.parseInt(cre06Value.substring(1460, 1463).trim()));
