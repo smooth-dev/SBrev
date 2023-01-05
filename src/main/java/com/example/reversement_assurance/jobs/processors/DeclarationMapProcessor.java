@@ -134,7 +134,7 @@ public class DeclarationMapProcessor implements Tasklet {
 
     private void getPDDDOS05Bloc02(DeclarationModel declarationModel, Map<String, String> row) {
         try {
-            declarationModel.setNumClient(row.get(PDDDOS_DONNEES_COMPLEMENTAIRES_BLOCK_02).substring(263, 273));
+            declarationModel.setNumClient(row.get(PDDDOS_DONNEES_COMPLEMENTAIRES_BLOCK_02).substring(263, 269));
             declarationModel.setNomClient(row.get(PDDDOS_DONNEES_COMPLEMENTAIRES_BLOCK_02).substring(233, 243));
             declarationModel.setPrenomClient(row.get(PDDDOS_DONNEES_COMPLEMENTAIRES_BLOCK_02).substring(243, 253));
             declarationModel.setDateNaisClient(new LocalDate(row.get(PDDDOS_DONNEES_COMPLEMENTAIRES_BLOCK_02).substring(283, 293)));
@@ -165,7 +165,9 @@ public class DeclarationMapProcessor implements Tasklet {
     private void getPDDDOS_RES_FONC_50(DeclarationModel declarationModel, Map<String, String> row) {
         try {
             declarationModel.setCodePhase(row.get(PDDDOS_BLOCK_50).substring(143, 144));
-            declarationModel.setMontantCredit(new BigInteger(row.get(PDDDOS_BLOCK_50).substring(281, 298)));
+            declarationModel.setMontantCredit(new BigInteger(row.get(PDDDOS_BLOCK_50).substring(282, 299)));
+            System.out.println("UUU111"+row.get(PDDDOS_BLOCK_50).substring(282, 299));
+            System.out.println("UUU222"+new BigInteger(row.get(PDDDOS_BLOCK_50).substring(282, 299)));
             declarationModel.setTauxEmprunt(getFormatedTauxEmprunt(row));
             declarationModel.setCapitalRestantDu(new BigInteger(row.get(PDDDOS_BLOCK_50).substring(1624, 1642)));
         } catch (NullPointerException | StringIndexOutOfBoundsException e) {
@@ -229,6 +231,7 @@ public class DeclarationMapProcessor implements Tasklet {
     private void getPDDDOSBloc50(DeclarationModel declarationModel, Map<String, String> row) {
         try {
             declarationModel.setDateDerEch(LocalDate.parse(row.get(PDDDOS_BLOCK_50).substring(163, 173)));
+            System.out.println("datedate2"+LocalDate.parse(row.get(PDDDOS_BLOCK_50).substring(163, 173))+declarationModel);
         } catch (NullPointerException | StringIndexOutOfBoundsException e) {
             log.error("Error while processing contract number: {} on Block 50 \n \t Exception name: {}", currentContractNumber, e.getClass());
         } catch (IllegalFieldValueException e) {
@@ -301,8 +304,11 @@ public class DeclarationMapProcessor implements Tasklet {
         else if ("U".equals(declarationModel.getModePaiement()))
             declarationModel.setTauxAssurance(new BigDecimal(taux).multiply(BigDecimal.valueOf(10_000)).toBigInteger());
 
+        System.out.println("kdddd"+declarationModel.getTauxAssurance());
+
         declarationModel.setDureeDiffere(Math.abs(Months.monthsBetween(declarationModel.getDate1Ech(), new LocalDate()).getMonths()));
 
+        System.out.println("eeeeee"+declarationModel.getDureeDiffere()+(new LocalDate()));
         switch (declarationModel.getCodePhase()) {
             case "1":
             case "2":
@@ -318,23 +324,32 @@ public class DeclarationMapProcessor implements Tasklet {
             default:
                 break;
         }
+        System.out.println("RRRR111"+declarationModel.getMontantCredit());
         declarationModel.setMontantCredit(declarationModel.getMontantCredit().multiply(BigInteger.valueOf(100)));
+        System.out.println("RRRR222"+declarationModel.getMontantCredit());
         declarationModel.setDureeReport(0);//TODO: to be implemented
+    }
+
+    public static BigDecimal montant12ToBigDecimal(String montant) {
+        StringBuffer str = new StringBuffer(montant);
+        str.insert(14, '.');
+        return new BigDecimal(str.toString());
     }
 
     private void getPdevtData(DeclarationModel declarationModel, Map<String, String> row) {
         getBloc12(declarationModel, row.get(PDEVT_BLOCK_12));
         //bloc 51
+        System.out.println("Prime(Row).."+row+"##"+row.get(PDEVT_BLOCK_51).substring(198, 203));
+        System.out.println("Prime.."+row.get(PDEVT_BLOCK_51).substring(198, 203));
+        System.out.println("Prime..12"+row.get(PDEVT_BLOCK_12));
         try {
-            declarationModel.setPrimeAssurance(new BigInteger(row.get(PDEVT_BLOCK_51).substring(188, 206)));
+            declarationModel.setPrimeAssurance(row.get(PDEVT_BLOCK_51).substring(195, 205)+"00"); // +"00" car on emule un *100 sur un string
         } catch (NullPointerException | StringIndexOutOfBoundsException e) {
 
             log.error("Error while processing contract number: {} on Block 51 \n \t Exception name: {}", currentContractNumber, e.getClass());
-            System.out.println("Prime(Row).."+row+"##");
-            System.out.println("Prime.."+row.get(PDEVT_BLOCK_51));
-            System.out.println("Prime..12"+row.get(PDEVT_BLOCK_12));
 
-            declarationModel.setPrimeAssurance(BigInteger.valueOf(0));
+
+            declarationModel.setPrimeAssurance("0");
         }
         //bloc 10
    /*     try {

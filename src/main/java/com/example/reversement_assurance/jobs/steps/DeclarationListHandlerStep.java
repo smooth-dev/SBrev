@@ -30,7 +30,7 @@ public class DeclarationListHandlerStep {
     @Bean("declaration-list-handler-step")
     public Step readPdddos(StepBuilderFactory stepBuilderFactory) {
         return stepBuilderFactory.get("declaration-list-handler-step")
-                .<DeclarationModel, DeclarationModel>chunk(Math.min(BatchContext.getInstance().getDeclarationModels().size(), 100))//I'm too good man
+                .<DeclarationModel, DeclarationModel>chunk(Math.min(BatchContext.getInstance().getDeclarationModels().size(), 100))
                 .reader(new ListItemReader<DeclarationModel>(declarationModelList) {
                     @Override
                     public DeclarationModel read(){

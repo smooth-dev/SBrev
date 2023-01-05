@@ -4,7 +4,7 @@ import com.example.reversement_assurance.model.CREModel;
 import com.example.reversement_assurance.model.DetailClient;
 import com.example.reversement_assurance.model.output_files.DeclarationModelOutput;
 import com.example.reversement_assurance.model.ppdos.*;
-import com.example.reversement_assurance.utils.MehdiUtils;
+import com.example.reversement_assurance.utils.GeneralUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
@@ -125,22 +125,23 @@ public class DeclarationProcessor implements ItemProcessor<DeclarationModelOutpu
         detailClient.setTauxSurprime("0");//DEBUG
         detailClient.setTauxSurprime(new BigInteger(detailClient.getTauxSurprime()).multiply(BigInteger.valueOf(100)).toString());
         detailClient.setCodeRejet("");
-        detailClient.setDateNaisClient(MehdiUtils.getFormatedDate(detailClient.getDateNaisClient()));
-        detailClient.setDateEffet(MehdiUtils.getFormatedDate(detailClient.getDateEffet()));
-        detailClient.setDate1Ech(MehdiUtils.getFormatedDate(detailClient.getDate1Ech()));
-        detailClient.setDateDerEch(MehdiUtils.getFormatedDate(detailClient.getDateDerEch()));
+        detailClient.setDateNaisClient(GeneralUtils.getFormatedDate(detailClient.getDateNaisClient()));
+        detailClient.setDateEffet(GeneralUtils.getFormatedDate(detailClient.getDateEffet()));
+        detailClient.setDate1Ech(GeneralUtils.getFormatedDate(detailClient.getDate1Ech()));
+        detailClient.setDateDerEch(GeneralUtils.getFormatedDate(detailClient.getDateDerEch()));
         detailClient.setCodeProduit("0000002");
         totalPrimeAssurance = totalPrimeAssurance.add(new BigInteger(detailClient.getPrimeAssurance().replace(".", "")));
         //if detailClient.getPopulation().equals("IM") => 3022 elseif equals("CC") => 3023
         if (detailClient.getPopulation().equals("IM")) {
             detailClient.setPopulation("3022");
-        } else if (detailClient.getPopulation().equals("CC")) {
+        } else if (detailClient.getPopulation().equals("CS")) {
             detailClient.setPopulation("3023");
         }
         //remove 6 last characters from detailClient.getTauxEmprunt TXINTC-I22 S9(003)V9(06) SLS * Taux d'intérêt courant
         String noPrecision = detailClient.getTauxEmprunt().substring(0, detailClient.getTauxEmprunt().length() - 6);
         detailClient.setTauxEmprunt(noPrecision.replace("+", ""));
-        int diff = MehdiUtils.getNumberofMonthsBetweenTodayAnd(detailClient.getDate1Ech());
+        int diff = GeneralUtils.getNumberofMonthsBetweenTodayAnd(detailClient.getDate1Ech());
+
 
         detailClient.setDureeDiffere(String.valueOf(diff));
         if (diff > 0) {

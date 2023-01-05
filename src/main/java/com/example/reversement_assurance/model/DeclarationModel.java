@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.joda.time.LocalDate;
 
+import java.math.BigDecimal;
 import java.math.BigInteger;
 /**
  * <li>numClient</li>
@@ -73,7 +74,7 @@ public class DeclarationModel {
     private String typeConvention;
     private LocalDate dateEffet;
     private Integer dureeSousc;
-    private BigInteger primeAssurance;
+    private String primeAssurance;
     private BigInteger tauxAssurance;
     private BigInteger montantCredit;
     private Integer tauxEmprunt;

@@ -1,0 +1,1 @@
+java -jar   pdevtpath="./inputfiles/spddevdt.a00" crepath="./inputfiles/zcrev3dt.a01" pdddospath="./inputfiles/spdddodt.a00" revasspath="./inputfiles/zrevadt.a01" baremepath="./inputfiles/P011.txt" decloutpath="declaration-out.txt" revassoutpath="revass-out.txt"

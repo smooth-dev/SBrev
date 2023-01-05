@@ -2,6 +2,7 @@ package com.example.reversement_assurance.jobs.reader.specialreaders.file_reader
 
 import com.example.reversement_assurance.jobs.batch_context.BatchContext;
 import com.example.reversement_assurance.utils.SimpleRejectLinesWriter;
+import org.joda.time.LocalDate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.batch.core.configuration.annotation.StepScope;

@@ -30,7 +30,7 @@ public class PDEVTReader {
         log.info("Launching PDEVT Map generation for  : {}", new java.util.Date());
 
         return new FlatFileItemReaderBuilder<String>()
-                .name("cr06-reader")
+                    .name("cr06-reader")
                 .resource(new PathResource(pdevtFilePath))
                 .lineMapper((line, lineNumber) -> {
                     try {

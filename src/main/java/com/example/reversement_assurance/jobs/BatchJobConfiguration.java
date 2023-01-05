@@ -94,7 +94,7 @@ public class BatchJobConfiguration {
                 .next(revassReaderStep)
                 .next(pdevtReaderStep)
                 .next(baremeRetrieverStep)
-                .next(declarationHandlerStep)
+                .next(declarationHandlerStep) // insere les données des 3 map dans une classe model
                 .next(declarationListHandlerStep)
                 .next(revassHandlerStep)
                 .next(revassListHandlerStep)

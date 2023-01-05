@@ -11,11 +11,17 @@ import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import org.joda.time.LocalDate;
+
 
 
 
 public class BatchContext {
     private static final Logger log = LoggerFactory.getLogger(BatchContext.class.getName());
+
+
+    @Getter
+    LocalDate dateTraitement = null;
 
     @Getter
     HashMap<String,String> cre06 = null;
@@ -49,6 +55,7 @@ public class BatchContext {
     private void init() {
         try{
             log.info("Initializing BatchContext...");
+            dateTraitement=new LocalDate();
             cre06 = new HashMap<>();
             pdddos =  HashBasedTable.create();
             revass = new HashMap<>();

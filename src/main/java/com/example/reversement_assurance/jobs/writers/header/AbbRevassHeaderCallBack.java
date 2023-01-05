@@ -1,6 +1,6 @@
 package com.example.reversement_assurance.jobs.writers.header;
 
-import com.example.reversement_assurance.utils.MehdiUtils;
+import com.example.reversement_assurance.utils.GeneralUtils;
 import org.springframework.batch.item.file.FlatFileHeaderCallback;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
@@ -14,7 +14,7 @@ public class AbbRevassHeaderCallBack {
             StringBuilder header = new StringBuilder();
             header.append("0")
                     .append("03")
-                    .append(MehdiUtils.getFirstDayOfNextMonth())
+                    .append(GeneralUtils.getFirstDayOfNextMonth())
                     .append("B")
                     .append(String.format("%-388s",""));
             writer.write(header.toString());

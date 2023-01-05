@@ -39,6 +39,8 @@ public class RevassMapProcessor implements Tasklet {
         Table<String, String, String> pdddos = BatchContext.getInstance().getPdddos();
         HashMap<String, String> cre = BatchContext.getInstance().getCre06();
         HashMap<String, String> revass = BatchContext.getInstance().getRevass();
+
+
         for (Map.Entry<String, String> entry : cre.entrySet()) {
             //check if key exists in pdddos
             if (pdddos.containsRow(entry.getKey()) && revass.containsKey(entry.getKey())) {
