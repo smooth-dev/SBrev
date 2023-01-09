@@ -35,9 +35,14 @@ public class PDEVTReader {
                 .lineMapper((line, lineNumber) -> {
                     try {
                                 switch (line.substring(162, 164)) {
-                                    case PDEVT_BLOCK_12:
-                                           if(line.startsWith("ASS",224))
+                                    case PDEVT_BLOCK_12: {
+                                        System.out.println("lineSS"+line);
+                                        if (line.startsWith("ASS", 320)) {
+                                            System.out.println("lineS1S" + line);
+
                                             handleBlock(line, PDEVT_BLOCK_12);
+                                        }
+                                    }
                                         break;
                                     case PDEVT_BLOCK_10:
                                         handleBlock(line, PDEVT_BLOCK_10);
@@ -61,6 +66,7 @@ public class PDEVTReader {
     }
 
     private void handleBlock(String line, String blockCode) {
+        System.out.println("hitttt"+blockCode);
         String contractNumber = line.substring(24, 41).trim();
         if (pdevt.containsRow(contractNumber))
             log.warn("Contract {} found again in PDEVT in block {}", contractNumber,blockCode);

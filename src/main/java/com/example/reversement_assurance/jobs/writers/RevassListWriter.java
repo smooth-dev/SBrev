@@ -61,12 +61,12 @@ public class RevassListWriter {
                         }
                     }
                     DetailClient detailClient = new DetailClient();
-                    detailClient.setNumClient(" "+StringUtils.rightPad(reverssementModel.getNumClient(), 7, " "));
-                    detailClient.setNomClient(StringUtils.rightPad(reverssementModel.getNomClient(), 32, " "));
+                    detailClient.setNumClient(StringUtils.rightPad("1"+reverssementModel.getNumClient(), 9, " "));
+                    detailClient.setNomClient(StringUtils.rightPad(reverssementModel.getNomClient(), 30, " "));
                     detailClient.setPrenomClient(StringUtils.rightPad(reverssementModel.getPrenomClient(), 30, " "));
                     detailClient.setDateNaisClient(LocalDate.parse(reverssementModel.getDateNaisClient().toString()).format(new DateTimeFormatterBuilder().appendPattern("ddMMyyyy").toFormatter()));
                     detailClient.setNumCinClient(StringUtils.rightPad(reverssementModel.getNumCinClient(), 12, " "));
-                    detailClient.setTypeClient(StringUtils.rightPad(reverssementModel.getTypeClient(), 1, " "));
+                    detailClient.setTypeClient(reverssementModel.getTypeClient().equals("ENTRE")?"E":"P");
                     detailClient.setAdrClient1(StringUtils.rightPad(reverssementModel.getAdrClient1(), 30, " "));
                     detailClient.setAdrClient2(StringUtils.rightPad(reverssementModel.getAdrClient2(), 30, " "));
                     detailClient.setCodePostal(StringUtils.rightPad(reverssementModel.getCodePostal(), 10, " "));
@@ -78,6 +78,8 @@ public class RevassListWriter {
                     detailClient.setCodeProduit(StringUtils.rightPad(reverssementModel.getCodeProduit(), 7, " "));
                     detailClient.setCodePhase(StringUtils.rightPad(reverssementModel.getCodePhase(), 4, " "));
                     detailClient.setModePaiement(StringUtils.rightPad(reverssementModel.getModePaiement(), 1, " "));
+                    System.out.println("dddd111reverssementModel.getModePaiement()  = " + reverssementModel.getModePaiement());
+
                     detailClient.setPeriodicite(StringUtils.leftPad(reverssementModel.getPeriodicite(), 1, "0"));
                     detailClient.setTypeConvention(StringUtils.rightPad(reverssementModel.getTypeConvention(), 1, " "));
                     detailClient.setDateEffet(LocalDate.parse(reverssementModel.getDateEffet().toString()).format(new DateTimeFormatterBuilder().appendPattern("ddMMyyyy").toFormatter()));

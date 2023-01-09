@@ -40,6 +40,7 @@ public class RevassMapProcessor implements Tasklet {
         HashMap<String, String> cre = BatchContext.getInstance().getCre06();
         HashMap<String, String> revass = BatchContext.getInstance().getRevass();
 
+        log.info("Revass : cre size : {}, pdddos size : {}, revass size : {}", cre.size(), pdddos.size(), revass.size());
 
         for (Map.Entry<String, String> entry : cre.entrySet()) {
             //check if key exists in pdddos
@@ -112,7 +113,7 @@ public class RevassMapProcessor implements Tasklet {
 
     private void getPDDDOS05Bloc02(ReverssementModel reverssementModel, Map<String, String> row) {
         try {
-            reverssementModel.setNumClient(row.get(PDDDOS_DONNEES_COMPLEMENTAIRES_BLOCK_02).substring(263, 273));
+            reverssementModel.setNumClient(row.get(PDDDOS_DONNEES_COMPLEMENTAIRES_BLOCK_02).substring(263, 269));
             reverssementModel.setNomClient(row.get(PDDDOS_DONNEES_COMPLEMENTAIRES_BLOCK_02).substring(233, 243));
             reverssementModel.setPrenomClient(row.get(PDDDOS_DONNEES_COMPLEMENTAIRES_BLOCK_02).substring(243, 253));
             reverssementModel.setDateNaisClient(new LocalDate(row.get(PDDDOS_DONNEES_COMPLEMENTAIRES_BLOCK_02).substring(283, 293)));
@@ -127,8 +128,8 @@ public class RevassMapProcessor implements Tasklet {
             reverssementModel.setAdrClient1(row.get(PDDDOS_DONNEES_COMPLEMENTAIRES_BLOCK_03).substring(240, 255));
             //TODO add city code
             reverssementModel.setCodeVille(reverssementModel.getAdrClient1().substring(0, 3));
-            reverssementModel.setAdrClient1(" ");
-            reverssementModel.setCodePostal(" ");
+//            reverssementModel.setAdrClient1(" ");
+//            reverssementModel.setCodePostal(" ");
         } catch (StringIndexOutOfBoundsException e) {
             log.error("Error while processing contract number: {} on Block 05 sub Block 03 \n \t Exception name: {}", currentContractNumber, e.getMessage());
         }
@@ -145,9 +146,9 @@ public class RevassMapProcessor implements Tasklet {
     private void getPDDDOS_RES_FONC_50(ReverssementModel reverssementModel, Map<String, String> row) {
         try {
             reverssementModel.setCodePhase(row.get(PDDDOS_BLOCK_50).substring(143, 144));
-            reverssementModel.setMontantCredit(new BigInteger(row.get(PDDDOS_BLOCK_50).substring(281, 299)));
+            reverssementModel.setMontantCredit(new BigInteger(row.get(PDDDOS_BLOCK_50).substring(282, 299)).multiply(BigInteger.valueOf(100)));
             reverssementModel.setTauxEmprunt(getFormatedTauxEmprunt(row));
-            reverssementModel.setCapitalRestantDu(new BigInteger(row.get(PDDDOS_BLOCK_50).substring(1624, 1642)));
+//            reverssementModel.setCapitalRestantDu(new BigInteger(row.get(PDDDOS_BLOCK_50).substring(1624, 1642)));
         } catch (NullPointerException | StringIndexOutOfBoundsException e) {
             log.error("Error while processing contract number: {} on RES-FONC-50 \n \t Exception name: {}", currentContractNumber, e.getClass());
         }
@@ -176,7 +177,7 @@ public class RevassMapProcessor implements Tasklet {
                 reverssementModel.setPrimeAssurance(BigInteger.ZERO);
                 log.error("Prime Assurance is empty or contains spaces for contract number: {} ,defaulted to ZERO", currentContractNumber);
             }
-            if(row.get(PDDDOS_BLOCK_12).substring(459, 464).trim().equals("")||
+            if(row.get(PDDDOS_BLOCK_12).substring(464, 474).trim().equals("")||
                     row.get(PDDDOS_BLOCK_12).substring(459, 464).trim().contains(" ")){
                 reverssementModel.setTauxAssurance(BigInteger.ZERO);
                 log.error("Taux Assurance is empty or contains spaces for contract number: {} ,defaulted to ZERO", currentContractNumber);
@@ -210,12 +211,14 @@ public class RevassMapProcessor implements Tasklet {
 
     private void getPDDDOSBloc50(ReverssementModel reverssementModel, Map<String, String> row) {
         try {
-            reverssementModel.setDateDerEch(LocalDate.parse(row.get(PDDDOS_BLOCK_50).substring(163, 173)));
+            String dateFromPddos = row.get(PDDDOS_BLOCK_50).substring(163, 173);
+            if(dateFromPddos.contains("-00-"))             reverssementModel.setDateDerEch(LocalDate.parse("01-01-1970", new DateTimeFormatterBuilder().appendPattern("dd-MM-yyyy").toFormatter()));
+            else reverssementModel.setDateDerEch(LocalDate.parse(row.get(PDDDOS_BLOCK_50).substring(163, 173)));
         } catch (NullPointerException | StringIndexOutOfBoundsException e) {
-            log.error("Error while processing contract number: {} on Block 50 \n \t Exception name: {}", currentContractNumber, e.getClass());
+            log.error("Error Revass while processing contract number: {} on Block 50-3 \n \t Exception name: {}", currentContractNumber, e.getClass());
         }catch (IllegalFieldValueException e){
             reverssementModel.setDateDerEch(LocalDate.parse("01-01-1970",new DateTimeFormatterBuilder().appendPattern("dd-MM-yyyy").toFormatter()));
-            log.error("Error while processing contract number: {} on Block 50 , defaulted dateDerEch to UNIX_TIMESTAMP_ORIGIN\n \t Exception name: {}", currentContractNumber, e.getClass());
+            log.error("Error Revass while processing contract number: {} on Block 50-4 , defaulted dateDerEch to UNIX_TIMESTAMP_ORIGIN\n \t Exception name: {}", currentContractNumber, e.getClass());
         }
     }
 
@@ -234,6 +237,7 @@ public class RevassMapProcessor implements Tasklet {
      */
     private void getCreData(ReverssementModel reverssementModel, String cre06Value) {
         try {
+//            log.info("cre06Value",cre06Value);
             reverssementModel.setTypeClient(cre06Value.substring(999, 1004).trim());
             reverssementModel.setNumCompteClient(cre06Value.substring(1541, 1575).trim());
             reverssementModel.setPopulation(cre06Value.substring(1024, 1029).trim());
@@ -276,6 +280,8 @@ public class RevassMapProcessor implements Tasklet {
         else
             reverssementModel.setModePaiement("P");
 
+        System.out.println("sssssazaz  = " + reverssementModel.getPrimeAssurance() +"\n and x100: "+reverssementModel.getPrimeAssurance().multiply(BigInteger.valueOf(100)) );
+
         reverssementModel.setPrimeAssurance(reverssementModel.getPrimeAssurance().multiply(BigInteger.valueOf(100)));
 
         if ("U".equals(reverssementModel.getModePaiement()))
@@ -303,7 +309,8 @@ public class RevassMapProcessor implements Tasklet {
             default:
                 break;
         }
-        reverssementModel.setMontantCredit(reverssementModel.getMontantCredit().multiply(BigInteger.valueOf(100)));
+
+       reverssementModel.setMontantCredit(reverssementModel.getMontantCredit().multiply(BigInteger.valueOf(100)));
         reverssementModel.setDureeReport(0);//TODO: to be implemented
     }
 
@@ -323,13 +330,15 @@ public class RevassMapProcessor implements Tasklet {
      */
     private void getRevassData(ReverssementModel reverssementModel, String revassValue) {
         reverssementModel.setNumContratFiliale(revassValue.substring(166, 201).trim().substring(1));
-        reverssementModel.setModePaiement(revassValue.substring(400, 405).trim());
+//        reverssementModel.setModePaiement(revassValue.substring(400, 405).trim());
         reverssementModel.setDateEffet(new LocalDate(revassValue.substring(410, 420).trim()));
         reverssementModel.setDureeSousc(Integer.parseInt(revassValue.substring(313, 316).trim()));
-        reverssementModel.setPrimeAssurance(new BigInteger(revassValue.substring(493, 511).trim()));
+        reverssementModel.setPrimeAssurance(new BigInteger(revassValue.substring(493, 511).trim()).multiply(BigInteger.valueOf(100)));
+
+
         reverssementModel.setTauxAssurance(new BigInteger(revassValue.substring(511, 521).trim()));
-        reverssementModel.setMontantCredit(new BigInteger(revassValue.substring(316, 334).trim()));
-        reverssementModel.setCapitalRestantDu(new BigInteger(revassValue.substring(542, 560).trim()));
+        reverssementModel.setMontantCredit(new BigInteger(revassValue.substring(316, 334).trim()).multiply(BigInteger.valueOf(100)));
+        reverssementModel.setCapitalRestantDu(new BigInteger(revassValue.substring(542, 560).trim()).multiply(BigInteger.valueOf(100)));
         reverssementModel.setTauxSurprime(Integer.parseInt(revassValue.substring(465, 475).trim()));
     }
 

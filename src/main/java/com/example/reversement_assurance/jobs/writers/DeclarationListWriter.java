@@ -50,6 +50,7 @@ public class DeclarationListWriter {
                 .lineAggregator(declarationModel -> {
                     for(Field field : declarationModel.getClass().getDeclaredFields()){
 
+                        System.out.println("DECL"+declarationModel);
 
                         try {
                             field.setAccessible(true);
@@ -69,7 +70,7 @@ public class DeclarationListWriter {
                     detailClient.setPrenomClient(StringUtils.rightPad(declarationModel.getPrenomClient(), 30, " "));
                     detailClient.setDateNaisClient(LocalDate.parse(declarationModel.getDateNaisClient().toString()).format(new DateTimeFormatterBuilder().appendPattern("ddMMyyyy").toFormatter()));
                     detailClient.setNumCinClient(StringUtils.rightPad(declarationModel.getNumCinClient(), 12, " "));
-                    detailClient.setTypeClient(StringUtils.rightPad(declarationModel.getTypeClient(), 1, " "));
+                    detailClient.setTypeClient(declarationModel.getTypeClient().equals("ENTRE")?"E":"P");
                     detailClient.setAdrClient1(StringUtils.rightPad(declarationModel.getAdrClient1(), 30, " "));
                     detailClient.setAdrClient2(StringUtils.rightPad(declarationModel.getAdrClient2(), 30, " "));
                     detailClient.setCodePostal(StringUtils.rightPad(declarationModel.getCodePostal(), 10, " "));
@@ -87,7 +88,7 @@ public class DeclarationListWriter {
                     detailClient.setDureeSousc(StringUtils.leftPad(declarationModel.getDureeSousc().toString(), 3, "0"));
                     detailClient.setPrimeAssurance(StringUtils.leftPad(declarationModel.getPrimeAssurance().toString(), 12, "0"));
                     detailClient.setTauxAssurance(StringUtils.rightPad(declarationModel.getTauxAssurance().toString(), 7, "0"));
-                    detailClient.setMontantCredit(StringUtils.leftPad(declarationModel.getMontantCredit().toString(), 12, "0"));
+                    detailClient.setMontantCredit("|"+StringUtils.leftPad(declarationModel.getMontantCredit().toString(), 12, "0")+"|");
                     detailClient.setTauxEmprunt(StringUtils.leftPad(declarationModel.getTauxEmprunt().toString(), 4, "0"));
                     detailClient.setTypeTauxEmprunt(StringUtils.rightPad(declarationModel.getTypeTauxEmprunt(), 1, " "));
                     detailClient.setPourcentageEmprunt(StringUtils.leftPad(declarationModel.getPourcentageEmprunt().toString(), 3, "0"));
