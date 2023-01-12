@@ -48,7 +48,7 @@ public class PDEVTReader {
                                         handleBlock(line, PDEVT_BLOCK_10);
                                         break;
                                     case PDEVT_BLOCK_51:
-                                        if("007001".equals(line.substring(178,184)))
+                                        if("007006".equals(line.substring(178,184)))
                                             handleBlock(line, PDEVT_BLOCK_51);
                                         break;
                                     default:

@@ -121,7 +121,7 @@ public class DeclarationProcessor implements ItemProcessor<DeclarationModelOutpu
             //*1_000_000
             detailClient.setTauxAssurance(new BigInteger(detailClient.getTauxAssurance()).multiply(BigInteger.valueOf(1_000_000)).toString());
         }
-        detailClient.setMontantCredit(new BigInteger(detailClient.getMontantCredit()).multiply(BigInteger.valueOf(100)).toString());
+        detailClient.setMontantCredit(new BigInteger(detailClient.getMontantCredit()).multiply(BigInteger.valueOf(10)).toString());
         detailClient.setTauxSurprime("0");//DEBUG
         detailClient.setTauxSurprime(new BigInteger(detailClient.getTauxSurprime()).multiply(BigInteger.valueOf(100)).toString());
         detailClient.setCodeRejet("");

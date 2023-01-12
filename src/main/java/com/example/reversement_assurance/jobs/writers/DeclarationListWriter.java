@@ -87,8 +87,8 @@ public class DeclarationListWriter {
                     detailClient.setDateEffet(LocalDate.parse(declarationModel.getDateEffet().toString()).format(new DateTimeFormatterBuilder().appendPattern("ddMMyyyy").toFormatter()));
                     detailClient.setDureeSousc(StringUtils.leftPad(declarationModel.getDureeSousc().toString(), 3, "0"));
                     detailClient.setPrimeAssurance(StringUtils.leftPad(declarationModel.getPrimeAssurance().toString(), 12, "0"));
-                    detailClient.setTauxAssurance(StringUtils.rightPad(declarationModel.getTauxAssurance().toString(), 7, "0"));
-                    detailClient.setMontantCredit("|"+StringUtils.leftPad(declarationModel.getMontantCredit().toString(), 12, "0")+"|");
+                    detailClient.setTauxAssurance(StringUtils.leftPad(declarationModel.getTauxAssurance().toString(), 7, "0"));
+                    detailClient.setMontantCredit(StringUtils.leftPad(declarationModel.getMontantCredit().toString(), 12, "0"));
                     detailClient.setTauxEmprunt(StringUtils.leftPad(declarationModel.getTauxEmprunt().toString(), 4, "0"));
                     detailClient.setTypeTauxEmprunt(StringUtils.rightPad(declarationModel.getTypeTauxEmprunt(), 1, " "));
                     detailClient.setPourcentageEmprunt(StringUtils.leftPad(declarationModel.getPourcentageEmprunt().toString(), 3, "0"));

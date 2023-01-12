@@ -150,7 +150,7 @@ public class PddRevJoinProcessor implements ItemProcessor<PddRevJoinModel, Detai
             detailClient.setTauxAssurance(tauxAssurance.substring(0,tauxAssurance.indexOf(".")));
         }
 
-        detailClient.setMontantCredit(new BigInteger(detailClient.getMontantCredit()).multiply(BigInteger.valueOf(100)).toString());
+        detailClient.setMontantCredit(new BigInteger(detailClient.getMontantCredit()).multiply(BigInteger.valueOf(10)).toString());
         detailClient.setTauxSurprime(new BigInteger(detailClient.getTauxSurprime()).multiply(BigInteger.valueOf(100)).toString());
         detailClient.setCodeRejet("");
         detailClient.setDateNaisClient(GeneralUtils.getFormatedDate(detailClient.getDateNaisClient()));

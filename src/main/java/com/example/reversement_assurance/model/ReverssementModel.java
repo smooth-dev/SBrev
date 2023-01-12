@@ -74,7 +74,7 @@ public class ReverssementModel {
     private String typeConvention;
     private LocalDate dateEffet;
     private Integer dureeSousc;
-    private BigInteger primeAssurance;
+    private String primeAssurance;
     private BigInteger tauxAssurance;
     private BigInteger montantCredit;
     private Integer tauxEmprunt;

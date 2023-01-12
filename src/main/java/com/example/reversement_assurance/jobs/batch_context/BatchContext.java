@@ -5,6 +5,7 @@ import com.example.reversement_assurance.model.ReverssementModel;
 import com.google.common.collect.HashBasedTable;
 import com.google.common.collect.Table;
 import lombok.Getter;
+import lombok.Setter;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,6 +20,12 @@ import org.joda.time.LocalDate;
 public class BatchContext {
     private static final Logger log = LoggerFactory.getLogger(BatchContext.class.getName());
 
+@Setter
+    @Getter
+    int cumulPrimeRev = 0;
+
+    @Getter
+    int cumulPrimeDecl = 0;
 
     @Getter
     LocalDate dateTraitement = null;
