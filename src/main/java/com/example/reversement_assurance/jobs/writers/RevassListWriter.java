@@ -64,7 +64,7 @@ public class RevassListWriter {
                     detailClient.setNumClient(StringUtils.rightPad("1"+reverssementModel.getNumClient(), 9, " "));
                     detailClient.setNomClient(StringUtils.rightPad(reverssementModel.getNomClient(), 30, " "));
                     detailClient.setPrenomClient(StringUtils.rightPad(reverssementModel.getPrenomClient(), 30, " "));
-                    detailClient.setDateNaisClient(LocalDate.parse(reverssementModel.getDateNaisClient().toString()).format(new DateTimeFormatterBuilder().appendPattern("ddMMyyyy").toFormatter()));
+                    detailClient.setDateNaisClient(reverssementModel.getDateNaisClient()==null?"00000000":LocalDate.parse(reverssementModel.getDateNaisClient().toString()).format(new DateTimeFormatterBuilder().appendPattern("ddMMyyyy").toFormatter()));
                     detailClient.setNumCinClient(StringUtils.rightPad(reverssementModel.getNumCinClient(), 12, " "));
                     detailClient.setTypeClient(reverssementModel.getTypeClient().equals("ENTRE")?"E":"P");
                     detailClient.setAdrClient1(StringUtils.rightPad(reverssementModel.getAdrClient1(), 30, " "));
@@ -78,7 +78,7 @@ public class RevassListWriter {
                     detailClient.setCodeProduit(StringUtils.rightPad(reverssementModel.getCodeProduit(), 7, " "));
                     detailClient.setCodePhase(StringUtils.rightPad(reverssementModel.getCodePhase(), 4, " "));
                     detailClient.setModePaiement(StringUtils.rightPad(reverssementModel.getModePaiement(), 1, " "));
-                    System.out.println("dddd111reverssementModel.getModePaiement()  = " + reverssementModel.getModePaiement());
+                     
 
                     detailClient.setPeriodicite(StringUtils.leftPad(reverssementModel.getPeriodicite(), 1, "0"));
                     detailClient.setTypeConvention(StringUtils.rightPad(reverssementModel.getTypeConvention(), 1, " "));
@@ -87,8 +87,10 @@ public class RevassListWriter {
                     detailClient.setPrimeAssurance(StringUtils.leftPad(reverssementModel.getPrimeAssurance().toString(), 12, "0"));
                     detailClient.setTauxAssurance(StringUtils.leftPad(reverssementModel.getTauxAssurance().toString(), 7, "0"));
                     detailClient.setMontantCredit(StringUtils.leftPad(reverssementModel.getMontantCredit().toString(), 12, "0"));
+
+                    detailClient.setTypeTauxEmprunt(StringUtils.rightPad(reverssementModel.getTypeTauxEmprunt().equals("F")?"F":"V", 1, " "));
+
                     detailClient.setTauxEmprunt(StringUtils.leftPad(reverssementModel.getTauxEmprunt().toString(), 4, "0"));
-                    detailClient.setTypeTauxEmprunt(StringUtils.rightPad(reverssementModel.getTypeTauxEmprunt(), 1, " "));
                     detailClient.setPourcentageEmprunt(StringUtils.leftPad(reverssementModel.getPourcentageEmprunt().toString(), 3, "0"));
                     detailClient.setDureeDiffere(StringUtils.leftPad(reverssementModel.getDureeDiffere().toString(), 3, "0"));
                     detailClient.setDate1Ech(LocalDate.parse(reverssementModel.getDate1Ech().toString()).format(new DateTimeFormatterBuilder().appendPattern("ddMMyyyy").toFormatter()));

@@ -12,11 +12,15 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.io.Writer;
+import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.example.reversement_assurance.configuration.Constants.ITEM_COUNT_LISTENER;
 import static com.example.reversement_assurance.jobs.processors.PddRevJoinProcessor.totalPrimeAssurance;
+
 
 @Component("abb-revass-footer-callback")
 public class AbbRevassFooterCallBack implements FlatFileFooterCallback {
@@ -30,16 +34,24 @@ public class AbbRevassFooterCallBack implements FlatFileFooterCallback {
     public void writeFooter(Writer writer) throws IOException {
 
         List<ReverssementModel> list = BatchContext.getInstance().getReverssementModels();
-        int cumul = list.stream().mapToInt(c -> Integer.parseInt(c.getPrimeAssurance())).sum();
+//        int cumul = list.stream().mapToInt(c -> Integer.parseInt(c.getPrimeAssurance()==""?"0":c.getPrimeAssurance())).sum();
+        List<BigInteger> mappedList = list.stream()
+                .map(o -> BigInteger.valueOf(Long.parseLong(o.getPrimeAssurance()==""?"0":o.getPrimeAssurance())))
+                .collect(Collectors.toList());
 
+        BigInteger cumul = mappedList.stream().reduce(BigInteger.ZERO, BigInteger::add);
 
         StringBuilder footer = new StringBuilder();
         footer.append("Z").append(String.format("%5d", BatchContext.getInstance().getReverssementModels().size()))
-                .append(String.format("%15d",cumul*100))
+                .append(String.format("%15d",cumul))
                 .append(String.format("%-378s",""));
         writer.write(footer.toString());
     }
 
-
+    public static BigDecimal montant12ToBigDecimal(String montant) {
+        StringBuffer str = new StringBuffer(montant);
+        str.insert(14, '.');
+        return new BigDecimal(str.toString());
+    }
 
 }

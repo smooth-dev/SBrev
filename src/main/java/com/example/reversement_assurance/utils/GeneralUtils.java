@@ -30,7 +30,7 @@ private GeneralUtils() {
 
         //get the first day of next month
         LocalDate today = new LocalDate(entry.getValue().substring(26, 36));
-        LocalDate nextMonth = today.plusMonths(1).withDayOfMonth(1);
+        LocalDate nextMonth = today.withDayOfMonth(1);
 
        return getFormatedDate(nextMonth.toString());
     }

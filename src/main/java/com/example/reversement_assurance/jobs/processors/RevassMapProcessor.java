@@ -59,10 +59,13 @@ public class RevassMapProcessor implements Tasklet {
                     setPdddosBusinessLogic(reverssementModel);
                     getRevassData(reverssementModel, revass.get(entry.getKey()));
                     setMiscBusinessLogic(reverssementModel);
+
                     if(pdevt.containsRow(entry.getKey())){
                         getPdevtData(reverssementModel, pdevt.row(entry.getKey()));
 
                     }
+
+
                     reverssementModel.setContractNumber(currentContractNumber);
                     BatchContext.getInstance().getReverssementModels().add(reverssementModel);
                 } catch (NullPointerException | StringIndexOutOfBoundsException e) {
@@ -76,12 +79,13 @@ public class RevassMapProcessor implements Tasklet {
     }
 
     private void getPdevtData(ReverssementModel reverssementModel, Map<String, String> row) {
-        System.out.println("Prime..12"+row.get(PDEVT_BLOCK_51));
+         
         int primeAssurance=0;
 
         try {
+
             primeAssurance=Integer.parseInt(row.get(PDEVT_BLOCK_51).substring(192, 204));
-            System.out.println("Prime..13"+row.get(PDEVT_BLOCK_51).substring(192, 204));
+             
             reverssementModel.setPrimeAssurance((row.get(PDEVT_BLOCK_51).substring(192, 204))); // on lit pas le dernier decimal pour emuler unx100
         } catch (NullPointerException | StringIndexOutOfBoundsException e) {
 
@@ -175,7 +179,7 @@ public class RevassMapProcessor implements Tasklet {
     private void getPDDDOS_RES_FONC_50(ReverssementModel reverssementModel, Map<String, String> row) {
         try {
             reverssementModel.setCodePhase(row.get(PDDDOS_BLOCK_50).substring(143, 144));
-            reverssementModel.setMontantCredit(new BigInteger(row.get(PDDDOS_BLOCK_50).substring(282, 299)).multiply(BigInteger.valueOf(10)));
+            reverssementModel.setMontantCredit(new BigInteger(row.get(PDDDOS_BLOCK_50).substring(282, 298)));
             reverssementModel.setTauxEmprunt(getFormatedTauxEmprunt(row));
 //            reverssementModel.setCapitalRestantDu(new BigInteger(row.get(PDDDOS_BLOCK_50).substring(1624, 1642)));
         } catch (NullPointerException | StringIndexOutOfBoundsException e) {
@@ -319,7 +323,7 @@ public class RevassMapProcessor implements Tasklet {
                 Integer periode = Integer.parseInt(row.get(PDDDOS_BLOCK_10).substring(253, 256));
                 Integer nbrTerme = Integer.parseInt(row.get(PDDDOS_BLOCK_10).substring(256, 259));
 
-                System.out.println("sdsdff"+periode*nbrTerme);
+                 
                 reverssementModel.setDureeDiffere(periode*nbrTerme);
 
             }
@@ -353,7 +357,7 @@ public class RevassMapProcessor implements Tasklet {
         else
             reverssementModel.setModePaiement("P");
 
-//        System.out.println("sssssazaz  = " + reverssementModel.getPrimeAssurance() +"\n and x100: "+reverssementModel.getPrimeAssurance().multiply(BigInteger.valueOf(100)) );
+//         
 
 //        reverssementModel.setPrimeAssurance(reverssementModel.getPrimeAssurance().multiply(BigInteger.valueOf(100)));
 
@@ -383,7 +387,7 @@ public class RevassMapProcessor implements Tasklet {
                 break;
         }
 
-       reverssementModel.setMontantCredit(reverssementModel.getMontantCredit().multiply(BigInteger.valueOf(10)));
+//     reverssementModel.setMontantCredit(reverssementModel.getMontantCredit());
         reverssementModel.setDureeReport(0);//TODO: to be implemented
     }
 
@@ -410,8 +414,8 @@ public class RevassMapProcessor implements Tasklet {
 
 
         reverssementModel.setTauxAssurance(new BigInteger(revassValue.substring(511, 521).trim()));
-        reverssementModel.setMontantCredit(new BigInteger(revassValue.substring(316, 334).trim()).multiply(BigInteger.valueOf(10)));
-        reverssementModel.setCapitalRestantDu(new BigInteger(revassValue.substring(542, 560).trim()).multiply(BigInteger.valueOf(100)));
+        reverssementModel.setMontantCredit(new BigInteger(revassValue.substring(316, 333).trim()));
+        reverssementModel.setCapitalRestantDu(new BigInteger(revassValue.substring(542, 559).trim()));
         reverssementModel.setTauxSurprime(Integer.parseInt(revassValue.substring(465, 475).trim()));
     }
 

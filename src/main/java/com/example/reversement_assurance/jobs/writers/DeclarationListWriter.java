@@ -50,7 +50,7 @@ public class DeclarationListWriter {
                 .lineAggregator(declarationModel -> {
                     for(Field field : declarationModel.getClass().getDeclaredFields()){
 
-                        System.out.println("DECL"+declarationModel);
+                         
 
                         try {
                             field.setAccessible(true);
@@ -65,10 +65,11 @@ public class DeclarationListWriter {
                         }
                     }
                     DetailClient detailClient = new DetailClient();
+
                     detailClient.setNumClient(StringUtils.rightPad("1"+declarationModel.getNumClient(), 9, " ")); // 8+1 car on a jouté le 1
                     detailClient.setNomClient(StringUtils.rightPad(declarationModel.getNomClient(), 30, " "));
                     detailClient.setPrenomClient(StringUtils.rightPad(declarationModel.getPrenomClient(), 30, " "));
-                    detailClient.setDateNaisClient(LocalDate.parse(declarationModel.getDateNaisClient().toString()).format(new DateTimeFormatterBuilder().appendPattern("ddMMyyyy").toFormatter()));
+                    detailClient.setDateNaisClient(declarationModel.getDateNaisClient()==null?"00000000":LocalDate.parse(declarationModel.getDateNaisClient().toString()).format(new DateTimeFormatterBuilder().appendPattern("ddMMyyyy").toFormatter()));
                     detailClient.setNumCinClient(StringUtils.rightPad(declarationModel.getNumCinClient(), 12, " "));
                     detailClient.setTypeClient(declarationModel.getTypeClient().equals("ENTRE")?"E":"P");
                     detailClient.setAdrClient1(StringUtils.rightPad(declarationModel.getAdrClient1(), 30, " "));
@@ -90,7 +91,7 @@ public class DeclarationListWriter {
                     detailClient.setTauxAssurance(StringUtils.leftPad(declarationModel.getTauxAssurance().toString(), 7, "0"));
                     detailClient.setMontantCredit(StringUtils.leftPad(declarationModel.getMontantCredit().toString(), 12, "0"));
                     detailClient.setTauxEmprunt(StringUtils.leftPad(declarationModel.getTauxEmprunt().toString(), 4, "0"));
-                    detailClient.setTypeTauxEmprunt(StringUtils.rightPad(declarationModel.getTypeTauxEmprunt(), 1, " "));
+                    detailClient.setTypeTauxEmprunt(StringUtils.rightPad(declarationModel.getTypeTauxEmprunt().equals("F")?"F":"V", 1, " "));
                     detailClient.setPourcentageEmprunt(StringUtils.leftPad(declarationModel.getPourcentageEmprunt().toString(), 3, "0"));
                     detailClient.setDureeDiffere(StringUtils.leftPad(declarationModel.getDureeDiffere().toString(), 3, "0"));
                     detailClient.setDate1Ech(LocalDate.parse(declarationModel.getDate1Ech().toString()).format(new DateTimeFormatterBuilder().appendPattern("ddMMyyyy").toFormatter()));

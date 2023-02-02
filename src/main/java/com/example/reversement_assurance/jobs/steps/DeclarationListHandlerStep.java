@@ -34,9 +34,9 @@ public class DeclarationListHandlerStep {
                 .reader(new ListItemReader<DeclarationModel>(declarationModelList) {
                     @Override
                     public DeclarationModel read(){
-                        System.out.println("TEETE1"+declarationModelList.size()+"//"+count);
+                         
                         if (count < declarationModelList.size()) {
-                            System.out.println("TEETE");
+                             
 
                             return declarationModelList.get((int) count++);
                         }

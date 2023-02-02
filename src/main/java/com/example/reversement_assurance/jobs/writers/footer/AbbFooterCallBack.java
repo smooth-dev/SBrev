@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.io.Writer;
 import java.math.BigInteger;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static com.example.reversement_assurance.configuration.Constants.ITEM_COUNT_LISTENER;
 import static com.example.reversement_assurance.jobs.processors.PddRevJoinProcessor.faultyLines;
@@ -31,13 +32,21 @@ public class AbbFooterCallBack  implements FlatFileFooterCallback {
     @Override
     public void writeFooter(Writer writer) throws IOException {
 
-        List<DeclarationModel> list = BatchContext.getInstance().getDeclarationModels();
-        int cumul = list.stream().mapToInt(c -> Integer.parseInt(c.getPrimeAssurance())).sum();
+//        int cumul = list.stream().mapToInt(c -> Integer.parseInt(c.getPrimeAssurance())).sum();
 
-        System.out.println("zeee"+BatchContext.getInstance().getCumulPrimeRev());
+
+        List<DeclarationModel> list = BatchContext.getInstance().getDeclarationModels();
+//        int cumul = list.stream().mapToInt(c -> Integer.parseInt(c.getPrimeAssurance()==""?"0":c.getPrimeAssurance())).sum();
+        List<BigInteger> mappedList = list.stream()
+                .map(o -> BigInteger.valueOf(Long.parseLong(o.getPrimeAssurance()==""?"0":o.getPrimeAssurance())))
+                .collect(Collectors.toList());
+
+        BigInteger cumul = mappedList.stream().reduce(BigInteger.ZERO, BigInteger::add);
+
+         
         StringBuilder footer = new StringBuilder();
         footer.append("Z").append(String.format("%5d", BatchContext.getInstance().getDeclarationModels().size()))
-                .append(String.format("%15d",cumul*100))
+                .append(String.format("%15d",cumul))
                 .append(String.format("%-378s",""));
         writer.write(footer.toString());
     }

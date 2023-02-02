@@ -67,7 +67,6 @@ public class DeclarationMapProcessor implements Tasklet {
                     setMiscBusinessLogic(declarationModel);
                     declarationModel.setContractNumber(entry.getKey());
                     BatchContext.getInstance().getDeclarationModels().add(declarationModel);
-                    System.out.println("declarationModel"+declarationModel);
                 } catch (NullPointerException | StringIndexOutOfBoundsException e) {
                     log.error("Error while processing contract number: {} \n \t Exception name: {}", currentContractNumber, e.getClass());
                 }
@@ -142,9 +141,14 @@ public class DeclarationMapProcessor implements Tasklet {
             declarationModel.setNumClient(row.get(PDDDOS_DONNEES_COMPLEMENTAIRES_BLOCK_02).substring(263, 269));
             declarationModel.setNomClient(row.get(PDDDOS_DONNEES_COMPLEMENTAIRES_BLOCK_02).substring(233, 243));
             declarationModel.setPrenomClient(row.get(PDDDOS_DONNEES_COMPLEMENTAIRES_BLOCK_02).substring(243, 253));
-            declarationModel.setDateNaisClient(new LocalDate(row.get(PDDDOS_DONNEES_COMPLEMENTAIRES_BLOCK_02).substring(283, 293)));
             declarationModel.setNumCinClient(row.get(PDDDOS_DONNEES_COMPLEMENTAIRES_BLOCK_02).substring(253, 263));
-        } catch (NullPointerException | StringIndexOutOfBoundsException e) {
+        } catch (NullPointerException | StringIndexOutOfBoundsException  e) {
+            log.error("Error while processing contract number: {} on Block 05 sub Block 02 \n \t Exception name: {}", currentContractNumber, e.getClass());
+        }
+
+        try {
+            declarationModel.setDateNaisClient(new LocalDate(row.get(PDDDOS_DONNEES_COMPLEMENTAIRES_BLOCK_02).substring(283, 293)));
+        }catch (IllegalArgumentException e) {
             log.error("Error while processing contract number: {} on Block 05 sub Block 02 \n \t Exception name: {}", currentContractNumber, e.getClass());
         }
     }
@@ -163,7 +167,6 @@ public class DeclarationMapProcessor implements Tasklet {
                 Integer periode = Integer.parseInt(row.get(PDDDOS_BLOCK_10).substring(253, 256));
                 Integer nbrTerme = Integer.parseInt(row.get(PDDDOS_BLOCK_10).substring(256, 259));
 
-                System.out.println("sdsdff"+periode*nbrTerme);
                 declarationModel.setDureeDiffere(periode*nbrTerme);
 
             }
@@ -210,14 +213,16 @@ public class DeclarationMapProcessor implements Tasklet {
     private void getPDDDOS_RES_FONC_50(DeclarationModel declarationModel, Map<String, String> row) {
         try {
             declarationModel.setCodePhase(row.get(PDDDOS_BLOCK_50).substring(143, 144));
-            declarationModel.setMontantCredit(new BigInteger(row.get(PDDDOS_BLOCK_50).substring(282, 299)));
-            System.out.println("UUU111"+row.get(PDDDOS_BLOCK_50).substring(282, 299));
-            System.out.println("UUU222"+new BigInteger(row.get(PDDDOS_BLOCK_50).substring(282, 299)));
+            declarationModel.setMontantCredit(new BigInteger(row.get(PDDDOS_BLOCK_50).substring(282, 298)));
+
+//            System.out.println("EEEE"+declarationModel.getMontantCredit());
+
+             
             declarationModel.setTauxEmprunt(getFormatedTauxEmprunt(row));
-            System.out.println("UUU22332"+row.get(PDDDOS_BLOCK_50).substring(193, 210));
+             
 
 
-            declarationModel.setCapitalRestantDu(new BigInteger(row.get(PDDDOS_BLOCK_50).substring(193, 210)));
+            declarationModel.setCapitalRestantDu(new BigInteger(row.get(PDDDOS_BLOCK_50).substring(193, 209)));
         } catch (NullPointerException | StringIndexOutOfBoundsException e) {
             log.error("Error while processing contract number: {} on RES-FONC-50 \n \t Exception name: {}", currentContractNumber, e.getClass());
         }
@@ -233,7 +238,7 @@ public class DeclarationMapProcessor implements Tasklet {
         try {
             //    declarationModel.setPrimeAssurance(new BigInteger(row.get(PDDDOS_BLOCK_12).substring(418, 436).trim())); migrated to pdevt
             declarationModel.setModePaiement(row.get(PDDDOS_BLOCK_12).substring(354, 359).trim());
-            System.out.println("NAT ASURANCE"+row);
+             
             declarationModel.setNatureAssurance(row.get(PDDDOS_BLOCK_12).substring(459, 461).trim());
             declarationModel.setTauxAssurance(new BigInteger(row.get(PDDDOS_BLOCK_12).substring(459, 461).trim()));
             declarationModel.setPourcentageEmprunt(Integer.parseInt(row.get(PDDDOS_BLOCK_12).substring(348, 351).trim()));
@@ -263,7 +268,14 @@ public class DeclarationMapProcessor implements Tasklet {
         try {
             declarationModel.setDateRealisation(new LocalDate(row.get(PDDDOS_BLOCK_201).substring(265, 275)));
             declarationModel.setDate1Ech(new LocalDate(row.get(PDDDOS_BLOCK_201).substring(275, 285)));
-            declarationModel.setTypeTauxEmprunt(row.get(PDDDOS_BLOCK_101).substring(861, 862));
+
+            if(row.get(PDDDOS_BLOCK_101).substring(861, 862).equals("F")) {
+                declarationModel.setTypeTauxEmprunt("F");
+
+            }            else {
+                declarationModel.setTypeTauxEmprunt("V");
+
+            }
         } catch (StringIndexOutOfBoundsException e) {
             log.error("Error while processing contract number: {} on Block 01 \n \t Exception name: {}", currentContractNumber, e.getClass());
         } catch (NullPointerException e) {
@@ -271,7 +283,7 @@ public class DeclarationMapProcessor implements Tasklet {
                 declarationModel.setDate1Ech(LocalDate.parse("01-01-1970", new DateTimeFormatterBuilder().appendPattern("dd-MM-yyyy").toFormatter()));
                 log.error("Bloc 01 is not refered for contract number: {} ,defaulted date1Ech to UNIX_TIMESTAMP_ORIGIN ", currentContractNumber);
             } else if (row.get(PDDDOS_BLOCK_201) == null) {
-                declarationModel.setTypeTauxEmprunt("");
+//                declarationModel.setTypeTauxEmprunt("");
                 log.error("Bloc 02 is not refered for contract number: {} ,defaulted typeTauxEmprunt to EMPTY_STRING", currentContractNumber);
             }
         }
@@ -281,8 +293,8 @@ public class DeclarationMapProcessor implements Tasklet {
         try {
 
 
-            System.out.println("153-163|"+row.get(PDDDOS_BLOCK_50).substring(153, 163)+"|163-173|"+row.get(PDDDOS_BLOCK_50).substring(163, 173));
-            System.out.println("bloCk50"+row.get(PDDDOS_BLOCK_50));
+             
+             
             if(row.get(PDDDOS_BLOCK_50).substring(143, 144).equals("5"))
             {
                 declarationModel.setDateDerEch(LocalDate.parse(row.get(PDDDOS_BLOCK_50).substring(163, 173)));
@@ -319,7 +331,7 @@ public class DeclarationMapProcessor implements Tasklet {
     private void getCreData(DeclarationModel declarationModel, String cre06Value) {
         try {
 
-            System.out.println("LINECRE"+cre06Value);
+             
             declarationModel.setTypeClient(cre06Value.substring(999, 1004).trim());
             declarationModel.setNumCompteClient(cre06Value.substring(1541, 1575).trim());
             declarationModel.setPopulation(cre06Value.substring(1024, 1029).trim());
@@ -359,7 +371,7 @@ public class DeclarationMapProcessor implements Tasklet {
      */
 
     private void setPdddosBusinessLogic(DeclarationModel declarationModel) {
-        System.out.println("dddddeclarationModel.getModePaiement() = " + declarationModel.getModePaiement());
+         
         if ("001".equals(declarationModel.getModePaiement())) declarationModel.setModePaiement("U");
         else declarationModel.setModePaiement("P");
 
@@ -371,11 +383,11 @@ public class DeclarationMapProcessor implements Tasklet {
         }else if ("U".equals(declarationModel.getModePaiement()))
             declarationModel.setTauxAssurance(new BigDecimal(taux).multiply(BigDecimal.valueOf(10_000)).toBigInteger());
 
-        System.out.println("kdddd"+declarationModel.getTauxAssurance());
+         
 
 //        declarationModel.setDureeDiffere(Math.abs(Months.monthsBetween(declarationModel.getDate1Ech(), new LocalDate()).getMonths()));
 
-        System.out.println("eeeeee"+declarationModel.getDureeDiffere()+(new LocalDate()));
+         
         switch (declarationModel.getCodePhase()) {
             case "1":
             case "2":
@@ -391,9 +403,9 @@ public class DeclarationMapProcessor implements Tasklet {
             default:
                 break;
         }
-        System.out.println("RRRR111"+declarationModel.getMontantCredit());
-        declarationModel.setMontantCredit(declarationModel.getMontantCredit().multiply(BigInteger.valueOf(10)));
-        System.out.println("RRRR222"+declarationModel.getMontantCredit());
+         
+//        declarationModel.setMontantCredit(declarationModel.getMontantCredit().multiply(BigInteger.valueOf(10)));
+         
         declarationModel.setDureeReport(0);//TODO: to be implemented
     }
 
@@ -404,12 +416,12 @@ public class DeclarationMapProcessor implements Tasklet {
     }
 
     private void getPdevtData(DeclarationModel declarationModel, Map<String, String> row) {
-        System.out.println("Prime..12"+row.get(PDEVT_BLOCK_51));
+         
         int primeAssurance=0;
         try {
-             primeAssurance=Integer.parseInt(row.get(PDEVT_BLOCK_51).substring(192, 204));
-            System.out.println("Prime..13"+row.get(PDEVT_BLOCK_51).substring(192, 204));
-            declarationModel.setPrimeAssurance((row.get(PDEVT_BLOCK_51).substring(192, 204))); // on lit pas le dernier decimal pour emuler unx100
+             primeAssurance=Integer.parseInt(row.get(PDEVT_BLOCK_51).substring(188, 204));
+             
+            declarationModel.setPrimeAssurance((row.get(PDEVT_BLOCK_51).substring(194, 204))); // on lit pas le dernier decimal pour emuler unx100
         } catch (NullPointerException | StringIndexOutOfBoundsException e) {
 
             log.error("Error while processing contract number: {} on Block 51 \n \t Exception name: {}", currentContractNumber, e.getClass());
