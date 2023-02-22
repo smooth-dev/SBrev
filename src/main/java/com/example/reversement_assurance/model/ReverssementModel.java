@@ -88,5 +88,8 @@ public class ReverssementModel {
     private String codeReseau;
     private Integer dureeReport;
     private Integer tauxSurprime;
+
+    private String natureAssurance;
+
     private String filer;
 }

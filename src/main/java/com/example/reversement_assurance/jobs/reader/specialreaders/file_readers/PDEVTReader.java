@@ -1,8 +1,10 @@
 package com.example.reversement_assurance.jobs.reader.specialreaders.file_readers;
 
 import com.example.reversement_assurance.jobs.batch_context.BatchContext;
+import com.example.reversement_assurance.utils.GeneralUtils;
 import com.example.reversement_assurance.utils.SimpleRejectLinesWriter;
 import com.google.common.collect.Table;
+import org.joda.time.LocalDate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.batch.core.configuration.annotation.StepScope;
@@ -47,6 +49,23 @@ public class PDEVTReader {
                                     case PDEVT_BLOCK_10:
                                         handleBlock(line, PDEVT_BLOCK_10);
                                         break;
+                                    case PDEVT_BLOCK_00: {
+
+
+                                        LocalDate dateEvenement = new LocalDate(line.substring(194, 204));
+                                        String codeEvenement = line.substring(178, 181);
+                                        LocalDate  dateTraitement = GeneralUtils.getFirstDayOfMonthDate();
+
+
+                                        if(LIST_EVENEMENTS.contains(codeEvenement)
+                                                && dateEvenement.getMonthOfYear()==dateTraitement.getMonthOfYear()
+                                                && dateTraitement.getYear()==dateTraitement.getYear()) {
+
+                                            handleBlock(line, PDEVT_BLOCK_00);
+                                        }
+
+
+                                    }                                         break;
                                     case PDEVT_BLOCK_51:
                                         if("007001".equals(line.substring(178,184))) {
                                             handleBlock(line, PDEVT_BLOCK_51);
@@ -67,10 +86,11 @@ public class PDEVTReader {
     }
 
     private void handleBlock(String line, String blockCode) {
-         
+
         String contractNumber = line.substring(24, 41).trim();
         if (pdevt.containsRow(contractNumber))
             log.warn("Contract {} found again in PDEVT in block {}", contractNumber,blockCode);
+
         pdevt.put(contractNumber, blockCode, line);
 
     }

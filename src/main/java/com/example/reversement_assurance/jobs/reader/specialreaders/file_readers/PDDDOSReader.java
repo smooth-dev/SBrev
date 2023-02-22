@@ -45,14 +45,16 @@ public class PDDDOSReader {
                               case PDDDOS_BLOCK_03:
                                   handleBlock(line, PDDDOS_BLOCK_03);
                                   break;
+                              case PDDDOS_BLOCK_04:
+                                  handleBlock(line, PDDDOS_BLOCK_04);
+                                  break;
                               case PDDDOS_BLOCK_10:
                                   if(line.substring(248, 249).equals("S"))
                                   handleBlock(line, PDDDOS_BLOCK_10);
-                                  else
-                                   
+
                                   break;
-                              case PDDDOS_BLOCK_101:
-                                  handleBlock(line, PDDDOS_BLOCK_101);
+                              case PDDDOS_BLOCK_01:
+                                  handleBlock(line, PDDDOS_BLOCK_01);
                                   break;
                               case PDDDOS_BLOCK_201:
                                   handleBlock(line, PDDDOS_BLOCK_201);

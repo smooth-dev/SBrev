@@ -14,9 +14,9 @@ public class AbbRevassHeaderCallBack {
             StringBuilder header = new StringBuilder();
             header.append("0")
                     .append("03")
-                    .append(GeneralUtils.getFirstDayOfNextMonth())
+                    .append(GeneralUtils.getFirstDayOfMonth())
                     .append("B")
-                    .append(String.format("%-388s",""));
+                    .append(String.format("%-387s",""));
             writer.write(header.toString());
         };
     }

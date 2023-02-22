@@ -42,9 +42,9 @@ public class AbbRevassFooterCallBack implements FlatFileFooterCallback {
         BigInteger cumul = mappedList.stream().reduce(BigInteger.ZERO, BigInteger::add);
 
         StringBuilder footer = new StringBuilder();
-        footer.append("Z").append(String.format("%5d", BatchContext.getInstance().getReverssementModels().size()))
+        footer.append("Z").append(String.format("%6d", BatchContext.getInstance().getReverssementModels().size()))
                 .append(String.format("%15d",cumul))
-                .append(String.format("%-378s",""));
+                .append(String.format("%-377s",""));
         writer.write(footer.toString());
     }
 

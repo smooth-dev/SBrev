@@ -75,7 +75,7 @@ public class RevassListWriter {
                     detailClient.setNumCompteClient(StringUtils.rightPad(reverssementModel.getNumCompteClient(), 24, " "));
                     detailClient.setPopulation(StringUtils.rightPad(reverssementModel.getPopulation(), 7, " "));
                     detailClient.setNumContratFiliale(StringUtils.rightPad(reverssementModel.getNumContratFiliale(), 10, " "));
-                    detailClient.setCodeProduit(StringUtils.rightPad(reverssementModel.getCodeProduit(), 7, " "));
+                    detailClient.setCodeProduit(StringUtils.rightPad("0000002", 7, " "));
                     detailClient.setCodePhase(StringUtils.rightPad(reverssementModel.getCodePhase(), 4, " "));
                     detailClient.setModePaiement(StringUtils.rightPad(reverssementModel.getModePaiement(), 1, " "));
                      
@@ -99,9 +99,9 @@ public class RevassListWriter {
                     detailClient.setCodeRejet(StringUtils.rightPad(reverssementModel.getCodeRejet(), 2, " "));
                     detailClient.setCodeReseau(StringUtils.rightPad(reverssementModel.getCodeReseau(), 4, " "));
                     detailClient.setDureeReport(StringUtils.leftPad(reverssementModel.getDureeReport().toString(), 3, "0"));
-                    detailClient.setTauxSurprime(StringUtils.leftPad(reverssementModel.getTauxSurprime().toString(), 8, "0"));
-                    detailClient.setFiler(StringUtils.rightPad(reverssementModel.getFiler(), 82, " "));
-//conttable pret
+                    detailClient.setTauxSurprime(StringUtils.leftPad(reverssementModel.getTauxSurprime().toString(), 7, "0"));
+//                    detailClient.setFiler(StringUtils.rightPad(reverssementModel.getFiler(), 79, " "));
+                   detailClient.setFiler(StringUtils.leftPad("", 81, " "));
                     return detailClient.toString();
                 })
                 .footerCallback(abbFooter)

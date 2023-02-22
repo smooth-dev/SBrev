@@ -100,8 +100,9 @@ public class DeclarationListWriter {
                     detailClient.setCodeRejet(StringUtils.rightPad(declarationModel.getCodeRejet(), 2, " "));
                     detailClient.setCodeReseau(StringUtils.rightPad(declarationModel.getCodeReseau(), 4, " "));
                     detailClient.setDureeReport(StringUtils.leftPad(declarationModel.getDureeReport().toString(), 3, "0"));
-                    detailClient.setTauxSurprime(StringUtils.leftPad(declarationModel.getTauxSurprime().toString(), 8, "0"));
-                    detailClient.setFiler(StringUtils.leftPad("", 78, " "));
+                    detailClient.setTauxSurprime(StringUtils.leftPad(declarationModel.getTauxSurprime().toString(), 7, "0"));
+                    detailClient.setFiler(StringUtils.leftPad("", 81, " "));
+
 
                     return detailClient.toString();
                 })

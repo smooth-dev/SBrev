@@ -22,17 +22,30 @@ private GeneralUtils() {
 }
 
  static Logger log = LoggerFactory.getLogger(GeneralUtils.class);
-    public static @NotNull String getFirstDayOfNextMonth() {
+    public static @NotNull String getFirstDayOfMonth() {
 
         HashMap<String, String> revass = BatchContext.getInstance().getRevass();
 
         Map.Entry<String,String> entry = revass.entrySet().iterator().next();
 
-        //get the first day of next month
+        //get the current day of next month
         LocalDate today = new LocalDate(entry.getValue().substring(26, 36));
-        LocalDate nextMonth = today.withDayOfMonth(1);
+        LocalDate firstDayOfMonth = today.withDayOfMonth(1);
 
-       return getFormatedDate(nextMonth.toString());
+       return getFormatedDate(firstDayOfMonth.toString());
+    }
+
+    public static @NotNull LocalDate getFirstDayOfMonthDate() {
+
+        HashMap<String, String> revass = BatchContext.getInstance().getRevass();
+
+        Map.Entry<String,String> entry = revass.entrySet().iterator().next();
+
+        //get the current day of next month
+        LocalDate today = new LocalDate(entry.getValue().substring(26, 36));
+        LocalDate firstDayOfMonth = today.withDayOfMonth(1);
+
+        return firstDayOfMonth;
     }
 
     @NotNull

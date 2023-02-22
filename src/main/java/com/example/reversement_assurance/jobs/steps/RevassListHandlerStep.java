@@ -30,12 +30,12 @@ public class RevassListHandlerStep {
     @Bean("revass-list-handler-step")
     public Step readPdddos(StepBuilderFactory stepBuilderFactory) {
         return stepBuilderFactory.get("revass-list-handler-step")
-                .<ReverssementModel, ReverssementModel>chunk(Math.min(BatchContext.getInstance().getReverssementModels().size(), 100))//I'm too good man
+                .<ReverssementModel, ReverssementModel>chunk(Math.min(BatchContext.getInstance().getReverssementModels().size(), 100))
                 .reader(new ListItemReader<ReverssementModel>(reverssementModels) {
                     @Override
                     public ReverssementModel read(){
                         if (count < reverssementModels.size()) {
-                            return reverssementModels.get((int) count++);//fix this shit
+                            return reverssementModels.get((int) count++);
                         }
                         return null;
                     }
