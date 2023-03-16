@@ -35,6 +35,7 @@ public class CR06Reader {
                 .lineMapper((line, lineNumber) ->{
                         try {
                             if(line.startsWith("06", 125)){
+                                System.out.println("CRE06DEBUG"+line.substring(288, 307).trim());
                                 cr06Map.put(line.substring(288, 307).trim(), line);
                             }
                         } catch (Exception e) {

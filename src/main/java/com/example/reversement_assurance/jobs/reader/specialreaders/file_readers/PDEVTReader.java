@@ -36,6 +36,19 @@ public class PDEVTReader {
                 .resource(new PathResource(pdevtFilePath))
                 .lineMapper((line, lineNumber) -> {
                     try {
+
+
+                        if(line.substring(162, 164).equals("00")) {
+                            String dateString=line.substring(194,204);
+                            String montantPrime=line.substring(570,582);
+                            if ("ECHE".equals(line.substring(189, 193)) && dateString.matches("^\\d{4}-\\d{2}-\\d{2}$") && montantPrime.matches(".*[1-9].*") ) {
+//                                System.out.println("eeerre"+ line.substring(27,37)+dateString + line.substring(565,582));
+
+                                handleBlock(line, PDEVT_BLOCK_00P);
+                            }
+                        }
+
+
                                 switch (line.substring(162, 164)) {
                                     case PDEVT_BLOCK_12: {
                                          
@@ -65,12 +78,13 @@ public class PDEVTReader {
                                         }
 
 
-                                    }                                         break;
-                                    case PDEVT_BLOCK_51:
-                                        if("007001".equals(line.substring(178,184))) {
-                                            handleBlock(line, PDEVT_BLOCK_51);
-                                        }
-                                        break;
+                                    } break;
+//                                    case PDEVT_BLOCK_51:
+//                                        System.out.println("ssdsd"+line.substring(189,193));
+//                                        if("ECHE".equals(line.substring(189,193))) {
+//                                            handleBlock(line, PDEVT_BLOCK_51);}
+//
+//                                        break;
                                     default:
                                         break;
                                 }

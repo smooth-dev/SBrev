@@ -38,6 +38,7 @@ public class REVASSReader {
                             if(revassMap.containsKey(line.substring(164,184).trim())){
                             log.warn("Contract key {} found again in REVASS",line.substring(164,184).trim());
                             }
+                            System.out.println("code Dossier"+line.substring(164, 184).trim());
                        revassMap.put(line.substring(164, 184).trim(), line);
                         } catch (Exception e) {
                             log.error("Error while reading REVASS file : {}", e.getMessage());

@@ -4,6 +4,7 @@ import com.example.reversement_assurance.jobs.batch_context.BatchContext;
 import com.example.reversement_assurance.jobs.listners.ItemCountListener;
 import com.example.reversement_assurance.model.DeclarationModel;
 import com.example.reversement_assurance.model.ReverssementModel;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.batch.item.file.FlatFileFooterCallback;
@@ -45,7 +46,8 @@ public class AbbFooterCallBack  implements FlatFileFooterCallback {
 
          
         StringBuilder footer = new StringBuilder();
-        footer.append("Z").append(String.format("%6d", BatchContext.getInstance().getDeclarationModels().size()))
+
+        footer.append("Z").append(StringUtils.leftPad(String.valueOf(BatchContext.getInstance().getDeclarationModels().size()), 7, "0"))
                 .append(String.format("%15d",cumul))
                 .append(String.format("%-377s",""));
         writer.write(footer.toString());

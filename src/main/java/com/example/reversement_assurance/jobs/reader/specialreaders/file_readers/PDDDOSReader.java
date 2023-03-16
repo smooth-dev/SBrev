@@ -87,6 +87,14 @@ public class PDDDOSReader {
         if(pdddosMap.contains(line.substring(164,184).trim(), line.substring(132,137))){
             log.warn("Contract number {} found again in PDDDOS for block {}", line.substring(164,184).trim(), line.substring(132,137));
         }
+        if(blockCode.equals(PDDDOS_BLOCK_12)) {
+            if(line.substring(131, 143).equals(PDDDOS_BLOCK_12_01)) {
+                System.out.println("BLOCK12EE" + line.substring(131, 143) + "#" + line.substring(24, 44) + "#");
+
+                pdddosMap.put(line.substring(24, 44).trim(), PDDDOS_BLOCK_12_01, line);
+            }
+
+        }
         pdddosMap.put(line.substring(24, 44).trim(), blockCode, line);
     }
 }

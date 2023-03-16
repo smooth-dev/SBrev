@@ -19,6 +19,7 @@ import org.springframework.stereotype.Component;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
+import java.math.RoundingMode;
 import java.util.*;
 
 import static com.example.reversement_assurance.jobs.batch_context.BatchConsts.*;
@@ -50,9 +51,14 @@ public class DeclarationMapProcessor implements Tasklet {
         log.info("contracts found : {}", Arrays.toString(contracts.toArray()));
 
         for (Map.Entry<String, String> entry : cre.entrySet()) {
+
+            System.out.println("CREDUB"+entry.getKey());
             //check if key exists in pdddos
             if (pdddos.containsRow(entry.getKey()) && pdevt.containsRow(entry.getKey())) {
                 // make declarationModel
+
+                System.out.println("CREDUBEVT"+entry.getKey());
+
 
                 try {
                     currentContractNumber = entry.getKey();
@@ -68,7 +74,7 @@ public class DeclarationMapProcessor implements Tasklet {
                     declarationModel.setContractNumber(entry.getKey());
                     BatchContext.getInstance().getDeclarationModels().add(declarationModel);
                 } catch (NullPointerException | StringIndexOutOfBoundsException e) {
-                    log.error("Error while processing contract number: {} \n \t Exception name: {}", currentContractNumber, e.getClass());
+                    log.error("credebug Error while processing contract number: {} \n \t Exception name: {}", currentContractNumber, e.getClass());
                 }
             } else {
                 log.warn("{} not found in PDDDOS OR/AND PDDEVT, ignoring .... ", entry.getKey());
@@ -88,7 +94,7 @@ public class DeclarationMapProcessor implements Tasklet {
         declarationModel.setCodeReseau("ABB");
         declarationModel.setFiler(StringUtils.leftPad("", 82, " "));
         //Placeholder for now until ABB decides what to do with this field
-        declarationModel.setAdrClient2(" ");
+//        declarationModel.setAdrClient2(" ");
         declarationModel.setCodePostal(" ");
     }
 
@@ -141,7 +147,7 @@ public class DeclarationMapProcessor implements Tasklet {
 
     private void getPDDDOS05Bloc02(DeclarationModel declarationModel, Map<String, String> row) {
         try {
-            declarationModel.setNumClient(row.get(PDDDOS_DONNEES_COMPLEMENTAIRES_BLOCK_02).substring(263, 269));
+            declarationModel.setNumClient(row.get(PDDDOS_DONNEES_COMPLEMENTAIRES_BLOCK_02).substring(263, 271).trim());
             declarationModel.setNomClient(row.get(PDDDOS_DONNEES_COMPLEMENTAIRES_BLOCK_02).substring(233, 243));
             declarationModel.setPrenomClient(row.get(PDDDOS_DONNEES_COMPLEMENTAIRES_BLOCK_02).substring(243, 253));
             declarationModel.setNumCinClient(row.get(PDDDOS_DONNEES_COMPLEMENTAIRES_BLOCK_02).substring(253, 263));
@@ -192,7 +198,8 @@ public class DeclarationMapProcessor implements Tasklet {
     }
     private void getPDDDOS03And05Bloc03(DeclarationModel declarationModel, Map<String, String> row) {
         try {
-            declarationModel.setAdrClient1(row.get(PDDDOS_DONNEES_COMPLEMENTAIRES_BLOCK_03).substring(240, 255));
+            declarationModel.setAdrClient1(row.get(PDDDOS_DONNEES_COMPLEMENTAIRES_BLOCK_03).substring(240, 270));
+            declarationModel.setAdrClient2(row.get(PDDDOS_DONNEES_COMPLEMENTAIRES_BLOCK_03).substring(271, 301));
             //TODO add city code
             declarationModel.setCodeVille(row.get(PDDDOS_BLOCK_03).substring(259, 262));//265
             //
@@ -241,6 +248,10 @@ public class DeclarationMapProcessor implements Tasklet {
             declarationModel.setNatureAssurance(row.get(PDDDOS_BLOCK_12).substring(459, 461).trim());
             declarationModel.setTauxAssurance(new BigInteger(row.get(PDDDOS_BLOCK_12).substring(459, 461).trim()));
             declarationModel.setPourcentageEmprunt(Integer.parseInt(row.get(PDDDOS_BLOCK_12).substring(348, 351).trim()));
+
+           if(row.get(PDDDOS_BLOCK_12).substring(142,144).equals("01")) {
+               declarationModel.setTauxSurprime(Integer.parseInt(row.get(PDDDOS_BLOCK_12).substring(465, 473).trim())); // 473 aulieu de 472 pour simuler le *100
+           }
         } catch (NullPointerException | StringIndexOutOfBoundsException e) {
             log.error("Error while processing contract number: {} on Block 12 \n \t Exception name: {}", currentContractNumber, e.getClass());
         } catch (NumberFormatException e) {
@@ -404,17 +415,15 @@ public class DeclarationMapProcessor implements Tasklet {
 
         String tauxAssurance = BatchContext.getInstance().getBaremeAssurance().get(declarationModel.getNatureAssurance()).replace(",", ".");
 
-
-        System.out.println("dddz"+declarationModel.getNatureAssurance());
         BigDecimal tauxAssBigAnnuel= new BigDecimal(tauxAssurance);
-        BigDecimal tauxAssBigMensuel= tauxAssBigAnnuel.divide(BigDecimal.valueOf(12));
+        BigDecimal tauxAssBigMensuel= tauxAssBigAnnuel.multiply(BigDecimal.valueOf(12) );
 
         if ("P".equals(declarationModel.getModePaiement()))
             //*1_000_000
         {
-            declarationModel.setTauxAssurance(tauxAssBigMensuel.multiply(BigDecimal.valueOf(1_000_000)).toBigInteger());
+            declarationModel.setTauxAssurance(tauxAssBigMensuel.multiply(BigDecimal.valueOf(10_000)).toBigInteger());  //added x100 on top do avoid 0 on the right
         }else if ("U".equals(declarationModel.getModePaiement()))
-            declarationModel.setTauxAssurance(tauxAssBigMensuel.multiply(BigDecimal.valueOf(10_000)).toBigInteger());
+            declarationModel.setTauxAssurance(tauxAssBigMensuel.multiply(BigDecimal.valueOf(100)).toBigInteger());
 
          
 
@@ -456,9 +465,20 @@ public class DeclarationMapProcessor implements Tasklet {
         }
         int primeAssurance=0;
         try {
-             primeAssurance=Integer.parseInt(row.get(PDEVT_BLOCK_51).substring(188, 204));
-             
-            declarationModel.setPrimeAssurance((row.get(PDEVT_BLOCK_51).substring(194, 204))); // on lit pas le dernier decimal pour emuler unx100
+
+//            System.out.println("RRRRROOWW"+row.get(PDEVT_BLOCK_51));
+//             primeAssurance=Integer.parseInt(row.get(PDEVT_BLOCK_51).substring(188, 204));
+//            declarationModel.setPrimeAssurance((row.get(PDEVT_BLOCK_51).substring(194, 204))); // on lit pas le dernier decimal pour emuler unx100
+
+
+            System.out.println("DEbu"+row.get(PDEVT_BLOCK_00P).substring(24, 44).trim()+row.get(PDEVT_BLOCK_00P).substring(570,582)+"#");
+            String montantPrime = row.get(PDEVT_BLOCK_00P).substring(570,581);
+            String dateString=row.get(PDEVT_BLOCK_00P).substring(194,204);
+//            declarationModel.setDate1Ech(LocalDate.parse(dateString));
+
+            primeAssurance=Integer.parseInt(montantPrime);
+
+            declarationModel.setPrimeAssurance(montantPrime);
         } catch (NullPointerException | StringIndexOutOfBoundsException e) {
 
             log.error("Error while processing contract number: {} on Block 51 \n \t Exception name: {}", currentContractNumber, e.getClass());
@@ -482,7 +502,7 @@ public class DeclarationMapProcessor implements Tasklet {
             log.error("Error while processing contract number: {} missing Block 12 \n \t Exception name: {}", currentContractNumber, "NullPointerException");
             declarationModel.setModePaiement(" ");
         }*/
-        declarationModel.setTauxSurprime(0);//TODO fix this with the right value
+//        declarationModel.setTauxSurprime(0);//TODO fix this with the right value
     }
 
 

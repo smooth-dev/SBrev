@@ -10,6 +10,7 @@ public class BatchConsts {
     public static final String PDDDOS_DONNEES_COMPLEMENTAIRES_BLOCK_03 = "07205_03";
     public static final String PDDDOS_BLOCK_50 = "07250";
     public static final String PDDDOS_BLOCK_12 = "07212";
+    public static final String PDDDOS_BLOCK_12_01 = "07212     01";
 
     public static final String PDDDOS_BLOCK_03 = "07203";
     public static final String PDDDOS_BLOCK_04 = "07204";
@@ -28,6 +29,9 @@ public class BatchConsts {
     public static final String PDEVT_BLOCK_10 = "10";
 
     public static final String PDEVT_BLOCK_00 = "00";
+
+    public static final String PDEVT_BLOCK_00P = "00P";
+
 
     public static final List<String> LIST_EVENEMENTS =
             Collections.unmodifiableList(Arrays.asList("048", "046", "009", "014", "015", "019"));

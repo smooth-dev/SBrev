@@ -86,6 +86,7 @@ Filer
 @AllArgsConstructor
 @Builder
 public class DetailClient implements Serializable {
+    private String enteteLigne;
     private String numClient;
     private String nomClient;
     private String prenomClient;
@@ -151,7 +152,7 @@ public class DetailClient implements Serializable {
     }*/
     @Override
     public String toString() {
-        return numClient + nomClient + prenomClient + dateNaisClient + numCinClient + typeClient + adrClient1 + adrClient2 + codePostal + codeVille + codePays + numCompteClient + population + numContratFiliale + codeProduit + codePhase + modePaiement + periodicite + typeConvention + dateEffet + dureeSousc + primeAssurance + tauxAssurance + montantCredit + tauxEmprunt + typeTauxEmprunt + pourcentageEmprunt + dureeDiffere + date1Ech + dateDerEch + capitalRestantDu + codeRejet + codeReseau + dureeReport + tauxSurprime + filer;
+        return enteteLigne + numClient + nomClient + prenomClient + dateNaisClient + numCinClient + typeClient + adrClient1 + adrClient2 + codePostal + codeVille + codePays + numCompteClient + population + numContratFiliale + codeProduit + codePhase + modePaiement + periodicite + typeConvention + dateEffet + dureeSousc + primeAssurance + tauxAssurance + montantCredit + tauxEmprunt + typeTauxEmprunt + pourcentageEmprunt + dureeDiffere + date1Ech + dateDerEch + capitalRestantDu + codeRejet + codeReseau + dureeReport + tauxSurprime + filer;
     }
 
 

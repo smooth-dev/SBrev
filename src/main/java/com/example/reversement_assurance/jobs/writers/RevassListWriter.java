@@ -61,7 +61,9 @@ public class RevassListWriter {
                         }
                     }
                     DetailClient detailClient = new DetailClient();
-                    detailClient.setNumClient(StringUtils.rightPad("1"+reverssementModel.getNumClient(), 9, " "));
+                    detailClient.setEnteteLigne("1");
+
+                    detailClient.setNumClient(StringUtils.leftPad(reverssementModel.getNumClient(), 8, " "));
                     detailClient.setNomClient(StringUtils.rightPad(reverssementModel.getNomClient(), 30, " "));
                     detailClient.setPrenomClient(StringUtils.rightPad(reverssementModel.getPrenomClient(), 30, " "));
                     detailClient.setDateNaisClient(reverssementModel.getDateNaisClient()==null?"00000000":LocalDate.parse(reverssementModel.getDateNaisClient().toString()).format(new DateTimeFormatterBuilder().appendPattern("ddMMyyyy").toFormatter()));
@@ -90,6 +92,8 @@ public class RevassListWriter {
 
                     detailClient.setTypeTauxEmprunt(StringUtils.rightPad(reverssementModel.getTypeTauxEmprunt().equals("F")?"F":"V", 1, " "));
 
+
+                    System.out.println("emprunt"+reverssementModel.getTauxEmprunt().toString()+"#");
                     detailClient.setTauxEmprunt(StringUtils.leftPad(reverssementModel.getTauxEmprunt().toString(), 4, "0"));
                     detailClient.setPourcentageEmprunt(StringUtils.leftPad(reverssementModel.getPourcentageEmprunt().toString(), 3, "0"));
                     detailClient.setDureeDiffere(StringUtils.leftPad(reverssementModel.getDureeDiffere().toString(), 3, "0"));
