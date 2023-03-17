@@ -15,6 +15,8 @@ import org.springframework.util.Assert;
 
 import java.util.Map;
 
+import static com.example.reversement_assurance.jobs.batch_context.BatchConsts.LIST_EVENEMENTS;
+
 @Component
 public class CR06Reader {
 
@@ -34,10 +36,18 @@ public class CR06Reader {
                 .resource(new PathResource(creFilePath))
                 .lineMapper((line, lineNumber) ->{
                         try {
-                            if(line.startsWith("06", 125)){
-                                System.out.println("CRE06DEBUG"+line.substring(288, 307).trim());
+
+                            String codeEvt= line.substring(124,127);
+                            System.out.println("lineStart"+LIST_EVENEMENTS.contains(codeEvt)+"#"+codeEvt);
+                            if(codeEvt.equals("006") ){
+                                System.out.println("CRE06DEBUG"+line.substring(288, 307).trim()+"#"+codeEvt);
                                 cr06Map.put(line.substring(288, 307).trim(), line);
                             }
+//                            if(LIST_EVENEMENTS.contains(codeEvt)){
+//                                System.out.println("CRE06DEBUG+"+line.substring(288, 307).trim()+"#"+codeEvt);
+//                                cr06Map.put(line.substring(288, 307).trim(), line);
+//                            }
+
                         } catch (Exception e) {
                             log.error("Error while reading CR06 file : {}", e.getMessage());
                             SimpleRejectLinesWriter.writeReject("D:\\Work\\Batch ABB\\Project\\error.txt",line, e.getMessage(), true);

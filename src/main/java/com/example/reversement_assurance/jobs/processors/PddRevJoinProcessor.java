@@ -157,7 +157,7 @@ public class PddRevJoinProcessor implements ItemProcessor<PddRevJoinModel, Detai
         detailClient.setDateEffet(GeneralUtils.getFormatedDate(detailClient.getDateEffet()));
         detailClient.setDate1Ech(GeneralUtils.getFormatedDate(detailClient.getDate1Ech()));
         detailClient.setDateDerEch(GeneralUtils.getFormatedDate(detailClient.getDateDerEch()));
-        detailClient.setCodeProduit("0000002");
+//        detailClient.setCodeProduit("0000002");
         totalPrimeAssurance = totalPrimeAssurance.add(new BigInteger(detailClient.getPrimeAssurance().replace(".", "")));
         //if detailClient.getPopulation().equals("IM") => 3022 elseif equals("CC") => 3023
         if (detailClient.getPopulation().equals("IM")) {

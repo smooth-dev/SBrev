@@ -49,7 +49,6 @@ import java.math.BigInteger;
  *  <li>Filer</li>
 */
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
 public class DeclarationModel {
     private String contractNumber;
@@ -92,4 +91,9 @@ public class DeclarationModel {
     private Integer tauxSurprime;
     private String natureAssurance;
     private String filer;
+
+    public DeclarationModel() {
+
+        this.codeProduit="0000002";
+    }
 }

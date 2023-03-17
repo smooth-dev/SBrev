@@ -15,6 +15,7 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 import java.io.Writer;
 import java.math.BigInteger;
+import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -36,8 +37,13 @@ public class AbbFooterCallBack  implements FlatFileFooterCallback {
 //        int cumul = list.stream().mapToInt(c -> Integer.parseInt(c.getPrimeAssurance())).sum();
 
 
-        List<DeclarationModel> list = BatchContext.getInstance().getDeclarationModels();
-//        int cumul = list.stream().mapToInt(c -> Integer.parseInt(c.getPrimeAssurance()==""?"0":c.getPrimeAssurance())).sum();
+        List<DeclarationModel>  list = BatchContext.getInstance().getDeclarationModels();
+
+
+//        List<BigInteger> mappedList = list.values().stream()
+//                .map(o -> BigInteger.valueOf(Long.parseLong(o.getPrimeAssurance()==""?"0":o.getPrimeAssurance())))
+//                .collect(Collectors.toList());
+
         List<BigInteger> mappedList = list.stream()
                 .map(o -> BigInteger.valueOf(Long.parseLong(o.getPrimeAssurance()==""?"0":o.getPrimeAssurance())))
                 .collect(Collectors.toList());

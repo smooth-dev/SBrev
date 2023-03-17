@@ -14,6 +14,7 @@ public class BatchConsts {
 
     public static final String PDDDOS_BLOCK_03 = "07203";
     public static final String PDDDOS_BLOCK_04 = "07204";
+    public static final String PDDDOS_BLOCK_04_01= "0720401";
     public static final String PDDDOS_BLOCK_10 = "07210";
 
 

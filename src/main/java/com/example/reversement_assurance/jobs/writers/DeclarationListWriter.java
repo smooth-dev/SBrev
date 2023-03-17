@@ -85,7 +85,10 @@ public class DeclarationListWriter {
                     detailClient.setModePaiement(StringUtils.rightPad(declarationModel.getModePaiement(), 1, " "));
                     detailClient.setPeriodicite(StringUtils.leftPad(declarationModel.getPeriodicite(), 1, "0"));
                     detailClient.setTypeConvention(StringUtils.rightPad(declarationModel.getTypeConvention(), 1, " "));
-                    detailClient.setDateEffet(LocalDate.parse(declarationModel.getDateEffet().toString()).format(new DateTimeFormatterBuilder().appendPattern("ddMMyyyy").toFormatter()));
+                   try{ detailClient.setDateEffet(LocalDate.parse(declarationModel.getDateEffet().toString()).format(new DateTimeFormatterBuilder().appendPattern("ddMMyyyy").toFormatter()));}
+                   catch (NullPointerException  e) {
+                       log.error("Date Effet errone Exception name: {} \n Error while processing contract number:  {} ", e.getClass(),declarationModel.getDateEffet());
+                   }
                     detailClient.setDureeSousc(StringUtils.leftPad(declarationModel.getDureeSousc().toString(), 3, "0"));
                     detailClient.setPrimeAssurance(StringUtils.leftPad(declarationModel.getPrimeAssurance().toString(), 12, "0"));
                     detailClient.setTauxAssurance(StringUtils.rightPad(declarationModel.getTauxAssurance().toString(), 7, "0"));

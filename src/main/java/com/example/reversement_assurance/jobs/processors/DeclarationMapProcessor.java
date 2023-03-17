@@ -2,6 +2,7 @@ package com.example.reversement_assurance.jobs.processors;
 
 import com.example.reversement_assurance.jobs.batch_context.BatchContext;
 import com.example.reversement_assurance.model.DeclarationModel;
+import com.example.reversement_assurance.model.ReverssementModel;
 import com.google.common.collect.Table;
 import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.NotNull;
@@ -50,36 +51,120 @@ public class DeclarationMapProcessor implements Tasklet {
         }
         log.info("contracts found : {}", Arrays.toString(contracts.toArray()));
 
-        for (Map.Entry<String, String> entry : cre.entrySet()) {
+
+
+        // ###### this first loop reads "deblocage" events (06)
+         for (Map.Entry<String, String> entry : cre.entrySet()) {
 
             System.out.println("CREDUB"+entry.getKey());
             //check if key exists in pdddos
             if (pdddos.containsRow(entry.getKey()) && pdevt.containsRow(entry.getKey())) {
                 // make declarationModel
 
-                System.out.println("CREDUBEVT"+entry.getKey());
+                System.out.println("06debugREP"+entry.getKey());
 
 
                 try {
                     currentContractNumber = entry.getKey();
                     String cre06Value = entry.getValue();
                     DeclarationModel declarationModel = new DeclarationModel();
-                    getCreData(declarationModel, cre06Value);
+                    if(cre06Value!=null) getCreData(declarationModel, cre06Value);
+
                     setCreBusinessLogic(declarationModel);
+
                     getDdosData(declarationModel, pdddos.row(entry.getKey()));
-                    setPdddosBusinessLogic(declarationModel);
+//                    setPdddosBusinessLogic(declarationModel);
                     getPdevtData(declarationModel, pdevt.row(entry.getKey()));
                     getPdevtBusinessLogic(declarationModel);
                     setMiscBusinessLogic(declarationModel);
                     declarationModel.setContractNumber(entry.getKey());
                     BatchContext.getInstance().getDeclarationModels().add(declarationModel);
                 } catch (NullPointerException | StringIndexOutOfBoundsException e) {
-                    log.error("credebug Error while processing contract number: {} \n \t Exception name: {}", currentContractNumber, e.getClass());
+                    log.error("credebug{} Error while processing contract number: {}  \n \t Exception name: {}", currentContractNumber,currentContractNumber, e.getClass());
                 }
             } else {
                 log.warn("{} not found in PDDDOS OR/AND PDDEVT, ignoring .... ", entry.getKey());
             }
         }
+
+
+        // ###### this first loop reads "deblocage" events (015,019,016...)
+
+        Map<String, Map<String, String>> map = pdevt.rowMap();
+
+
+        for (String row : map.keySet()) {
+
+            // check if row is already inserted
+            Map<String, String> tmp = map.get(row);
+
+
+
+            for (Map.Entry<String, String> pair : tmp.entrySet()) {
+                if(pair.getKey().equals(PDEVT_BLOCK_00) )
+
+                {
+                    try {
+
+
+                        BatchContext.getInstance().getDeclarationModels().removeIf(d -> d.getContractNumber().equals(row));
+
+//                        if (exists) {
+//                            System.out.println("DEBUg 77 An element with numContratFiliale = " + row + " exists in the list." +  BatchContext.getInstance().getDeclarationModels());
+
+                        currentContractNumber = row;
+                        System.out.println("EvtdebugREP"+currentContractNumber);
+
+                        DeclarationModel declarationModel = new DeclarationModel();
+                        String cre06Value = cre.get(row);
+
+                        if(cre06Value!=null) getCreData(declarationModel, cre06Value);
+
+                        System.out.println("DEbug Um"+currentContractNumber+"#"+currentContractNumber.charAt(3));
+                        setCreBusinessLogicEvt(declarationModel, String.valueOf(currentContractNumber.charAt(3)));
+                        System.out.println( "DEBUG STEP 1");
+                        getDdosDataEvt(declarationModel, pdddos.row(currentContractNumber));
+                        System.out.println( "DEBUG STEP 2");
+                        getPDDDOS03And05Bloc03Evt(declarationModel, pdddos.row(currentContractNumber));
+                      //  setPdddosBusinessLogic(declarationModel);
+                        System.out.println( "DEBUG STEP 3");
+
+                        if(pdevt.containsRow(currentContractNumber)){
+                            getPdevtData(declarationModel, pdevt.row(currentContractNumber));
+
+                        }
+                        System.out.println( "DEBUG STEP 4");
+
+                        getPdevtBusinessLogic(declarationModel);
+                        System.out.println( "DEBUG STEP 5");
+
+                       setMiscBusinessLogic(declarationModel);
+                        declarationModel.setContractNumber(currentContractNumber);
+                        System.out.println( "DEBUG STEP 6");
+
+
+                        BatchContext.getInstance().getDeclarationModels().add(declarationModel);
+
+
+
+
+
+
+                        } catch (NullPointerException | StringIndexOutOfBoundsException e) {
+                        log.error("Error while processing contract number: {} \n \t Exception name: {}", currentContractNumber, e.getClass());
+                    }
+                }  else {
+                    log.warn("{} not11 found in PDDDOS OR/AND PDDEVT, ignoring .... ", currentContractNumber);
+                }
+
+
+
+
+            }
+        }
+
+
+
 
 
 
@@ -124,6 +209,8 @@ public class DeclarationMapProcessor implements Tasklet {
      * @param declarationModel
      * @param row
      */
+
+
     private void getDdosData(DeclarationModel declarationModel, Map<String, String> row) throws NullPointerException, StringIndexOutOfBoundsException {
         //PDDDOS ( Donnée Complémentaire Code Enr =05 / Bloc 02)
         getPDDDOS05Bloc02(declarationModel, row);
@@ -147,6 +234,8 @@ public class DeclarationMapProcessor implements Tasklet {
 
     private void getPDDDOS05Bloc02(DeclarationModel declarationModel, Map<String, String> row) {
         try {
+
+            System.out.println("DEBUG°°"+row.get(PDDDOS_DONNEES_COMPLEMENTAIRES_BLOCK_02).substring(26, 32).trim()+row.get(PDDDOS_DONNEES_COMPLEMENTAIRES_BLOCK_02).substring(263, 271).trim());
             declarationModel.setNumClient(row.get(PDDDOS_DONNEES_COMPLEMENTAIRES_BLOCK_02).substring(263, 271).trim());
             declarationModel.setNomClient(row.get(PDDDOS_DONNEES_COMPLEMENTAIRES_BLOCK_02).substring(233, 243));
             declarationModel.setPrenomClient(row.get(PDDDOS_DONNEES_COMPLEMENTAIRES_BLOCK_02).substring(243, 253));
@@ -159,6 +248,45 @@ public class DeclarationMapProcessor implements Tasklet {
             declarationModel.setDateNaisClient(new LocalDate(row.get(PDDDOS_DONNEES_COMPLEMENTAIRES_BLOCK_02).substring(283, 293)));
         }catch (IllegalArgumentException e) {
             log.error("Error while processing contract number: {} on Block 05 sub Block 02 \n \t Exception name: {}", currentContractNumber, e.getClass());
+        }
+    }
+
+
+    private void getDdosDataEvt(DeclarationModel declarationModel, Map<String, String> row) throws NullPointerException, StringIndexOutOfBoundsException {
+        //PDDDOS ( Donnée Complémentaire Code Enr =04 / Bloc 01)
+        //PDDDOS ( Donnée Complémentaire Code Enr =05 / Bloc 02)
+        getPDDDOS05Bloc02(declarationModel, row);
+        //PDDDOS ( Donnée Complémentaire Code Enr =05 / Bloc 03)
+        getPDDDOS03And05Bloc03(declarationModel, row);
+        //PDDOST-RES FONC-50
+        getPDDDOS_RES_FONC_50(declarationModel, row);
+        //PPDOS BLOC 12
+        getPDDDOSBloc12(declarationModel, row);
+        //PDDDOS BLOC 01
+        getPDDDOSBloc01(declarationModel, row);
+        //PDDDOS BLOC 50
+        getPDDDOSBloc50(declarationModel, row);
+
+
+        getPDDDOS10(declarationModel, row);
+        getPDDDOSBloc101(declarationModel, row);
+
+        getPDDDOSBloc0401(declarationModel, row);
+
+
+
+
+    }
+
+
+    private void getPDDDOSBloc0401(DeclarationModel declarationModel, Map<String, String> row) {
+        try {
+            if(row.get(PDDDOS_BLOCK_04).substring(131,138).equals(PDDDOS_BLOCK_04_01)) System.out.println("DEBUF0401//"+row.get(PDDDOS_BLOCK_04).substring(244,253));
+
+            declarationModel.setNumCompteClient(row.get(PDDDOS_BLOCK_04).substring(244,253));
+
+        } catch (NullPointerException | StringIndexOutOfBoundsException e) {
+            log.error("Error Decl while processing contract number: {} on Block 101-1 \n \t Exception name: {}", currentContractNumber, e.getClass());
         }
     }
 
@@ -196,6 +324,19 @@ public class DeclarationMapProcessor implements Tasklet {
         }
 
     }
+
+
+    private void getPDDDOS03And05Bloc03Evt(DeclarationModel declarationModel, Map<String, String> row) {
+        try {
+
+            declarationModel.setCodeVille(row.get(PDDDOS_BLOCK_03).substring(259, 262));
+            System.out.println("#3#"+row.get(PDDDOS_BLOCK_03));
+            //265
+            //
+        } catch (StringIndexOutOfBoundsException | NullPointerException e) {
+            log.error("Error while processing contract number: {} on Block 05 sub Block 03 \n \t Exception name: {}", currentContractNumber, e.getMessage());
+        }
+    }
     private void getPDDDOS03And05Bloc03(DeclarationModel declarationModel, Map<String, String> row) {
         try {
             declarationModel.setAdrClient1(row.get(PDDDOS_DONNEES_COMPLEMENTAIRES_BLOCK_03).substring(240, 270));
@@ -222,7 +363,25 @@ public class DeclarationMapProcessor implements Tasklet {
 
     private void getPDDDOS_RES_FONC_50(DeclarationModel declarationModel, Map<String, String> row) {
         try {
-            declarationModel.setCodePhase(row.get(PDDDOS_BLOCK_50).substring(143, 144));
+//            declarationModel.setCodePhase(row.get(PDDDOS_BLOCK_50).substring(143, 144));
+
+            switch (row.get(PDDDOS_BLOCK_50).substring(143, 144)) {
+                case "1":
+                case "2":
+                    declarationModel.setCodePhase("P300");//cf notion
+                    break;
+                case "3":
+                case "4":
+                    declarationModel.setCodePhase("P117");
+                    break;
+                case "5":
+                    declarationModel.setCodePhase("P006");
+                    break;
+                default:
+                    break;
+            }
+
+            System.out.println("debugcodepahe"+row.get(PDDDOS_BLOCK_50).substring(27, 37)+row.get(PDDDOS_BLOCK_50).substring(143, 144));
             declarationModel.setMontantCredit(new BigInteger(row.get(PDDDOS_BLOCK_50).substring(282, 298)));
             declarationModel.setTauxEmprunt(getFormatedTauxEmprunt(row));
              
@@ -243,8 +402,9 @@ public class DeclarationMapProcessor implements Tasklet {
     private void getPDDDOSBloc12(DeclarationModel declarationModel, Map<String, String> row) {
         try {
             //    declarationModel.setPrimeAssurance(new BigInteger(row.get(PDDDOS_BLOCK_12).substring(418, 436).trim())); migrated to pdevt
-            declarationModel.setModePaiement(row.get(PDDDOS_BLOCK_12).substring(354, 359).trim());
-             
+            declarationModel.setModePaiement(row.get(PDDDOS_BLOCK_12).substring(354, 359).trim().equals("001")?"U":"P");
+            if ("001".equals(declarationModel.getModePaiement())) declarationModel.setModePaiement("U");
+            else declarationModel.setModePaiement("P");
             declarationModel.setNatureAssurance(row.get(PDDDOS_BLOCK_12).substring(459, 461).trim());
             declarationModel.setTauxAssurance(new BigInteger(row.get(PDDDOS_BLOCK_12).substring(459, 461).trim()));
             declarationModel.setPourcentageEmprunt(Integer.parseInt(row.get(PDDDOS_BLOCK_12).substring(348, 351).trim()));
@@ -277,6 +437,7 @@ public class DeclarationMapProcessor implements Tasklet {
     private void getPDDDOSBloc01(DeclarationModel declarationModel, Map<String, String> row) {
         String dateRealisation= row.get(PDDDOS_BLOCK_201).substring(265, 275);
         String date1Ech= row.get(PDDDOS_BLOCK_201).substring(265, 275);
+        String dateEffet= row.get(PDDDOS_BLOCK_201).substring(265, 275);
 
 
         try {
@@ -284,6 +445,7 @@ public class DeclarationMapProcessor implements Tasklet {
 
 
             if(!dateRealisation.equals(0000-00-00))declarationModel.setDateRealisation(new LocalDate(row.get(PDDDOS_BLOCK_201).substring(265, 275)));
+            if(!dateEffet.equals(0000-00-00))declarationModel.setDateEffet(new LocalDate(row.get(PDDDOS_BLOCK_201).substring(265, 275)));
             declarationModel.setDate1Ech(new LocalDate(row.get(PDDDOS_BLOCK_201).substring(275, 285)));
             //            if(row.get(PDDDOS_BLOCK_10).substring(402, 403).equals("F")) {
 //                declarationModel.setTypeTauxEmprunt("F");
@@ -374,7 +536,7 @@ public class DeclarationMapProcessor implements Tasklet {
             declarationModel.setNumCompteClient(cre06Value.substring(1541, 1575).trim());
             declarationModel.setPopulation(cre06Value.substring(1024, 1029).trim());
             declarationModel.setNumContratFiliale(cre06Value.substring(291, 325).trim());
-            declarationModel.setCodeProduit("0000002");
+//            declarationModel.setCodeProduit("0000002");
             declarationModel.setDateEffet(new LocalDate(cre06Value.substring(1718, 1728).trim()));
             declarationModel.setDureeSousc(Integer.parseInt(cre06Value.substring(1460, 1463).trim()));
         } catch (IndexOutOfBoundsException e) {
@@ -407,6 +569,20 @@ public class DeclarationMapProcessor implements Tasklet {
      *
      * @param declarationModel declaration model
      */
+
+
+    private void setCreBusinessLogicEvt(DeclarationModel declarationModel,String type) {
+        System.out.println("debugPopulationEvt"+type);
+        if (Objects.equals(declarationModel.getTypeClient(), "001") || Objects.equals(declarationModel.getTypeClient(), "002") || Objects.equals(declarationModel.getTypeClient(), "003") || Objects.equals(declarationModel.getTypeClient(), "004") || Objects.equals(declarationModel.getTypeClient(), "005")) {
+            declarationModel.setTypeClient("P");
+        }
+
+        if (Objects.equals(type, "C")) {
+            declarationModel.setPopulation("3023");
+        } else if (Objects.equals(type, "I")) {
+            declarationModel.setPopulation("3022");
+        }
+    }
 
     private void setPdddosBusinessLogic(DeclarationModel declarationModel) {
          
@@ -462,6 +638,8 @@ public class DeclarationMapProcessor implements Tasklet {
         String evenementSameMonth =(row.get(PDEVT_BLOCK_00));
         if(evenementSameMonth!=null) {
             declarationModel.setCodePhase("P117");
+            declarationModel.setNumContratFiliale(evenementSameMonth.substring(27, 38).trim());
+
         }
         int primeAssurance=0;
         try {
