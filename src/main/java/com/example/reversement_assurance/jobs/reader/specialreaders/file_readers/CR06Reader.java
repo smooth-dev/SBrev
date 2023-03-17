@@ -38,15 +38,10 @@ public class CR06Reader {
                         try {
 
                             String codeEvt= line.substring(124,127);
-                            System.out.println("lineStart"+LIST_EVENEMENTS.contains(codeEvt)+"#"+codeEvt);
                             if(codeEvt.equals("006") ){
-                                System.out.println("CRE06DEBUG"+line.substring(288, 307).trim()+"#"+codeEvt);
                                 cr06Map.put(line.substring(288, 307).trim(), line);
                             }
-//                            if(LIST_EVENEMENTS.contains(codeEvt)){
-//                                System.out.println("CRE06DEBUG+"+line.substring(288, 307).trim()+"#"+codeEvt);
-//                                cr06Map.put(line.substring(288, 307).trim(), line);
-//                            }
+
 
                         } catch (Exception e) {
                             log.error("Error while reading CR06 file : {}", e.getMessage());

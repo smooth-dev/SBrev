@@ -80,7 +80,7 @@ public class RevassListWriter {
                     detailClient.setCodeProduit(StringUtils.rightPad("0000002", 7, " "));
                     detailClient.setCodePhase(StringUtils.rightPad(reverssementModel.getCodePhase(), 4, " "));
                     detailClient.setModePaiement(StringUtils.rightPad(reverssementModel.getModePaiement(), 1, " "));
-                     
+
 
                     detailClient.setPeriodicite(StringUtils.leftPad(reverssementModel.getPeriodicite(), 1, "0"));
                     detailClient.setTypeConvention(StringUtils.rightPad(reverssementModel.getTypeConvention(), 1, " "));
@@ -93,7 +93,7 @@ public class RevassListWriter {
                     detailClient.setTypeTauxEmprunt(StringUtils.rightPad(reverssementModel.getTypeTauxEmprunt().equals("F")?"F":"V", 1, " "));
 
 
-                    System.out.println("emprunt"+reverssementModel.getTauxEmprunt().toString()+"#");
+
                     detailClient.setTauxEmprunt(StringUtils.leftPad(reverssementModel.getTauxEmprunt().toString(), 4, "0"));
                     detailClient.setPourcentageEmprunt(StringUtils.leftPad(reverssementModel.getPourcentageEmprunt().toString(), 3, "0"));
                     detailClient.setDureeDiffere(StringUtils.leftPad(reverssementModel.getDureeDiffere().toString(), 3, "0"));
@@ -106,7 +106,7 @@ public class RevassListWriter {
                     detailClient.setTauxSurprime(StringUtils.leftPad(reverssementModel.getTauxSurprime().toString(), 7, "0"));
 //                    detailClient.setFiler(StringUtils.rightPad(reverssementModel.getFiler(), 79, " "));
                    detailClient.setFiler(StringUtils.leftPad("", 81, " "));
-                    return detailClient.toString();
+                    return detailClient.toStringDebug();
                 })
                 .footerCallback(abbFooter)
                 .headerCallback(abbHeader)

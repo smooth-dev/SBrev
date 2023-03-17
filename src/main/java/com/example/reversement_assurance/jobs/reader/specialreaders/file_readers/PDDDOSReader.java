@@ -89,7 +89,7 @@ public class PDDDOSReader {
         }
         if(blockCode.equals(PDDDOS_BLOCK_12)) {
             if(line.substring(131, 143).equals(PDDDOS_BLOCK_12_01)) {
-                System.out.println("BLOCK12EE" + line.substring(131, 143) + "#" + line.substring(24, 44) + "#");
+                 
 
                 pdddosMap.put(line.substring(24, 44).trim(), PDDDOS_BLOCK_12_01, line);
             }

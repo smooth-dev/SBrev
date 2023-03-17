@@ -107,7 +107,7 @@ public class DeclarationListWriter {
                     detailClient.setFiler(StringUtils.leftPad("", 81, " "));
 
 
-                    return detailClient.toString();
+                    return detailClient.toStringDebug();
                 })
                 .footerCallback(abbFooter)
                 .headerCallback(abbHeader)
