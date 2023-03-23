@@ -72,7 +72,9 @@ public class RevassListWriter {
                     detailClient.setAdrClient1(StringUtils.rightPad(reverssementModel.getAdrClient1(), 30, " "));
                     detailClient.setAdrClient2(StringUtils.rightPad(reverssementModel.getAdrClient2(), 30, " "));
                     detailClient.setCodePostal(StringUtils.rightPad(reverssementModel.getCodePostal(), 10, " "));
-                    detailClient.setCodeVille(StringUtils.rightPad(reverssementModel.getCodeVille(), 3, " "));
+//                    detailClient.setCodeVille(StringUtils.rightPad(reverssementModel.getCodeVille(), 3, " "));
+                    detailClient.setCodeVille(StringUtils.rightPad(" ", 3, " "));
+
                     detailClient.setCodePays(StringUtils.rightPad(reverssementModel.getCodePays(), 3, " "));
                     detailClient.setNumCompteClient(StringUtils.rightPad(reverssementModel.getNumCompteClient(), 24, " "));
                     detailClient.setPopulation(StringUtils.rightPad(reverssementModel.getPopulation(), 7, " "));
@@ -106,7 +108,7 @@ public class RevassListWriter {
                     detailClient.setTauxSurprime(StringUtils.leftPad(reverssementModel.getTauxSurprime().toString(), 7, "0"));
 //                    detailClient.setFiler(StringUtils.rightPad(reverssementModel.getFiler(), 79, " "));
                    detailClient.setFiler(StringUtils.leftPad("", 81, " "));
-                    return detailClient.toStringDebug();
+                    return detailClient.toString();
                 })
                 .footerCallback(abbFooter)
                 .headerCallback(abbHeader)

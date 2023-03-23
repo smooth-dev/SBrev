@@ -43,6 +43,9 @@ public class BatchContext {
     Table<String,String,String> pdevt = null;
 
     @Getter
+    Table<String,String,String> pddTa = null;
+
+    @Getter
     List<DeclarationModel> declarationModels = null;
 
     @Getter
@@ -68,6 +71,7 @@ public class BatchContext {
             revass = new HashMap<>();
             declarationModels = new ArrayList<>();
             pdevt = HashBasedTable.create();
+            pddTa = HashBasedTable.create();
             reverssementModels = new ArrayList<>();
             baremeAssurance = new HashMap<>();
 

@@ -53,6 +53,11 @@ public class BatchJobConfiguration {
     @Qualifier("pdevt-reader-step")
     private Step pdevtReaderStep;
 
+
+    @Autowired
+    @Qualifier("pddta-reader-step")
+    private Step pddTaReaderStep;
+
     @Autowired
     @Qualifier("declaration-handler-step")
     private Step declarationHandlerStep;
@@ -93,6 +98,7 @@ public class BatchJobConfiguration {
                 .next(pdddosReaderStep)
                 .next(revassReaderStep)
                 .next(pdevtReaderStep)
+                .next(pddTaReaderStep)
                 .next(baremeRetrieverStep)
                 .next(declarationHandlerStep) // insere les données des 3 map dans une classe model
                 .next(declarationListHandlerStep)

@@ -53,7 +53,7 @@ public class AbbFooterCallBack  implements FlatFileFooterCallback {
          
         StringBuilder footer = new StringBuilder();
 
-        footer.append("Z").append(StringUtils.leftPad(String.valueOf(BatchContext.getInstance().getDeclarationModels().size()), 7, "0"))
+        footer.append("Z").append(StringUtils.leftPad(String.valueOf(BatchContext.getInstance().getDeclarationModels().size()), 6, "0"))
                 .append(String.format("%15d",cumul))
                 .append(String.format("%-377s",""));
         writer.write(footer.toString());

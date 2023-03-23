@@ -26,12 +26,14 @@ public class BatchConsts {
     public static final String PDEVT_BLOCK_51 = "51";
 
     public static final String PDEVT_BLOCK_12 = "12";
+    public static final String PDDTA_BLOCK = "PDDTA";
 
     public static final String PDEVT_BLOCK_10 = "10";
 
     public static final String PDEVT_BLOCK_00 = "00";
 
     public static final String PDEVT_BLOCK_00P = "00P";
+    public static final String PDEVT_BLOCK_00PDEBL = "00PDEBL";
 
 
     public static final List<String> LIST_EVENEMENTS =

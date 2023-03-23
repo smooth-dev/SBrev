@@ -41,11 +41,19 @@ public class PDEVTReader {
                         if(line.substring(162, 164).equals("00")) {
                             String dateString=line.substring(194,204);
                             String montantPrime=line.substring(570,582);
-                            System.out.println("DebugEZ"+line.substring(28, 38));
+
+
+                            LocalDate dateEvenement = new LocalDate(line.substring(194, 204));
+                            String codeEvenement = line.substring(178, 181);
+                            LocalDate  dateTraitement = GeneralUtils.getFirstDayOfMonthDate();
 
                             if ("ECHE".equals(line.substring(189, 193)) && dateString.matches("^\\d{4}-\\d{2}-\\d{2}$") && montantPrime.matches(".*[1-9].*") ) {
 
-                                handleBlock(line, PDEVT_BLOCK_00P);
+
+                                if(dateEvenement.getMonthOfYear()==dateTraitement.getMonthOfYear()
+&&dateTraitement.getYear()==dateTraitement.getYear())
+                                handleBlock(line, PDEVT_BLOCK_00P); // montant du mois courant
+                                else  handleBlock(line, PDEVT_BLOCK_00PDEBL); // dernier Montant
                             }
                         }
 
