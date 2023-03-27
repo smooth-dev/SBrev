@@ -51,10 +51,18 @@ public class PDEVTReader {
 
 
                                 if(dateEvenement.getMonthOfYear()==dateTraitement.getMonthOfYear()
-&&dateTraitement.getYear()==dateTraitement.getYear())
+&& dateEvenement.getYear()==dateTraitement.getYear())
                                 handleBlock(line, PDEVT_BLOCK_00P); // montant du mois courant
                                 else  handleBlock(line, PDEVT_BLOCK_00PDEBL); // dernier Montant
                             }
+                        }
+
+                        System.out.println("ssssss#"+line.substring(180, 188)+"#");
+                        if(line.substring(180, 188).equals(PDEVT_BLOCK_8001_AT)) {
+
+                            handleBlock(line, PDEVT_BLOCK_8001_AT);
+
+
                         }
 
 

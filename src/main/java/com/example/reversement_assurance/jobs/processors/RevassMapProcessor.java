@@ -67,6 +67,9 @@ public class RevassMapProcessor implements Tasklet {
                         getPdevtData(reverssementModel, pdevt.row(entry.getKey()));
 
                     }
+                    if(pddta.containsRow(entry.getKey())){
+                        getPddTaData(reverssementModel, pddta.row(entry.getKey()));
+                    }
 
 
                     reverssementModel.setContractNumber(currentContractNumber);
@@ -110,8 +113,9 @@ public class RevassMapProcessor implements Tasklet {
 
                         if(pdevt.containsRow(currentContractNumber)){
                             getPdevtData(reverssementModel, pdevt.row(currentContractNumber));
-                           // getPddTaData(reverssementModel, pddta.row(currentContractNumber));
-
+                        }
+                        if(pddta.containsRow(currentContractNumber)){
+                            getDdosDataEvt(reverssementModel, pddta.row(currentContractNumber));
                         }
 
 
@@ -193,13 +197,21 @@ public class RevassMapProcessor implements Tasklet {
     private void getPddTaData(ReverssementModel reverssementModel, Map<String, String> row) {
 
         try {
-            String date1Ech = row.get(PDDTA_BLOCK).substring(136, 146);
+            String date1Ech = row.get(PDDTA_BLOCK_FIRSTMONTH).substring(136, 146);
 
-            System.out.println("CODEdebug"+row.get(PDDTA_BLOCK).substring(25, 37)+"#"+row.get(PDDTA_BLOCK).substring(939, 950)+"#"+date1Ech);
-            reverssementModel.setPrimeAssurance(row.get(PDDTA_BLOCK).substring(939, 950));
+            if(row.get(PDDTA_BLOCK_CURRENTMONTH) == null)
+            {
+
+                reverssementModel.setPrimeAssurance(row.get(PDDTA_BLOCK_FIRSTMONTH).substring(939, 950));
+
+            }
+            else {
+                reverssementModel.setPrimeAssurance(row.get(PDDTA_BLOCK_CURRENTMONTH).substring(939, 950));
+
+            }
 
             System.out.println("datedebug"+date1Ech);
-            reverssementModel.setDate1Ech(new LocalDate(row.get(PDDTA_BLOCK).substring(136, 146)));
+            reverssementModel.setDate1Ech(new LocalDate(row.get(PDDTA_BLOCK_FIRSTMONTH).substring(136, 146)));
 
 
         } catch (NullPointerException | StringIndexOutOfBoundsException e) {
@@ -249,6 +261,24 @@ public class RevassMapProcessor implements Tasklet {
         getPDDDOSBloc12(reverssementModel, row);
         //PDDDOS BLOC 01
         getPDDDOSBloc01(reverssementModel, row);
+        //PDDDOS BLOC 50
+        getPDDDOSBloc50(reverssementModel, row);
+
+
+    }
+
+
+    private void getDdosDataEvt(ReverssementModel reverssementModel, Map<String, String> row) throws NullPointerException, StringIndexOutOfBoundsException {
+        //PDDDOS ( Donnée Complémentaire Code Enr =05 / Bloc 02)
+        getPDDDOS05Bloc02_04(reverssementModel, row);
+        //PDDDOS ( Donnée Complémentaire Code Enr =05 / Bloc 03)
+        getPDDDOS05Bloc03(reverssementModel, row);
+        //PDDOST-RES FONC-50
+        getPDDDOS_RES_FONC_50(reverssementModel, row);
+        //PPDOS BLOC 12
+        getPDDDOSBloc12(reverssementModel, row);
+        //PDDDOS BLOC 01
+      //  getPDDDOSBloc01(reverssementModel, row);
         //PDDDOS BLOC 50
         getPDDDOSBloc50(reverssementModel, row);
 
@@ -320,7 +350,7 @@ public class RevassMapProcessor implements Tasklet {
             reverssementModel.setModePaiement(row.get(PDDDOS_BLOCK_12).substring(354, 359).trim());
 //            reverssementModel.setPrimeAssurance(new BigInteger(row.get(PDDDOS_BLOCK_12).substring(418, 436).trim()));
               
-            reverssementModel.setNatureAssurance(row.get(PDDDOS_BLOCK_12).substring(459, 461).trim());
+            reverssementModel.setNatureAssurance(row.get(PDDDOS_BLOCK_12_01).substring(459, 461).trim());
 //            reverssementModel.setTauxAssurance(new BigInteger(row.get(PDDDOS_BLOCK_12).substring(464,474).trim()));
             reverssementModel.setPourcentageEmprunt(Integer.parseInt(row.get(PDDDOS_BLOCK_12).substring(348, 351).trim()));
             //TODO find substring for reverssementModel.setTauxSurprime(Integer.parseInt(row.get(PDDDOS_BLOCK_12)));
@@ -511,27 +541,32 @@ public class RevassMapProcessor implements Tasklet {
           
           
         String tauxAssurance="0";
+        String natureAssurance="";
 
        if(reverssementModel.getNatureAssurance()!=null) {
            if (reverssementModel.getNatureAssurance().length() > 0) {
-
+               natureAssurance=reverssementModel.getNatureAssurance();
                  
                tauxAssurance = BatchContext.getInstance().getBaremeAssurance().get(reverssementModel.getNatureAssurance()).replace(",", ".");
            }
-       }else {
-             
-
        }
         BigDecimal  tauxAssBigAnnuel= new BigDecimal(tauxAssurance);
-        BigDecimal tauxAssBigMensuel= tauxAssBigAnnuel.multiply(BigDecimal.valueOf(12));
+        BigDecimal tauxAssBigMensuel=tauxAssBigAnnuel;
+        if(LIST_TAUX_TO_DIVIDE.contains(natureAssurance)){
+             tauxAssBigMensuel= tauxAssBigAnnuel.divide(BigDecimal.valueOf(12));
+        }
 
         if ("P".equals(reverssementModel.getModePaiement()))
         //*1_000_000
         {
             reverssementModel.setTauxAssurance(tauxAssBigMensuel.multiply(BigDecimal.valueOf(10_000)).toBigInteger());
-        }else if ("U".equals(reverssementModel.getModePaiement()))
-            reverssementModel.setTauxAssurance(tauxAssBigMensuel.multiply(BigDecimal.valueOf(100)).toBigInteger());
+            if(natureAssurance.equals("04"))System.out.println("CONSOLE 10000 REV"+reverssementModel.getTauxAssurance()+"#");
 
+        }else if ("U".equals(reverssementModel.getModePaiement())) {
+            reverssementModel.setTauxAssurance(tauxAssBigMensuel.multiply(BigDecimal.valueOf(100)).toBigInteger());
+            if(natureAssurance.equals("04"))System.out.println("CONSOLE  100 REV"+reverssementModel.getTauxAssurance()+"#");
+
+        }
           
 
                  

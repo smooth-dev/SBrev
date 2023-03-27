@@ -26,7 +26,9 @@ public class BatchConsts {
     public static final String PDEVT_BLOCK_51 = "51";
 
     public static final String PDEVT_BLOCK_12 = "12";
-    public static final String PDDTA_BLOCK = "PDDTA";
+    public static final String PDDTA_BLOCK_CURRENTMONTH = "PDDTACURR";
+    public static final String PDDTA_BLOCK_FIRSTMONTH = "PDDTAFIRST";
+
 
     public static final String PDEVT_BLOCK_10 = "10";
 
@@ -34,7 +36,10 @@ public class BatchConsts {
 
     public static final String PDEVT_BLOCK_00P = "00P";
     public static final String PDEVT_BLOCK_00PDEBL = "00PDEBL";
+    public static final String PDEVT_BLOCK_8001_AT = "8001  AT";
 
+    public static final List<String> LIST_TAUX_TO_DIVIDE =
+            Collections.unmodifiableList(Arrays.asList("01","03", "04", "05", "06"));
 
     public static final List<String> LIST_EVENEMENTS =
             Collections.unmodifiableList(Arrays.asList("048", "046", "009", "014", "015", "019"));
