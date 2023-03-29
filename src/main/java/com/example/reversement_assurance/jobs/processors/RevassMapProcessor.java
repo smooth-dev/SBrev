@@ -151,6 +151,9 @@ public class RevassMapProcessor implements Tasklet {
         String evenementSameMonth =(row.get(PDEVT_BLOCK_00));
         if(evenementSameMonth!=null) {
             String codeEvenement = evenementSameMonth.substring(178, 181);
+            if(codeEvenement.equals("048"))
+                reverssementModel.setDureeReport(Integer.valueOf((evenementSameMonth.substring(798, 801))));
+            reverssementModel.setCodePhase(mapCodephase(codeEvenement));
 
             reverssementModel.setCodePhase(mapCodephase(codeEvenement));
         }
@@ -645,6 +648,8 @@ if( reverssementModel.getCodePhase() != null)
                 return "P999";
             case "015":
                 return "P006";
+            case "017":
+                return "PCTX";
             default:
                 return "P117";
         }

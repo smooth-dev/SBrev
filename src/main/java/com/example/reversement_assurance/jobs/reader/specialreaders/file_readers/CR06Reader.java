@@ -38,7 +38,8 @@ public class CR06Reader {
                         try {
 
                             String codeEvt= line.substring(124,127);
-                            if(codeEvt.equals("006") ){
+                            String montantMustBeNull= line.substring(1464,1481);
+                            if(codeEvt.equals("006") && !montantMustBeNull.equals("00000000000000000") ){
                                 cr06Map.put(line.substring(288, 307).trim(), line);
                             }
 

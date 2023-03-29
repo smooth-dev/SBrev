@@ -57,14 +57,6 @@ public class PDEVTReader {
                             }
                         }
 
-                        System.out.println("ssssss#"+line.substring(180, 188)+"#");
-                        if(line.substring(180, 188).equals(PDEVT_BLOCK_8001_AT)) {
-
-                            handleBlock(line, PDEVT_BLOCK_8001_AT);
-
-
-                        }
-
 
                                 switch (line.substring(162, 164)) {
                                     case PDEVT_BLOCK_12: {
