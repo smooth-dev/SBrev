@@ -42,7 +42,7 @@ public class DeclarationMapProcessor implements Tasklet {
             Table<String, String, String> pddta = BatchContext.getInstance().getPddTa();
 
         log.info("cre size : {}, pdddos size : {}, pdevt size : {}, pddta sizeee : {}", cre.size(), pdddos.size(), pdevt.size(), pddta.size());
-        // System.out.println("whle"+pddta);
+        //    
 
 
         List<String> contracts = new ArrayList<>();
@@ -378,7 +378,7 @@ public class DeclarationMapProcessor implements Tasklet {
 
     private void getPDDDOS_RES_FONC_50(DeclarationModel declarationModel, Map<String, String> row) {
 
-       //  System.out.println("DEved"+row.get(PDDDOS_BLOCK_50).substring(143, 144));
+       //     
         try {
 //            declarationModel.setCodePhase(row.get(PDDDOS_BLOCK_50).substring(143, 144));
 
@@ -399,7 +399,7 @@ public class DeclarationMapProcessor implements Tasklet {
             }
 
 
-             // System.out.println("DEBUGS"+declarationModel.getCodePhase());
+             //    
              
             declarationModel.setMontantCredit(new BigInteger(row.get(PDDDOS_BLOCK_50).substring(282, 298)));
             declarationModel.setTauxEmprunt(getFormatedTauxEmprunt(row));
@@ -420,16 +420,16 @@ public class DeclarationMapProcessor implements Tasklet {
 
     private void getPDDDOSBloc12(DeclarationModel declarationModel, Map<String, String> row) {
         try {
-            System.out.println("CHECK"+row.get(PDDDOS_BLOCK_12).substring(354, 357).trim()+"#"+"CHECK"+row.get(PDDDOS_BLOCK_12).substring(27, 37));
+               
             declarationModel.setModePaiement(row.get(PDDDOS_BLOCK_12).substring(354, 357).trim().equals("001")?"U":"P");
 //            if ("001".equals(declarationModel.getModePaiement())) declarationModel.setModePaiement("U");
 //            else declarationModel.setModePaiement("P");
             declarationModel.setNatureAssurance(row.get(PDDDOS_BLOCK_12_01).substring(459, 461).trim());
-            System.out.println(row.get(PDDDOS_BLOCK_12).substring(459, 461)+"dbugTx"+row.get(PDDDOS_BLOCK_12).substring(24, 37)+"#"+row.get(PDDDOS_BLOCK_12));
+               
             declarationModel.setPourcentageEmprunt(Integer.parseInt(row.get(PDDDOS_BLOCK_12_01).substring(341, 344).trim()));
 
                declarationModel.setTauxSurprime(Integer.parseInt(row.get(PDDDOS_BLOCK_12_01).substring(465, 470).trim())); // 473 aulieu de 472 pour simuler le *100
-            System.out.println("check2323"+declarationModel.getModePaiement());
+               
 
         } catch (NullPointerException | StringIndexOutOfBoundsException e) {
             log.error("Error while processing contract number: {} on Block 12 \n \t Exception name: {}", currentContractNumber, e.getClass());
@@ -657,17 +657,15 @@ public class DeclarationMapProcessor implements Tasklet {
         if(LIST_TAUX_TO_DIVIDE.contains(natureAssurance)){
             tauxAssBigMensuel= tauxAssBigAnnuel.divide(BigDecimal.valueOf(12));
         }
-        System.out.println("DbugTauxAsurance"+tauxAssBigAnnuel+"Anuel/mensuel"+tauxAssBigMensuel+"nat"+natureAssurance+"tauxeez"+tauxAssurance);
+           
 
         if ("P".equals(declarationModel.getModePaiement()))
             //*1_000_000
         {
-            if(natureAssurance.equals("04"))System.out.println("CONSOLE 10000 DECL"+declarationModel.getTauxAssurance()+"#");
+            if(natureAssurance.equals("04"))   
             declarationModel.setTauxAssurance(tauxAssBigMensuel.multiply(BigDecimal.valueOf(10_000)).toBigInteger());  //added x100 on top do avoid 0 on the right
-            if(natureAssurance.equals("04"))System.out.println("CONSOLE 10000 DECL"+declarationModel.getTauxAssurance()+"#");
         }else if ("U".equals(declarationModel.getModePaiement())) {
             declarationModel.setTauxAssurance(tauxAssBigMensuel.multiply(BigDecimal.valueOf(100)).toBigInteger());
-            if(natureAssurance.equals("04"))System.out.println("CONSOLE 100 DECL"+declarationModel.getTauxAssurance()+"#");
 
         }
          
@@ -708,33 +706,33 @@ public class DeclarationMapProcessor implements Tasklet {
 
     private void getPddTaData(DeclarationModel declarationModel, Map<String, String> row) {
 
-        System.out.println("rowrow"+row.keySet());
+           
         try {
 
-//            System.out.println("CODEdebug"+row.get(PDDTA_BLOCK).substring(25, 37)+"#"+row.get(PDDTA_BLOCK).substring(939, 950)+"#"+date1Ech);
+//               
 
             if(row.get(PDDTA_BLOCK_CURRENTMONTH) == null)
             {
-                System.out.println("ehcksd1");
+                   
 
-                System.out.println("ehcksd"+declarationModel.getPrimeAssurance());
+                   
                 declarationModel.setPrimeAssurance(row.get(PDDTA_BLOCK_FIRSTMONTH).substring(939, 950));
-                System.out.println(row.get(PDDTA_BLOCK_FIRSTMONTH).substring(939, 950) +"CurrOo Null");
-                System.out.println(row.get(PDDTA_BLOCK_FIRSTMONTH).substring(27, 37) +"CurrOo Null");
+                   
+                   
 
             }
             else {
-                System.out.println("Dossier Manuel modif"+row.get(PDDTA_BLOCK_FIRSTMONTH).substring(27, 37));
+                   
                 declarationModel.setPrimeAssurance(row.get(PDDTA_BLOCK_CURRENTMONTH).substring(939, 950));
-                System.out.println(row.get(PDDTA_BLOCK_FIRSTMONTH).substring(939, 950) +"CurrOo found");
-                System.out.println(row.get(PDDTA_BLOCK_FIRSTMONTH).substring(27, 37) +"CurrOo found");
+                   
+                   
 
             }
 
 
             declarationModel.setPrimeAssurance(row.get(PDDTA_BLOCK_FIRSTMONTH).substring(939, 950));
 
-//            System.out.println("datedebug"+date1Ech);
+//               
             declarationModel.setDate1Ech(new LocalDate(row.get(PDDTA_BLOCK_FIRSTMONTH).substring(136, 146)));
 
 
@@ -786,9 +784,9 @@ public class DeclarationMapProcessor implements Tasklet {
 
              
             String montantPrime = row.get(PDEVT_BLOCK_00PDEBL).substring(570,581);
-            System.out.println("FFF"+row.get(PDEVT_BLOCK_00PDEBL));
+               
 
-            System.out.println("FFF"+row.get(PDDDOS_BLOCK_03).substring(27,37)+montantPrime);
+               
             String dateString=row.get(PDEVT_BLOCK_00P).substring(194,204);
 //            declarationModel.setDate1Ech(LocalDate.parse(dateString));
 

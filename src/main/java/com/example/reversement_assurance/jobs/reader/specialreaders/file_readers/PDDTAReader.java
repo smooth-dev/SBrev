@@ -55,24 +55,24 @@ public class PDDTAReader {
 
                         String codeEvenement = line.substring(35, 37);
                         String montantAssurance = line.substring(934, 951);
-                        System.out.println("Debuggg"+line.substring(27, 37)+"#"+montantAssurance);
+                           
 
                         LocalDate dateEvenement = new LocalDate(line.substring(136, 146));
                         LocalDate  dateTraitement = GeneralUtils.getFirstDayOfMonthDate();
                          int counter=0;
                         //Verifier si same month stocker
                                if(!montantAssurance.equals("00000000000000000")) {
-                                   System.out.println("Debuggg2"+line.substring(27, 37)+"#"+montantAssurance+"#"+dateEvenement+"#"+dateTraitement);
+                                      
 
                                    handleBlock(line, PDDTA_BLOCK_FIRSTMONTH);// TOFIX : le pro
                                    if( dateEvenement.getMonthOfYear()==dateTraitement.getMonthOfYear()
                                            && dateEvenement.getYear()==dateTraitement.getYear()) {
-                                       System.out.println("Debuggg3"+line.substring(27, 37)+"/#/"+dateTraitement+"DateEvt"+dateEvenement);
+                                          
                                        handleBlock(line, PDDTA_BLOCK_CURRENTMONTH);
                                    }
                                }
                                else{
-                                   System.out.println("CDEbug" + line.substring(25, 37) +"#"+montantAssurance);
+                                      
                                }
 
 
@@ -140,7 +140,7 @@ public class PDDTAReader {
 
         if (pddTa.row(contractNumber).containsKey(blockCode)) {
             log.warn("Contract {} found again in PDDTA in block {}", contractNumber, blockCode);
-            System.out.println("DDEDEDE"+pddTa.row(contractNumber).containsKey(PDDTA_BLOCK_FIRSTMONTH)+pddTa.row(contractNumber));
+               
         }
 else
         pddTa.put(contractNumber, blockCode, line);

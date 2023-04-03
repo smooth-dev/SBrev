@@ -89,7 +89,7 @@ public class RevassListWriter {
                     detailClient.setDateEffet(LocalDate.parse(reverssementModel.getDateEffet().toString()).format(new DateTimeFormatterBuilder().appendPattern("ddMMyyyy").toFormatter()));
                     detailClient.setDureeSousc(StringUtils.leftPad(reverssementModel.getDureeSousc().toString(), 3, "0"));
                     detailClient.setPrimeAssurance(StringUtils.leftPad(reverssementModel.getPrimeAssurance().toString(), 12, "0"));
-//                    if(reverssementModel.getTauxAssurance().toString().equals("273")) System.out.println("DEFGRev"+reverssementModel.getNumContratFiliale());
+//                    if(reverssementModel.getTauxAssurance().toString().equals("273"))    
                     detailClient.setTauxAssurance(StringUtils.leftPad(reverssementModel.getTauxAssurance().toString(), 7, "0"));
                     detailClient.setMontantCredit(StringUtils.leftPad(reverssementModel.getMontantCredit().toString(), 12, "0"));
 
@@ -109,7 +109,7 @@ public class RevassListWriter {
                     detailClient.setTauxSurprime(StringUtils.leftPad(reverssementModel.getTauxSurprime().toString(), 7, "0"));
 //                    detailClient.setFiler(StringUtils.rightPad(reverssementModel.getFiler(), 79, " "));
                    detailClient.setFiler(StringUtils.leftPad("", 81, " "));
-                    return detailClient.toStringDebug();
+                    return detailClient.toString();
                 })
                 .footerCallback(abbFooter)
                 .headerCallback(abbHeader)

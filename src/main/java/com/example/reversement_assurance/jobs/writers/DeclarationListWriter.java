@@ -93,7 +93,7 @@ public class DeclarationListWriter {
                    }
                     detailClient.setDureeSousc(StringUtils.leftPad(declarationModel.getDureeSousc().toString(), 3, "0"));
                     detailClient.setPrimeAssurance(StringUtils.leftPad(declarationModel.getPrimeAssurance().toString(), 12, "0"));
-//                    if(declarationModel.getTauxAssurance().toString().equals("273")) System.out.println("DEFG"+declarationModel.getNumContratFiliale());
+//                    if(declarationModel.getTauxAssurance().toString().equals("273"))    
                     detailClient.setTauxAssurance(StringUtils.leftPad(declarationModel.getTauxAssurance().toString(), 7, "0"));
                     detailClient.setMontantCredit(StringUtils.leftPad(declarationModel.getMontantCredit().toString(), 12, "0"));
                     detailClient.setTauxEmprunt(StringUtils.leftPad(declarationModel.getTauxEmprunt().toString(), 4, "0"));
@@ -110,7 +110,7 @@ public class DeclarationListWriter {
                     detailClient.setFiler(StringUtils.leftPad("", 81, " "));
 
 
-                    return detailClient.toStringDebug();
+                    return detailClient.toString();
                 })
                 .footerCallback(abbFooter)
                 .headerCallback(abbHeader)

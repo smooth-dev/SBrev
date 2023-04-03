@@ -161,8 +161,8 @@ public class RevassMapProcessor implements Tasklet {
 
         try {
 
-            System.out.println("Debuff"+row.get(PDEVT_BLOCK_00));
-            System.out.println("Debuffv"+row.get(PDEVT_BLOCK_00P).substring(570,581));
+               
+               
 //
            String montantPrime = row.get(PDEVT_BLOCK_00P).substring(570,581);
 
@@ -213,7 +213,7 @@ public class RevassMapProcessor implements Tasklet {
 
             }
 
-            System.out.println("datedebug"+date1Ech);
+               
             reverssementModel.setDate1Ech(new LocalDate(row.get(PDDTA_BLOCK_FIRSTMONTH).substring(136, 146)));
 
 
@@ -331,7 +331,7 @@ public class RevassMapProcessor implements Tasklet {
     private void getPDDDOS_RES_FONC_50(ReverssementModel reverssementModel, Map<String, String> row) {
         try {
             reverssementModel.setCodePhase(row.get(PDDDOS_BLOCK_50).substring(143, 144));
-            System.out.println("Revass DEbug"+row.get(PDDDOS_BLOCK_50).substring(143, 144));
+               
             reverssementModel.setMontantCredit(new BigInteger(row.get(PDDDOS_BLOCK_50).substring(282, 298)));
             reverssementModel.setTauxEmprunt(getFormatedTauxEmprunt(row));
 //            reverssementModel.setCapitalRestantDu(new BigInteger(row.get(PDDDOS_BLOCK_50).substring(1624, 1642)));
@@ -563,11 +563,9 @@ public class RevassMapProcessor implements Tasklet {
         //*1_000_000
         {
             reverssementModel.setTauxAssurance(tauxAssBigMensuel.multiply(BigDecimal.valueOf(10_000)).toBigInteger());
-            if(natureAssurance.equals("04"))System.out.println("CONSOLE 10000 REV"+reverssementModel.getTauxAssurance()+"#");
 
         }else if ("U".equals(reverssementModel.getModePaiement())) {
             reverssementModel.setTauxAssurance(tauxAssBigMensuel.multiply(BigDecimal.valueOf(100)).toBigInteger());
-            if(natureAssurance.equals("04"))System.out.println("CONSOLE  100 REV"+reverssementModel.getTauxAssurance()+"#");
 
         }
           
