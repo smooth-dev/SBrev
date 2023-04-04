@@ -27,6 +27,11 @@ public class BatchContext {
     @Getter
     int cumulPrimeDecl = 0;
 
+
+    @Setter
+    @Getter
+    int uniqueEvt = 0;
+
     @Getter
     LocalDate dateTraitement = null;
 

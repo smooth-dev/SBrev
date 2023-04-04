@@ -45,6 +45,8 @@ public class DeclarationMapProcessor implements Tasklet {
         //    
 
 
+        System.out.println("pdvelod"+pdevt);
+
         List<String> contracts = new ArrayList<>();
 
 
@@ -107,17 +109,22 @@ public class DeclarationMapProcessor implements Tasklet {
 
             // check if row is already inserted
             Map<String, String> tmp = map.get(row);
-
+            System.out.println("ROWOOW"+row);
+            System.out.println("pddevtcntant "+tmp);
+            System.out.println("pddevtcntant entryset "+tmp.entrySet());
 
 
             for (Map.Entry<String, String> pair : tmp.entrySet()) {
-                if(pair.getKey().equals(PDEVT_BLOCK_00) )
+                System.out.println("pddevtcntant 1 entryset "+ pair);
+
+                if(pair.getKey().startsWith(PDEVT_BLOCK_EVT) )
 
                 {
+
                     try {
 
 // permet de prendre la dernierer mise a jour des montant du pddevt pour un dossier donnée
-                        BatchContext.getInstance().getDeclarationModels().removeIf(d -> d.getContractNumber().equals(row));
+//                        BatchContext.getInstance().getDeclarationModels().removeIf(d -> d.getContractNumber().equals(row));
 
 //                        if (exists) {
 //                             
@@ -140,7 +147,7 @@ public class DeclarationMapProcessor implements Tasklet {
 
 
                         if (pdevt.containsRow(currentContractNumber)) {
-                            getPdevtData(declarationModel, pdevt.row(currentContractNumber));
+                            getPdevtDataEVT(declarationModel, pdevt.row(currentContractNumber),pair.getKey());
             //               getPddTaData(declarationModel, pddta.row(currentContractNumber));
 
                         }
@@ -153,14 +160,18 @@ public class DeclarationMapProcessor implements Tasklet {
                         getPdevtBusinessLogic(declarationModel);
                          
 
-                       setMiscBusinessLogic(declarationModel);
+                        setMiscBusinessLogic(declarationModel);
                         declarationModel.setContractNumber(currentContractNumber);
-                         
 
+                        System.out.println("ndos"+currentContractNumber);
+                        System.out.println("Iteration pddevt evt"+pair.getKey());
 
                         BatchContext.getInstance().getDeclarationModels().add(declarationModel);
+//                        declarationModel.setContractNumber("eede5465");
+//                        BatchContext.getInstance().getDeclarationModels().add(declarationModel);
 
 
+                        System.out.println("Iteration pddevt end"+BatchContext.getInstance().getDeclarationModels());
 
 
 
@@ -761,10 +772,70 @@ public class DeclarationMapProcessor implements Tasklet {
     }
 
 
+
+    // retriever specifique pour les dossiers avec plusieurs evenements
+    private void getPdevtDataEVT(DeclarationModel declarationModel, Map<String, String> row,String block) {
+
+        String evenementSameMonth =(row.get(block));
+
+
+        System.out.println(evenementSameMonth +"dfss"
+
+        );
+
+
+
+        if(evenementSameMonth!=null) {
+            String codeEvenement = evenementSameMonth.substring(178, 181);
+            if(codeEvenement.equals("048"))
+                declarationModel.setDureeReport(Integer.valueOf((evenementSameMonth.substring(798, 801))));
+            declarationModel.setCodePhase(mapCodephase(codeEvenement));
+
+
+            declarationModel.setNumContratFiliale(evenementSameMonth.substring(27, 38).trim());
+
+        }
+        int primeAssurance=0;
+        try {
+
+
+
+            String montantPrime = row.get(PDEVT_BLOCK_00PDEBL).substring(570,581);
+
+
+
+            String dateString=row.get(PDEVT_BLOCK_00P).substring(194,204);
+//            declarationModel.setDate1Ech(LocalDate.parse(dateString));
+
+            primeAssurance=Integer.parseInt(montantPrime);
+
+            declarationModel.setPrimeAssurance(montantPrime);
+        } catch (NullPointerException | StringIndexOutOfBoundsException e) {
+
+            log.error("Error while processing contract number: {} on Block 51 \n \t Exception name: {}", currentContractNumber, e.getClass());
+
+
+            declarationModel.setPrimeAssurance("0");
+        }
+
+//        int cumulDecl = BatchContext.getInstance().getCumulPrimeDecl();
+//
+//        cumulDecl+=primeAssurance;
+
+
+
+    }
+
+
+
     private void getPdevtData(DeclarationModel declarationModel, Map<String, String> row) {
 
-        String evenementSameMonth =(row.get(PDEVT_BLOCK_00));
+        String evenementSameMonth =(row.get(PDEVT_BLOCK_EVT));
 
+
+        System.out.println(evenementSameMonth +"dfss"
+
+        );
 
 
 

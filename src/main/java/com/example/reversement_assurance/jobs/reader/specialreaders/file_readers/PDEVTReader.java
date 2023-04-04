@@ -82,8 +82,7 @@ public class PDEVTReader {
                                         if(LIST_EVENEMENTS.contains(codeEvenement)
                                                 && dateEvenement.getMonthOfYear()==dateTraitement.getMonthOfYear()
                                                 && dateTraitement.getYear()==dateTraitement.getYear()) {
-
-                                            handleBlock(line, PDEVT_BLOCK_00);
+                                            handleBlock00(line);
                                         }
 
 
@@ -111,10 +110,31 @@ public class PDEVTReader {
     private void handleBlock(String line, String blockCode) {
 
         String contractNumber = line.substring(24, 41).trim();
-        if (pdevt.containsRow(contractNumber))
-            log.warn("Contract {} found again in PDEVT in block {}", contractNumber,blockCode);
+        if (pdevt.containsRow(contractNumber)) {
+            log.warn("Contract {} found again in PDEVT in block {}", contractNumber, blockCode);
+        }
 
         pdevt.put(contractNumber, blockCode, line);
+
+    }
+
+
+    private void handleBlock00(String line) {
+
+
+        int num = BatchContext.getInstance().getUniqueEvt();
+
+        String contractNumber = line.substring(24, 41).trim();
+        if (pdevt.containsRow(contractNumber)) {
+            BatchContext.getInstance().setUniqueEvt(num+1);
+            log.warn("Contract {} found again in PDEVT in block {}", contractNumber, PDEVT_BLOCK_EVT);
+            pdevt.put(contractNumber, PDEVT_BLOCK_EVT+BatchContext.getInstance().getUniqueEvt(), line);
+
+        }
+        else {
+
+            pdevt.put(contractNumber, PDEVT_BLOCK_EVT, line);
+        }
 
     }
 }
