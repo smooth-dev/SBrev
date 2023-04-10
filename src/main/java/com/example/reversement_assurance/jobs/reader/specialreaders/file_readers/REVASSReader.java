@@ -35,10 +35,13 @@ public class REVASSReader {
                 .resource(new PathResource(pdddosFilePath))
                 .lineMapper((line, lineNumber) ->{
                         try {
-                            if(revassMap.containsKey(line.substring(164,184).trim())){
+
+                            System.out.println("Revass Check"+line.substring(164,184).trim()+"#"+line.substring(317, 334).equals("00000000000000000"));
+
+                                if(revassMap.containsKey(line.substring(164,184).trim())){
                             log.warn("Contract key {} found again in REVASS",line.substring(164,184).trim());
                             }
-                             
+
                        revassMap.put(line.substring(164, 184).trim(), line);
                         } catch (Exception e) {
                             log.error("Error while reading REVASS file : {}", e.getMessage());
