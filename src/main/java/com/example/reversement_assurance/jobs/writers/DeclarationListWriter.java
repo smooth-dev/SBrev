@@ -21,9 +21,9 @@ import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Field;
 import java.math.BigInteger;
-import java.time.LocalDate;
 import java.time.format.DateTimeFormatterBuilder;
 import java.util.Objects;
+import org.joda.time.LocalDate;
 
 import static com.example.reversement_assurance.configuration.Constants.ABB_FOOTER;
 import static com.example.reversement_assurance.configuration.Constants.ABB_HEADER;
@@ -69,7 +69,9 @@ public class DeclarationListWriter {
                     detailClient.setNumClient(StringUtils.leftPad(declarationModel.getNumClient(), 8, " ")); // 8+1 car on a jouté le 1
                     detailClient.setNomClient(StringUtils.rightPad(declarationModel.getNomClient(), 30, " "));
                     detailClient.setPrenomClient(StringUtils.rightPad(declarationModel.getPrenomClient(), 30, " "));
-                    detailClient.setDateNaisClient(declarationModel.getDateNaisClient()==null?"00000000":LocalDate.parse(declarationModel.getDateNaisClient().toString()).format(new DateTimeFormatterBuilder().appendPattern("ddMMyyyy").toFormatter()));
+
+
+                    detailClient.setDateNaisClient(declarationModel.getDateNaisClient()==null?"00000000": DateTimeFormat.forPattern("ddMMyyyy").print(declarationModel.getDateNaisClient()));
                     detailClient.setNumCinClient(StringUtils.rightPad(declarationModel.getNumCinClient(), 12, " "));
                     detailClient.setTypeClient(declarationModel.getTypeClient().equals("ENTRE")?"E":"P");
                     detailClient.setAdrClient1(StringUtils.rightPad(declarationModel.getAdrClient1(), 30, " "));
@@ -87,10 +89,9 @@ public class DeclarationListWriter {
                     detailClient.setModePaiement(StringUtils.rightPad(declarationModel.getModePaiement(), 1, " "));
                     detailClient.setPeriodicite(StringUtils.leftPad(declarationModel.getPeriodicite(), 1, "0"));
                     detailClient.setTypeConvention(StringUtils.rightPad(declarationModel.getTypeConvention(), 1, " "));
-                   try{ detailClient.setDateEffet(LocalDate.parse(declarationModel.getDateEffet().toString()).format(new DateTimeFormatterBuilder().appendPattern("ddMMyyyy").toFormatter()));}
-                   catch (NullPointerException  e) {
-                       log.error("Date Effet errone Exception name: {} \n Error while processing contract number:  {} ", e.getClass(),declarationModel.getDateEffet());
-                   }
+                       detailClient.setDateEffet(DateTimeFormat.forPattern("ddMMyyyy").print(declarationModel.getDateEffet()));
+
+
                     detailClient.setDureeSousc(StringUtils.leftPad(declarationModel.getDureeSousc().toString(), 3, "0"));
                     detailClient.setPrimeAssurance(StringUtils.leftPad(declarationModel.getPrimeAssurance().toString(), 12, "0"));
 //                    if(declarationModel.getTauxAssurance().toString().equals("273"))    
@@ -100,8 +101,12 @@ public class DeclarationListWriter {
                     detailClient.setTypeTauxEmprunt(StringUtils.rightPad(declarationModel.getTypeTauxEmprunt().equals("F")?"F":"V", 1, " "));
                     detailClient.setPourcentageEmprunt(StringUtils.leftPad(declarationModel.getPourcentageEmprunt().toString(), 3, "0"));
                     detailClient.setDureeDiffere(StringUtils.leftPad(declarationModel.getDureeDiffere().toString(), 3, "0"));
-                    detailClient.setDate1Ech(LocalDate.parse(declarationModel.getDate1Ech().toString()).format(new DateTimeFormatterBuilder().appendPattern("ddMMyyyy").toFormatter()));
-                    detailClient.setDateDerEch(LocalDate.parse(declarationModel.getDateDerEch().toString()).format(new DateTimeFormatterBuilder().appendPattern("ddMMyyyy").toFormatter()));
+
+                     
+
+                    detailClient.setDate1Ech( DateTimeFormat.forPattern("ddMMyyyy").print(declarationModel.getDate1Ech()));
+                    detailClient.setDateDerEch( DateTimeFormat.forPattern("ddMMyyyy").print(declarationModel.getDateDerEch()));
+//                    detailClient.setDateDerEch(LocalDate.parse(declarationModel.getDateDerEch().toString()).format(new DateTimeFormatterBuilder().appendPattern("ddMMyyyy").toFormatter()));
                     detailClient.setCapitalRestantDu(StringUtils.leftPad(declarationModel.getCapitalRestantDu().toString(), 12, "0"));
                     detailClient.setCodeRejet(StringUtils.rightPad(declarationModel.getCodeRejet(), 2, " "));
                     detailClient.setCodeReseau(StringUtils.rightPad(declarationModel.getCodeReseau(), 4, " "));
@@ -118,7 +123,6 @@ public class DeclarationListWriter {
     }
 
     /**
-     * Last line of defense to make sure that the file is not corrupted cause I CBA man, i just want to go home
      * @param declarationModel
      * @param field
      * @throws IllegalAccessException
@@ -129,7 +133,7 @@ public class DeclarationListWriter {
         }else if(field.getType().equals(BigInteger.class)) {
             field.set(declarationModel, BigInteger.ZERO);
         }else if(field.getType().equals(LocalDate.class)) {
-            field.set(declarationModel,LocalDate.parse("01011970", new DateTimeFormatterBuilder().appendPattern("ddMMyyyy").toFormatter()));
+            field.set(declarationModel,new LocalDate(1970, 1, 1));
         }else if(field.getType().equals(Integer.class)) {
             field.set(declarationModel,0);
         }

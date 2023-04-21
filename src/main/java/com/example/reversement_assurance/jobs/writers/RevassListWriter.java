@@ -21,7 +21,7 @@ import org.springframework.stereotype.Component;
 
 import java.lang.reflect.Field;
 import java.math.BigInteger;
-import java.time.LocalDate;
+import org.joda.time.LocalDate;
 import java.time.format.DateTimeFormatterBuilder;
 import java.util.Objects;
 
@@ -66,7 +66,7 @@ public class RevassListWriter {
                     detailClient.setNumClient(StringUtils.leftPad(reverssementModel.getNumClient(), 8, " "));
                     detailClient.setNomClient(StringUtils.rightPad(reverssementModel.getNomClient(), 30, " "));
                     detailClient.setPrenomClient(StringUtils.rightPad(reverssementModel.getPrenomClient(), 30, " "));
-                    detailClient.setDateNaisClient(reverssementModel.getDateNaisClient()==null?"00000000":LocalDate.parse(reverssementModel.getDateNaisClient().toString()).format(new DateTimeFormatterBuilder().appendPattern("ddMMyyyy").toFormatter()));
+                    detailClient.setDateNaisClient(reverssementModel.getDateNaisClient()==null?"00000000":DateTimeFormat.forPattern("ddMMyyyy").print(reverssementModel.getDateNaisClient()));
                     detailClient.setNumCinClient(StringUtils.rightPad(reverssementModel.getNumCinClient(), 12, " "));
                     detailClient.setTypeClient(reverssementModel.getTypeClient().equals("ENTRE")?"E":"P");
                     detailClient.setAdrClient1(StringUtils.rightPad(reverssementModel.getAdrClient1(), 30, " "));
@@ -86,7 +86,7 @@ public class RevassListWriter {
 
                     detailClient.setPeriodicite(StringUtils.leftPad(reverssementModel.getPeriodicite(), 1, "0"));
                     detailClient.setTypeConvention(StringUtils.rightPad(reverssementModel.getTypeConvention(), 1, " "));
-                    detailClient.setDateEffet(LocalDate.parse(reverssementModel.getDateEffet().toString()).format(new DateTimeFormatterBuilder().appendPattern("ddMMyyyy").toFormatter()));
+                    detailClient.setDateEffet(DateTimeFormat.forPattern("ddMMyyyy").print(reverssementModel.getDateEffet()));
                     detailClient.setDureeSousc(StringUtils.leftPad(reverssementModel.getDureeSousc().toString(), 3, "0"));
                     detailClient.setPrimeAssurance(StringUtils.leftPad(reverssementModel.getPrimeAssurance().toString(), 12, "0"));
 //                    if(reverssementModel.getTauxAssurance().toString().equals("273"))    
@@ -100,8 +100,8 @@ public class RevassListWriter {
                     detailClient.setTauxEmprunt(StringUtils.leftPad(reverssementModel.getTauxEmprunt().toString(), 4, "0"));
                     detailClient.setPourcentageEmprunt(StringUtils.leftPad(reverssementModel.getPourcentageEmprunt().toString(), 3, "0"));
                     detailClient.setDureeDiffere(StringUtils.leftPad(reverssementModel.getDureeDiffere().toString(), 3, "0"));
-                    detailClient.setDate1Ech(LocalDate.parse(reverssementModel.getDate1Ech().toString()).format(new DateTimeFormatterBuilder().appendPattern("ddMMyyyy").toFormatter()));
-                    detailClient.setDateDerEch(LocalDate.parse(reverssementModel.getDateDerEch().toString()).format(new DateTimeFormatterBuilder().appendPattern("ddMMyyyy").toFormatter()));
+                    detailClient.setDate1Ech( DateTimeFormat.forPattern("ddMMyyyy").print(reverssementModel.getDate1Ech()));
+                    detailClient.setDateDerEch( DateTimeFormat.forPattern("ddMMyyyy").print(reverssementModel.getDateDerEch()));
                     detailClient.setCapitalRestantDu(StringUtils.leftPad(reverssementModel.getCapitalRestantDu().toString(), 12, "0"));
                     detailClient.setCodeRejet(StringUtils.rightPad(reverssementModel.getCodeRejet(), 2, " "));
                     detailClient.setCodeReseau(StringUtils.rightPad(reverssementModel.getCodeReseau(), 4, " "));
@@ -123,7 +123,7 @@ public class RevassListWriter {
         }else if(field.getType().equals(BigInteger.class)) {
             field.set(reverssementModel, BigInteger.ZERO);
         }else if(field.getType().equals(LocalDate.class)) {
-            field.set(reverssementModel,LocalDate.parse("01011970", new DateTimeFormatterBuilder().appendPattern("ddMMyyyy").toFormatter()));
+            field.set(reverssementModel,new org.joda.time.LocalDate(1970, 1, 1));
         }else if(field.getType().equals(Integer.class)) {
             field.set(reverssementModel,0);
         }

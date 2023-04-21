@@ -43,7 +43,7 @@ public class BatchConsts {
             Collections.unmodifiableList(Arrays.asList("01","03", "04", "05", "06"));
 
     public static final List<String> LIST_EVENEMENTS =
-            Collections.unmodifiableList(Arrays.asList("048", "046", "009", "014", "015", "019","017"));
+            Collections.unmodifiableList(Arrays.asList("048", "046", "009", "014", "015", "019","017","016"));
 /*
 Report Echéance = 048
 Modulation échéance = 046
@@ -51,6 +51,7 @@ Changement de Taux = 09
 RAP = 014
 RAT = 015
 Extourne = 019
+DECHEACNE DU TERME + 016
  */
     private BatchConsts() {
     }

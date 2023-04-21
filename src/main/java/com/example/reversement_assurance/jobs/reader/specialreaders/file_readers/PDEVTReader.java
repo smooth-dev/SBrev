@@ -99,7 +99,7 @@ public class PDEVTReader {
 
                             } catch (Exception e) {
                                 log.error("Error while reading PDEVT file : {}", e.getMessage());
-                                SimpleRejectLinesWriter.writeReject("D:\\Work\\Batch ABB\\Project\\error.txt", line, e.getMessage(), true);
+                                // SimpleRejectLinesWriter.writeReject("D:\\Work\\Batch ABB\\Project\\error.txt", line, e.getMessage(), true);
                             }
                             return line;
                         }

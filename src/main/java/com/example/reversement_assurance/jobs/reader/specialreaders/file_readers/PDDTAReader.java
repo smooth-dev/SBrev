@@ -123,7 +123,7 @@ public class PDDTAReader {
 
                              catch (Exception e) {
                                 log.error("Error while reading PDDTA file : {} dossier ll : {}", e.getMessage(),line.substring(27, 37) );
-                                SimpleRejectLinesWriter.writeReject("D:\\Work\\Batch ABB\\Project\\error.txt", line, e.getMessage(), true);
+//                                SimpleRejectLinesWriter.writeReject("D:\\Work\\Batch ABB\\Project\\error.txt", line, e.getMessage(), true);
                             }
                             return line;
                         }

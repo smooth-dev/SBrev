@@ -31,7 +31,7 @@ public class DeclarationProcessor implements ItemProcessor<DeclarationModelOutpu
 
     static Logger log = LoggerFactory.getLogger(DeclarationProcessor.class);
 
-    //bloc
+    //blocF
     @Override
     public DetailClient process(@NotNull DeclarationModelOutput declarationModelOutput) {
         try {

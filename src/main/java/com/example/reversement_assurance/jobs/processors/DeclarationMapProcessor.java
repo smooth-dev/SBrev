@@ -45,7 +45,7 @@ public class DeclarationMapProcessor implements Tasklet {
         //    
 
 
-        System.out.println("pdvelod"+pdevt);
+         
 
         List<String> contracts = new ArrayList<>();
 
@@ -109,13 +109,13 @@ public class DeclarationMapProcessor implements Tasklet {
 
             // check if row is already inserted
             Map<String, String> tmp = map.get(row);
-            System.out.println("ROWOOW"+row);
-            System.out.println("pddevtcntant "+tmp);
-            System.out.println("pddevtcntant entryset "+tmp.entrySet());
+             
+             
+             
 
 
             for (Map.Entry<String, String> pair : tmp.entrySet()) {
-                System.out.println("pddevtcntant 1 entryset "+ pair);
+                 
 
                 if(pair.getKey().startsWith(PDEVT_BLOCK_EVT) )
 
@@ -163,15 +163,15 @@ public class DeclarationMapProcessor implements Tasklet {
                         setMiscBusinessLogic(declarationModel);
                         declarationModel.setContractNumber(currentContractNumber);
 
-                        System.out.println("ndos"+currentContractNumber);
-                        System.out.println("Iteration pddevt evt"+pair.getKey());
+                         
+                         
 
                         BatchContext.getInstance().getDeclarationModels().add(declarationModel);
 //                        declarationModel.setContractNumber("eede5465");
 //                        BatchContext.getInstance().getDeclarationModels().add(declarationModel);
 
 
-                        System.out.println("Iteration pddevt end"+BatchContext.getInstance().getDeclarationModels());
+                         
 
 
 
@@ -659,19 +659,23 @@ public class DeclarationMapProcessor implements Tasklet {
         if(declarationModel.getNatureAssurance()!=null) {
             if (declarationModel.getNatureAssurance().length() > 0) {
                 natureAssurance=declarationModel.getNatureAssurance();
-                System.out.println("natureAssurance"+natureAssurance);
+                 
                 tauxAssurance = BatchContext.getInstance().getBaremeAssurance().get(declarationModel.getNatureAssurance()).replace(",", ".");
-                System.out.println("tauxAssurance"+tauxAssurance);
+                 
 
             }
         }
+
+         
         BigDecimal  tauxAssBigAnnuel= new BigDecimal(tauxAssurance);
         BigDecimal tauxAssBigMensuel=tauxAssBigAnnuel;
         if(LIST_TAUX_TO_DIVIDE.contains(natureAssurance)){
             tauxAssBigMensuel= tauxAssBigAnnuel.divide(BigDecimal.valueOf(12));
         }
 
-        System.out.println("Dossierrer"+currentContractNumber+"//"+tauxAssBigMensuel+"#"+declarationModel.getModePaiement()+"#"+declarationModel.getNatureAssurance());
+         
+
+         
 
         if ("P".equals(declarationModel.getModePaiement()))
             //*1_000_000
@@ -683,7 +687,8 @@ public class DeclarationMapProcessor implements Tasklet {
 
         }
 
-        System.out.println("Dossierrer"+currentContractNumber+"//"+declarationModel.getTauxAssurance()+"#"+declarationModel.getModePaiement());
+         
+         
 
 
 
@@ -788,9 +793,7 @@ public class DeclarationMapProcessor implements Tasklet {
         String evenementSameMonth =(row.get(block));
 
 
-        System.out.println(evenementSameMonth +"dfss"
 
-        );
 
 
 
@@ -913,6 +916,7 @@ public class DeclarationMapProcessor implements Tasklet {
             case "015":
                 return "P006";
             case "017":
+            case "016":
                 return "PCTX";
             default:
                 return "P117";
