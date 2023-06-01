@@ -52,7 +52,13 @@ RAP = 014
 RAT = 015
 Extourne = 019
 DECHEACNE DU TERME + 016
+EXTOURNE ? 017
  */
+
+    public static final List<String> LIST_EVENEMENTS_DECL =
+            Collections.unmodifiableList(Arrays.asList( "015", "019","017","016"));
+
+
     private BatchConsts() {
     }
 

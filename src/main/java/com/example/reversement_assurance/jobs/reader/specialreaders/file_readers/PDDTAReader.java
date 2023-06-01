@@ -69,7 +69,12 @@ public class PDDTAReader {
                                            && dateEvenement.getYear()==dateTraitement.getYear()) {
                                           
                                        handleBlock(line, PDDTA_BLOCK_CURRENTMONTH);
+                                       System.out.println("DEBUFG3105CURRENT"+line.substring(27,37));
+
                                    }
+                                   System.out.println("DEBUFG3105FIRST"+line.substring(27,37));
+
+
                                }
                                else{
                                       

@@ -51,8 +51,9 @@ public class RevassMapProcessor implements Tasklet {
                 // make declarationModel
                 try {
                     String montant =pdddos.row(entry.getKey()).get(PDDDOS_BLOCK_50).substring(282, 298);
-                    if(montant.equals("0000000000000000"))continue;
-                        currentContractNumber = entry.getKey();
+                    if(montant.equals("0000000000000000") || entry.getKey().contains("E"))continue;
+
+                    currentContractNumber = entry.getKey();
                     String cre06Value = entry.getValue();
 
                     ReverssementModel reverssementModel = new ReverssementModel();
@@ -102,7 +103,7 @@ public class RevassMapProcessor implements Tasklet {
                      
                     try {
                         String montant =pdddos.row(row).get(PDDDOS_BLOCK_50).substring(282, 298);
-                        if(montant.equals("0000000000000000"))continue;
+                        if(montant.equals("0000000000000000")||row.contains("E")) continue;
                         currentContractNumber = row;
                         ReverssementModel reverssementModel = new ReverssementModel();
                         setCreBusinessLogic(reverssementModel);
@@ -726,9 +727,9 @@ public class RevassMapProcessor implements Tasklet {
             case "019":
                 return "P999";
             case "015":
+            case "016":
                 return "P006";
             case "017":
-            case "016":
                 return "PCTX";
             default:
                 return "P117";

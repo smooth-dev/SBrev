@@ -45,7 +45,7 @@ public class AbbRevassFooterCallBack implements FlatFileFooterCallback {
         StringBuilder footer = new StringBuilder();
         footer.append("Z").append(StringUtils.leftPad(String.valueOf(BatchContext.getInstance().getReverssementModels().size()), 6, "0"))
                 .append(String.format("%15d",cumul))
-                .append(String.format("%-377s",""));
+                .append(String.format("%378s","\n"));
         writer.write(footer.toString());
     }
 

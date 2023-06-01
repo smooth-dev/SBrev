@@ -65,6 +65,7 @@ public class DeclarationMapProcessor implements Tasklet {
 
              
             //check if key exists in pdddos
+             //entry.getKey () = NUM DOSSIER
             if (pdddos.containsRow(entry.getKey()) && pdevt.containsRow(entry.getKey())) {
                 // make declarationModel
 
@@ -73,6 +74,7 @@ public class DeclarationMapProcessor implements Tasklet {
 
                 try {
                     currentContractNumber = entry.getKey();
+                  if(currentContractNumber.contains("E")) continue;
                     String cre06Value = entry.getValue();
                     DeclarationModel declarationModel = new DeclarationModel();
                     if(cre06Value!=null) getCreData(declarationModel, cre06Value);
@@ -81,7 +83,9 @@ public class DeclarationMapProcessor implements Tasklet {
 
                     getDdosData(declarationModel, pdddos.row(entry.getKey()));
                     setPdddosBusinessLogic(declarationModel,currentContractNumber);
-                    getPdevtData(declarationModel, pdevt.row(entry.getKey()));
+                    boolean isEvtModif117= getPdevtData(declarationModel, pdevt.row(entry.getKey()));
+                    System.out.println("DEBUG3105CHECK"+isEvtModif117);
+                    if(isEvtModif117)  continue;
                     getPrimeForDeblocageData(declarationModel, pdevt.row(entry.getKey()));
                     if(pddta.containsRow(currentContractNumber)){
                         getPddTaData(declarationModel, pddta.row(currentContractNumber));
@@ -109,8 +113,9 @@ public class DeclarationMapProcessor implements Tasklet {
 
             // check if row is already inserted
             Map<String, String> tmp = map.get(row);
-             
-             
+
+           if(row.contains("E")) continue;
+
              
 
 
@@ -147,7 +152,10 @@ public class DeclarationMapProcessor implements Tasklet {
 
 
                         if (pdevt.containsRow(currentContractNumber)) {
-                            getPdevtDataEVT(declarationModel, pdevt.row(currentContractNumber),pair.getKey());
+                            boolean isEvtModif117= getPdevtDataEVT(declarationModel, pdevt.row(currentContractNumber),pair.getKey());
+                            System.out.println("DEBUG3105CHECK"+isEvtModif117);
+                            if(isEvtModif117)  continue;
+
             //               getPddTaData(declarationModel, pddta.row(currentContractNumber));
 
                         }
@@ -286,6 +294,9 @@ public class DeclarationMapProcessor implements Tasklet {
         getPDDDOS03And05Bloc03(declarationModel, row);
         //PDDOST-RES FONC-50
         getPDDDOS_RES_FONC_50(declarationModel, row);
+
+        System.out.println("123DEBdUG"+row.get((PDDDOS_BLOCK_50)));
+        System.out.println("123DEBssdUG"+row.get((PDDDOS_BLOCK_50)).substring(27,37));
         //PPDOS BLOC 12
         getPDDDOSBloc12(declarationModel, row);
         //PDDDOS BLOC 01
@@ -400,7 +411,7 @@ public class DeclarationMapProcessor implements Tasklet {
                     break;
                 case "3":
                 case "4":
-                    declarationModel.setCodePhase("P117");
+                    declarationModel.setCodePhase("P777");
                     break;
                 case "5":
                     declarationModel.setCodePhase("P006");
@@ -411,13 +422,15 @@ public class DeclarationMapProcessor implements Tasklet {
 
 
              //    
-             
-            declarationModel.setMontantCredit(new BigInteger(row.get(PDDDOS_BLOCK_50).substring(282, 298)));
+            System.out.println("DEBUG3105MONTANTdoss"+row.get(PDDDOS_BLOCK_50).substring(27, 37)+"#");
+            System.out.println("DEBUG3105MONTANT"+row.get(PDDDOS_BLOCK_50).substring(282, 298)+"#");
+//            declarationModel.setMontantCredit(new BigInteger(row.get(PDDDOS_BLOCK_50).substring(282, 298)));
             declarationModel.setTauxEmprunt(getFormatedTauxEmprunt(row));
              
 
 
             declarationModel.setCapitalRestantDu(new BigInteger(row.get(PDDDOS_BLOCK_50).substring(193, 209)));
+            System.out.println("123DEBUG"+row.get(PDDDOS_BLOCK_50).substring(193, 209)+"//"+row.get(PDDDOS_BLOCK_50).substring(27, 37));
         } catch (NullPointerException | StringIndexOutOfBoundsException e) {
             log.error("Error while processing contract number: {} on RES-FONC-50 \n \t Exception name: {}", currentContractNumber, e.getClass());
         }
@@ -474,6 +487,17 @@ public class DeclarationMapProcessor implements Tasklet {
         String date1Ech= row.get(PDDDOS_BLOCK_201).substring(265, 275);
         String dateEffet= row.get(PDDDOS_BLOCK_201).substring(265, 275);
 
+        System.out.println("DEBUG3105MONTeANTdoss"+row.get(PDDDOS_BLOCK_01).substring(27, 37)+"#");
+        System.out.println("DEBUG3105MONTeANT"+row.get(PDDDOS_BLOCK_01).substring(432, 448)+"#");
+
+        System.out.println("checkMontant1DEBUG0106 XXX"+declarationModel.getDureeSousc());
+
+        if(declarationModel.getDureeSousc()==null)
+            declarationModel.setDureeSousc(Integer.parseInt(row.get(PDDDOS_BLOCK_01).substring(623, 626)));
+
+        if(declarationModel.getMontantCredit()==null) declarationModel.setMontantCredit(new BigInteger(row.get(PDDDOS_BLOCK_01).substring(432, 448)));
+
+
 
         try {
 
@@ -507,7 +531,12 @@ public class DeclarationMapProcessor implements Tasklet {
         String dateRealisation= row.get(PDDDOS_BLOCK_201).substring(265, 275);
         String date1Ech= row.get(PDDDOS_BLOCK_201).substring(265, 275);
         String dateEffet= row.get(PDDDOS_BLOCK_201).substring(265, 275);
+        System.out.println("checkMontant1DEBUG0106 XXX");
 
+        if(declarationModel.getDureeSousc()==null)
+            declarationModel.setDureeSousc(Integer.parseInt(row.get(PDDDOS_BLOCK_01).substring(623, 626)));
+
+        if(declarationModel.getMontantCredit()==null) declarationModel.setMontantCredit(new BigInteger(row.get(PDDDOS_BLOCK_01).substring(432, 448)));
 
 
         try {
@@ -538,6 +567,13 @@ public class DeclarationMapProcessor implements Tasklet {
 
     private void getPDDDOSBloc101(DeclarationModel declarationModel, Map<String, String> row) {
         try {
+            System.out.println("checkMontant1DEBUG0106 XXX");
+
+            if(declarationModel.getDureeSousc()==null)
+                declarationModel.setDureeSousc(Integer.parseInt(row.get(PDDDOS_BLOCK_01).substring(623, 626)));
+
+            if(declarationModel.getMontantCredit()==null) declarationModel.setMontantCredit(new BigInteger(row.get(PDDDOS_BLOCK_01).substring(432, 448)));
+
 
             if(row.get(PDDDOS_BLOCK_01).substring(861,862).equals("F")) {
                 declarationModel.setTypeTauxEmprunt("F");
@@ -705,7 +741,7 @@ public class DeclarationMapProcessor implements Tasklet {
                 break;
             case "3":
             case "4":
-                declarationModel.setCodePhase("P117");
+                declarationModel.setCodePhase("P777");
                 break;
             case "5":
                 declarationModel.setCodePhase("P006");
@@ -788,7 +824,7 @@ public class DeclarationMapProcessor implements Tasklet {
 
 
     // retriever specifique pour les dossiers avec plusieurs evenements
-    private void getPdevtDataEVT(DeclarationModel declarationModel, Map<String, String> row,String block) {
+    private boolean getPdevtDataEVT(DeclarationModel declarationModel, Map<String, String> row,String block) {
 
         String evenementSameMonth =(row.get(block));
 
@@ -796,12 +832,13 @@ public class DeclarationMapProcessor implements Tasklet {
 
 
 
-
         if(evenementSameMonth!=null) {
-            String codeEvenement = evenementSameMonth.substring(178, 181);
-            if(codeEvenement.equals("048"))
+            String codeEvenementLS = evenementSameMonth.substring(178, 181);
+            if(codeEvenementLS.equals("048"))
                 declarationModel.setDureeReport(Integer.valueOf((evenementSameMonth.substring(798, 801))));
-            declarationModel.setCodePhase(mapCodephase(codeEvenement));
+            String codevenementABB= mapCodephase(codeEvenementLS);
+            if(codevenementABB=="P117") return true;
+            declarationModel.setCodePhase(codevenementABB);
 
 
             declarationModel.setNumContratFiliale(evenementSameMonth.substring(27, 38).trim());
@@ -829,6 +866,7 @@ public class DeclarationMapProcessor implements Tasklet {
 
             declarationModel.setPrimeAssurance("0");
         }
+        return false;
 
 //        int cumulDecl = BatchContext.getInstance().getCumulPrimeDecl();
 //
@@ -840,22 +878,24 @@ public class DeclarationMapProcessor implements Tasklet {
 
 
 
-    private void getPdevtData(DeclarationModel declarationModel, Map<String, String> row) {
+    private boolean getPdevtData(DeclarationModel declarationModel, Map<String, String> row) {
 
+        System.out.println("DEBUG3105ROW:"+row);
         String evenementSameMonth =(row.get(PDEVT_BLOCK_EVT));
 
 
-        System.out.println(evenementSameMonth +"dfss"
 
-        );
 
 
 
         if(evenementSameMonth!=null) {
-            String codeEvenement = evenementSameMonth.substring(178, 181);
-            if(codeEvenement.equals("048"))
+            String codeEvenementLS = evenementSameMonth.substring(178, 181);
+            if(codeEvenementLS.equals("048"))
                     declarationModel.setDureeReport(Integer.valueOf((evenementSameMonth.substring(798, 801))));
-            declarationModel.setCodePhase(mapCodephase(codeEvenement));
+
+            String codevenementABB= mapCodephase(codeEvenementLS);
+            if(codevenementABB=="P117") return true;
+            declarationModel.setCodePhase(codevenementABB);
 
 
             declarationModel.setNumContratFiliale(evenementSameMonth.substring(27, 38).trim());
@@ -883,6 +923,7 @@ public class DeclarationMapProcessor implements Tasklet {
 
             declarationModel.setPrimeAssurance("0");
         }
+        return false;
 
 //        int cumulDecl = BatchContext.getInstance().getCumulPrimeDecl();
 //
@@ -914,9 +955,9 @@ public class DeclarationMapProcessor implements Tasklet {
             case "019":
                 return "P999";
             case "015":
+            case "016":
                 return "P006";
             case "017":
-            case "016":
                 return "PCTX";
             default:
                 return "P117";

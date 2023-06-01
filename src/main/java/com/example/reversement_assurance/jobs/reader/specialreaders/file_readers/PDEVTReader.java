@@ -44,16 +44,17 @@ public class PDEVTReader {
 
 
                             LocalDate dateEvenement = new LocalDate(line.substring(194, 204));
-                            String codeEvenement = line.substring(178, 181);
                             LocalDate  dateTraitement = GeneralUtils.getFirstDayOfMonthDate();
-
+                            String codeEvenement = line.substring(178, 181);
                             if ("ECHE".equals(line.substring(189, 193)) && dateString.matches("^\\d{4}-\\d{2}-\\d{2}$") && montantPrime.matches(".*[1-9].*") ) {
 
 
                                 if(dateEvenement.getMonthOfYear()==dateTraitement.getMonthOfYear()
 && dateEvenement.getYear()==dateTraitement.getYear())
-                                handleBlock(line, PDEVT_BLOCK_00P); // montant du mois courant
-                                else  handleBlock(line, PDEVT_BLOCK_00PDEBL); // dernier Montant
+                                handleBlock(line, PDEVT_BLOCK_00P); // montant du mois courant a inserer pour ce dossier
+                                else  handleBlock(line, PDEVT_BLOCK_00PDEBL); // dernier Montant disponible a inserer pour ce dossier
+
+//                                System.out.println("DEBUG3105"+line.substring(178, 181));
                             }
                         }
 

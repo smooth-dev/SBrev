@@ -48,6 +48,8 @@ public class DeclarationListWriter {
                 .formatted()
                 .names(DETAIL_CLIENT_COLUMNS)
                 .lineAggregator(declarationModel -> {
+
+                    System.out.println("DEBUG3105code"+declarationModel.getCodePhase());
                     for(Field field : declarationModel.getClass().getDeclaredFields()){
 
                          
@@ -107,8 +109,14 @@ public class DeclarationListWriter {
                     detailClient.setDate1Ech( DateTimeFormat.forPattern("ddMMyyyy").print(declarationModel.getDate1Ech()));
                     detailClient.setDateDerEch( DateTimeFormat.forPattern("ddMMyyyy").print(declarationModel.getDateDerEch()));
 //                    detailClient.setDateDerEch(LocalDate.parse(declarationModel.getDateDerEch().toString()).format(new DateTimeFormatterBuilder().appendPattern("ddMMyyyy").toFormatter()));
-                    detailClient.setCapitalRestantDu(StringUtils.leftPad(declarationModel.getCapitalRestantDu().toString(), 12, "0"));
-                    detailClient.setCodeRejet(StringUtils.rightPad(declarationModel.getCodeRejet(), 2, " "));
+                   if(declarationModel.getCapitalRestantDu().compareTo(BigInteger.ZERO)==0){
+                       detailClient.setCapitalRestantDu(StringUtils.leftPad(declarationModel.getMontantCredit().toString(), 12, "0"));
+
+                   }
+                    else
+                    {
+                        detailClient.setCapitalRestantDu(StringUtils.leftPad(declarationModel.getCapitalRestantDu().toString(), 12, "0"));
+                    }                    detailClient.setCodeRejet(StringUtils.rightPad(declarationModel.getCodeRejet(), 2, " "));
                     detailClient.setCodeReseau(StringUtils.rightPad(declarationModel.getCodeReseau(), 4, " "));
                     detailClient.setDureeReport(StringUtils.leftPad(declarationModel.getDureeReport().toString(), 3, "0"));
                     detailClient.setTauxSurprime(StringUtils.leftPad(declarationModel.getTauxSurprime().toString(), 7, "0"));

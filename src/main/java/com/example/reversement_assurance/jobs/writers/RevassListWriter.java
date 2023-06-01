@@ -102,7 +102,18 @@ public class RevassListWriter {
                     detailClient.setDureeDiffere(StringUtils.leftPad(reverssementModel.getDureeDiffere().toString(), 3, "0"));
                     detailClient.setDate1Ech( DateTimeFormat.forPattern("ddMMyyyy").print(reverssementModel.getDate1Ech()));
                     detailClient.setDateDerEch( DateTimeFormat.forPattern("ddMMyyyy").print(reverssementModel.getDateDerEch()));
-                    detailClient.setCapitalRestantDu(StringUtils.leftPad(reverssementModel.getCapitalRestantDu().toString(), 12, "0"));
+
+
+                    if(reverssementModel.getCapitalRestantDu().compareTo(BigInteger.ZERO)==0){
+                        detailClient.setCapitalRestantDu(StringUtils.leftPad(reverssementModel.getMontantCredit().toString(), 12, "0"));
+
+                    }
+                    else
+                    {
+                        detailClient.setCapitalRestantDu(StringUtils.leftPad(reverssementModel.getCapitalRestantDu().toString(), 12, "0"));
+                    }
+
+//                    detailClient.setCapitalRestantDu(StringUtils.leftPad(reverssementModel.getCapitalRestantDu().toString(), 12, "0"));
                     detailClient.setCodeRejet(StringUtils.rightPad(reverssementModel.getCodeRejet(), 2, " "));
                     detailClient.setCodeReseau(StringUtils.rightPad(reverssementModel.getCodeReseau(), 4, " "));
                     detailClient.setDureeReport(StringUtils.leftPad(reverssementModel.getDureeReport().toString(), 3, "0"));
