@@ -68,7 +68,6 @@ public class RevassMapProcessor implements Tasklet {
 
                     if(pdevt.containsRow(entry.getKey())){
                         getPdevtData(reverssementModel, pdevt.row(entry.getKey()));
-
                     }
                     if(pddta.containsRow(entry.getKey())){
                         getPddTaData(reverssementModel, pddta.row(entry.getKey()));
@@ -172,6 +171,7 @@ public class RevassMapProcessor implements Tasklet {
 
         if(evenementSameMonth!=null) {
             String codeEvenement = evenementSameMonth.substring(178, 181);
+            System.out.println("debug23:"+evenementSameMonth);
             if(codeEvenement.equals("048"))
                 reverssementModel.setDureeReport(Integer.valueOf((evenementSameMonth.substring(798, 801))));
             reverssementModel.setCodePhase(mapCodephase(codeEvenement));
@@ -226,13 +226,12 @@ public class RevassMapProcessor implements Tasklet {
         String evenementSameMonth =(row.get(PDEVT_BLOCK_00));
 
         if(evenementSameMonth!=null) {
-             
+            System.out.println("debug 34:"+evenementSameMonth);
             String codeEvenement = evenementSameMonth.substring(178, 181);
             if(codeEvenement.equals("048"))
                 reverssementModel.setDureeReport(Integer.valueOf((evenementSameMonth.substring(798, 801))));
             reverssementModel.setCodePhase(mapCodephase(codeEvenement));
 
-            reverssementModel.setCodePhase(mapCodephase(codeEvenement));
         }
         int primeAssurance=0;
 
@@ -291,7 +290,7 @@ public class RevassMapProcessor implements Tasklet {
             }
 
                
-            reverssementModel.setDate1Ech(new LocalDate(row.get(PDDTA_BLOCK_FIRSTMONTH).substring(136, 146)));
+            if(reverssementModel.getDate1Ech()==null)reverssementModel.setDate1Ech(new LocalDate(row.get(PDDTA_BLOCK_FIRSTMONTH).substring(136, 146)));
 
 
         } catch (NullPointerException | StringIndexOutOfBoundsException e) {
@@ -407,6 +406,8 @@ public class RevassMapProcessor implements Tasklet {
 
     private void getPDDDOS_RES_FONC_50(ReverssementModel reverssementModel, Map<String, String> row) {
         try {
+            System.out.println("debug54:"+row.get(PDDDOS_BLOCK_50));
+            System.out.println("debug54:"+row.get(PDDDOS_BLOCK_50).substring(143, 144));
             reverssementModel.setCodePhase(row.get(PDDDOS_BLOCK_50).substring(143, 144));
                
             reverssementModel.setMontantCredit(new BigInteger(row.get(PDDDOS_BLOCK_50).substring(282, 298)));
@@ -654,7 +655,7 @@ public class RevassMapProcessor implements Tasklet {
 
 
 
-
+// TODO: remove this
         if( reverssementModel.getCodePhase() != null)
         switch (reverssementModel.getCodePhase()) {
             case "1":
@@ -669,7 +670,7 @@ public class RevassMapProcessor implements Tasklet {
                 reverssementModel.setCodePhase("P006");
                 break;
             default:
-                            reverssementModel.setCodePhase("P006");
+                reverssementModel.setCodePhase("P006");
                 break;
         }
 
@@ -701,12 +702,13 @@ public class RevassMapProcessor implements Tasklet {
       reverssementModel.setNumContratFiliale(revassValue.substring(166, 201).trim().substring(1));
 //        reverssementModel.setModePaiement(revassValue.substring(400, 405).trim());
         reverssementModel.setDateEffet(new LocalDate(revassValue.substring(410, 420).trim()));
+        System.out.println("debugREva"+revassValue.substring(167, 177)+"////"+revassValue.substring(410, 420));
         reverssementModel.setDureeSousc(Integer.parseInt(revassValue.substring(313, 316).trim()));
 //        reverssementModel.setPrimeAssurance(new BigInteger(revassValue.substring(493, 511).trim()).multiply(BigInteger.valueOf(100)));
 
 
 //        reverssementModel.setTauxAssurance(new BigInteger(revassValue.substring(511, 521).trim()));
-        reverssementModel.setMontantCredit(new BigInteger(revassValue.substring(317, 334).trim()));
+        reverssementModel.setMontantCredit(new BigInteger(revassValue.substring(317, 333).trim()));
         reverssementModel.setCapitalRestantDu(new BigInteger(revassValue.substring(542, 559).trim()));
 //        reverssementModel.setTauxSurprime(Integer.parseInt(revassValue.substring(465, 475).trim()));
     }

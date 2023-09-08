@@ -49,10 +49,10 @@ public class DeclarationListWriter {
                 .names(DETAIL_CLIENT_COLUMNS)
                 .lineAggregator(declarationModel -> {
 
-                    System.out.println("DEBUG3105code"+declarationModel.getCodePhase());
+                      
                     for(Field field : declarationModel.getClass().getDeclaredFields()){
 
-                         
+
 
                         try {
                             field.setAccessible(true);

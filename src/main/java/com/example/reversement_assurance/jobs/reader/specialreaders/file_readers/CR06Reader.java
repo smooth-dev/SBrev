@@ -41,9 +41,9 @@ public class CR06Reader {
                             String montantMustBeNull= line.substring(1464,1481);
                             if(codeEvt.equals("006") && !montantMustBeNull.equals("00000000000000000") ){
                                 cr06Map.put(line.substring(288, 307).trim(), line);
-                                System.out.println("DEBUG3105DUREE"+line);
+                                  
                             }
-                            System.out.println("OUTDEBUG3105DUREE"+line);
+                              
 
 
                         } catch (Exception e) {

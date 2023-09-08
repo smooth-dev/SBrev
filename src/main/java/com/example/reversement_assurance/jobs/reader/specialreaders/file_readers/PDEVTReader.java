@@ -54,7 +54,7 @@ public class PDEVTReader {
                                 handleBlock(line, PDEVT_BLOCK_00P); // montant du mois courant a inserer pour ce dossier
                                 else  handleBlock(line, PDEVT_BLOCK_00PDEBL); // dernier Montant disponible a inserer pour ce dossier
 
-//                                System.out.println("DEBUG3105"+line.substring(178, 181));
+//                                  
                             }
                         }
 
@@ -133,7 +133,6 @@ public class PDEVTReader {
 
         }
         else {
-
             pdevt.put(contractNumber, PDEVT_BLOCK_EVT, line);
         }
 

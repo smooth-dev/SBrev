@@ -40,7 +40,7 @@ public class PDDDOSReader {
                              */
                           switch (line.substring(131,136)){
                               case PDDDOS_BLOCK_50: {
-//                                  System.out.println("123DEBUG"+line.substring(27,37));
+//                                    
                                   handleBlock(line, PDDDOS_BLOCK_50);
                               }                                  break;
                               case PDDDOS_BLOCK_03:

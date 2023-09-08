@@ -160,5 +160,47 @@ public class DetailClient implements Serializable {
 
     }
 
+    public String toStringDebug2(){
+        return
+                "enteteLigne=>"+enteteLigne +"|"+
+                "numClient=>"+numClient +"|"+
+                "nomClient=>"+nomClient +"|"+
+                "prenomClient=>"+prenomClient +"|"+
+                "dateNaisClient=>"+dateNaisClient +"|"+
+                "numCinClient=>"+numCinClient +"|"+
+                "typeClient=>"+typeClient +"|"+
+                "adrClient1=>"+adrClient1 +"|"+
+                "adrClient2=>"+adrClient2 +"|"+
+                "codePostal=>"+codePostal +"|"+
+                "codeVille=>"+codeVille +"|"+
+                "codePays=>"+codePays +"|" +
+                "numCompteClient=>"+numCompteClient +"|"+
+                "population=>"+population +"|"+
+                "numContratFiliale=>"+numContratFiliale +"|"+
+                "codeProduit=>"+codeProduit +"|"+
+                "codePhase=>"+codePhase +"|"+
+                "modePaiement=>"+modePaiement +"|"+
+                "periodicite=>"+periodicite +"|"+
+                "typeConvention=>"+typeConvention +"|"+
+                "dateEffet=>"+dateEffet +"|"+
+                "dureeSousc=>"+dureeSousc +"|"+
+                "primeAssurance=>"+primeAssurance +"|"+
+                "tauxAssurance=>"+tauxAssurance +"|"+
+                "montantCredit=>"+montantCredit +"|"+
+                "tauxEmprunt=>"+tauxEmprunt +"|"+
+                "typeTauxEmprunt=>"+typeTauxEmprunt +"|"+
+                "pourcentageEmprunt=>"+pourcentageEmprunt +"|"+
+                "dureeDiffere=>"+dureeDiffere +"|"+
+                "date1Ech=>"+date1Ech +"|"+
+                "dateDerEch=>"+dateDerEch +"|"+
+                "capitalRestantDu=>"+capitalRestantDu +"|"+
+                "codeRejet=>"+codeRejet +"|"+
+                "codeReseau=>"+codeReseau +"|"+
+                "dureeReport=>"+dureeReport +"|"+
+                "tauxSurprime=>"+tauxSurprime +"|"+
+                "filer=>"+filer;
+
+    }
+
 
 }
