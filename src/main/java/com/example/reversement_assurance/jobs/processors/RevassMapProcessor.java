@@ -408,8 +408,27 @@ public class RevassMapProcessor implements Tasklet {
         try {
             System.out.println("debug54:"+row.get(PDDDOS_BLOCK_50));
             System.out.println("debug54:"+row.get(PDDDOS_BLOCK_50).substring(143, 144));
-            reverssementModel.setCodePhase(row.get(PDDDOS_BLOCK_50).substring(143, 144));
-               
+
+            String codePhaseFromPddos = row.get(PDDDOS_BLOCK_50).substring(143, 144);
+
+            if( codePhaseFromPddos != null)
+                switch (codePhaseFromPddos) {
+                    case "1":
+                    case "2":
+                        reverssementModel.setCodePhase("P300");//cf notion
+                        break;
+                    case "3":
+                    case "4":
+                        reverssementModel.setCodePhase("P117");
+                        break;
+                    case "5":
+                        reverssementModel.setCodePhase("P006");
+                        break;
+                    default:
+                        reverssementModel.setCodePhase("P006");
+                        break;
+                }
+
             reverssementModel.setMontantCredit(new BigInteger(row.get(PDDDOS_BLOCK_50).substring(282, 298)));
             reverssementModel.setTauxEmprunt(getFormatedTauxEmprunt(row));
 //            reverssementModel.setCapitalRestantDu(new BigInteger(row.get(PDDDOS_BLOCK_50).substring(1624, 1642)));
@@ -658,24 +677,7 @@ public class RevassMapProcessor implements Tasklet {
 
 
 
-// TODO: remove this
-        if( reverssementModel.getCodePhase() != null)
-        switch (reverssementModel.getCodePhase()) {
-            case "1":
-            case "2":
-                reverssementModel.setCodePhase("P300");//cf notion
-                break;
-            case "3":
-            case "4":
-                reverssementModel.setCodePhase("P117");
-                break;
-            case "5":
-                reverssementModel.setCodePhase("P006");
-                break;
-            default:
-                reverssementModel.setCodePhase("P006");
-                break;
-        }
+s
 
 //     reverssementModel.setMontantCredit(reverssementModel.getMontantCredit());
         reverssementModel.setDureeReport(0);//TODO: to be implemented
