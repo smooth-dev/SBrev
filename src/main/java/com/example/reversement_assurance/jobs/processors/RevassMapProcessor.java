@@ -126,8 +126,11 @@ public class RevassMapProcessor implements Tasklet {
                             getPdevtDataEVT(reverssementModel, pdevt.row(currentContractNumber),pair.getKey());
 
                         }
+
+
+                        // TODO: check why we using pddta in the getDdosDataEvt function
                         if(pddta.containsRow(currentContractNumber)){
-                            getDdosDataEvt(reverssementModel, pdddos.row(currentContractNumber));
+                            getDdosDataEvt(reverssementModel, pddta.row(currentContractNumber));
                         }
 
 
@@ -644,9 +647,9 @@ public class RevassMapProcessor implements Tasklet {
         else
             reverssementModel.setModePaiement("P");
 
-          
-          
-          
+
+
+
         String tauxAssurance="0";
         String natureAssurance="";
 
@@ -677,7 +680,7 @@ public class RevassMapProcessor implements Tasklet {
 
 
 
-s
+
 
 //     reverssementModel.setMontantCredit(reverssementModel.getMontantCredit());
         reverssementModel.setDureeReport(0);//TODO: to be implemented
