@@ -1,0 +1,23 @@
+B1
+
+
+
+
+getPdevtData (if same month )
+
+
+
+
+
+
+B2
+
+getDdosDataEvt -> getPDDDOS_RES_FONC_50
+
+
+
+
+getPdevtDataEVT
+
+
+

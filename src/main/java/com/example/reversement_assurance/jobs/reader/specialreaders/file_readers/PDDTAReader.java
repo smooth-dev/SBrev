@@ -61,24 +61,23 @@ public class PDDTAReader {
                         LocalDate  dateTraitement = GeneralUtils.getFirstDayOfMonthDate();
                          int counter=0;
                         //Verifier si same month stocker
-                               if(!montantAssurance.equals("00000000000000000")) {
+
                                       
 
                                    handleBlock(line, PDDTA_BLOCK_FIRSTMONTH);// TOFIX : le pro
-                                   if( dateEvenement.getMonthOfYear()==dateTraitement.getMonthOfYear()
-                                           && dateEvenement.getYear()==dateTraitement.getYear()) {
-                                          
-                                       handleBlock(line, PDDTA_BLOCK_CURRENTMONTH);
-                                         
+                                   if(!montantAssurance.equals("00000000000000000"))  {
+                                       if (dateEvenement.getMonthOfYear() == dateTraitement.getMonthOfYear()
+                                               && dateEvenement.getYear() == dateTraitement.getYear()) {
 
+                                           handleBlock(line, PDDTA_BLOCK_CURRENTMONTH);
+
+
+                                       }
                                    }
                                      
 
 
-                               }
-                               else{
-                                      
-                               }
+
 
 
 //                              else  handleBlock(line, PDEVT_BLOCK_00PDEBL); // dernier Montant

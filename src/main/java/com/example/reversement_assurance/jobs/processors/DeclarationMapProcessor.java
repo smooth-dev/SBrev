@@ -407,8 +407,14 @@ public class DeclarationMapProcessor implements Tasklet {
             switch (row.get(PDDDOS_BLOCK_50).substring(143, 144)) {
                 case "1":
                 case "2":
-                    declarationModel.setCodePhase("P300");//cf notion
-                    break;
+                {
+                    if ("3".equals(row.get(PDDDOS_BLOCK_50).substring(814, 815)))
+                        declarationModel.setCodePhase("PCTX");
+                    else
+                        declarationModel.setCodePhase("P300");
+                }
+
+                break;
                 case "3":
                 case "4":
                     declarationModel.setCodePhase("P777");
@@ -503,13 +509,13 @@ public class DeclarationMapProcessor implements Tasklet {
 
 
 
-            if(!dateRealisation.equals(0000-00-00))declarationModel.setDateRealisation(new LocalDate(row.get(PDDDOS_BLOCK_201).substring(265, 275)));
-            if(!dateEffet.equals(0000-00-00))declarationModel.setDateEffet(new LocalDate(row.get(PDDDOS_BLOCK_201).substring(265, 275)));
+            if(!dateRealisation.equals("0000-00-00"))declarationModel.setDateRealisation(new LocalDate(row.get(PDDDOS_BLOCK_201).substring(265, 275)));
+            if(!dateEffet.equals("0000-00-00"))declarationModel.setDateEffet(new LocalDate(row.get(PDDDOS_BLOCK_201).substring(265, 275)));
             declarationModel.setDate1Ech(new LocalDate(row.get(PDDDOS_BLOCK_201).substring(275, 285)));
 
         }catch (IllegalFieldValueException e){
-            if(date1Ech.equals(0000-00-00))  declarationModel.setDate1Ech(LocalDate.parse("01-01-1970", new DateTimeFormatterBuilder().appendPattern("dd-MM-yyyy").toFormatter()));
-            if(dateRealisation.equals(0000-00-00)) declarationModel.setDateRealisation(LocalDate.parse("01-01-1970", new DateTimeFormatterBuilder().appendPattern("dd-MM-yyyy").toFormatter()));
+            if(date1Ech.equals("0000-00-00"))  declarationModel.setDate1Ech(LocalDate.parse("01-01-1970", new DateTimeFormatterBuilder().appendPattern("dd-MM-yyyy").toFormatter()));
+            if(dateRealisation.equals("0000-00-00")) declarationModel.setDateRealisation(LocalDate.parse("01-01-1970", new DateTimeFormatterBuilder().appendPattern("dd-MM-yyyy").toFormatter()));
 
         }
         catch (StringIndexOutOfBoundsException e) {
@@ -543,13 +549,13 @@ public class DeclarationMapProcessor implements Tasklet {
 
 
 
-            if(!dateRealisation.equals(0000-00-00))declarationModel.setDateRealisation(new LocalDate(row.get(PDDDOS_BLOCK_201).substring(265, 275)));
-            if(!dateEffet.equals(0000-00-00))declarationModel.setDateEffet(new LocalDate(row.get(PDDDOS_BLOCK_201).substring(265, 275)));
+            if(!dateRealisation.equals("0000-00-00"))declarationModel.setDateRealisation(new LocalDate(row.get(PDDDOS_BLOCK_201).substring(265, 275)));
+            if(!dateEffet.equals("0000-00-00"))declarationModel.setDateEffet(new LocalDate(row.get(PDDDOS_BLOCK_201).substring(265, 275)));
             declarationModel.setDate1Ech(new LocalDate(row.get(PDDDOS_BLOCK_201).substring(275, 285)));
 
         }catch (IllegalFieldValueException e){
-            if(date1Ech.equals(0000-00-00))  declarationModel.setDate1Ech(LocalDate.parse("01-01-1970", new DateTimeFormatterBuilder().appendPattern("dd-MM-yyyy").toFormatter()));
-            if(dateRealisation.equals(0000-00-00)) declarationModel.setDateRealisation(LocalDate.parse("01-01-1970", new DateTimeFormatterBuilder().appendPattern("dd-MM-yyyy").toFormatter()));
+            if(date1Ech.equals("0000-00-00"))  declarationModel.setDate1Ech(LocalDate.parse("01-01-1970", new DateTimeFormatterBuilder().appendPattern("dd-MM-yyyy").toFormatter()));
+            if(dateRealisation.equals("0000-00-00")) declarationModel.setDateRealisation(LocalDate.parse("01-01-1970", new DateTimeFormatterBuilder().appendPattern("dd-MM-yyyy").toFormatter()));
 
         }
         catch (StringIndexOutOfBoundsException e) {
@@ -724,32 +730,6 @@ public class DeclarationMapProcessor implements Tasklet {
         }
 
          
-         
-
-
-
-
-
-
-//        declarationModel.setDureeDiffere(Math.abs(Months.monthsBetween(declarationModel.getDate1Ech(), new LocalDate()).getMonths()));
-
-         
-        switch (declarationModel.getCodePhase()) {
-            case "1":
-            case "2":
-                declarationModel.setCodePhase("P300");//cf notion
-                break;
-            case "3":
-            case "4":
-                declarationModel.setCodePhase("P777");
-                break;
-            case "5":
-                declarationModel.setCodePhase("P006");
-                break;
-            default:
-                break;
-        }
-         
 //        declarationModel.setMontantCredit(declarationModel.getMontantCredit().multiply(BigInteger.valueOf(10)));
          
         declarationModel.setDureeReport(0);//TODO: to be implemented
@@ -793,7 +773,7 @@ public class DeclarationMapProcessor implements Tasklet {
 
             declarationModel.setPrimeAssurance(row.get(PDDTA_BLOCK_FIRSTMONTH).substring(939, 950));
 
-//               
+//
             declarationModel.setDate1Ech(new LocalDate(row.get(PDDTA_BLOCK_FIRSTMONTH).substring(136, 146)));
 
 

@@ -127,7 +127,7 @@ public class RevassMapProcessor implements Tasklet {
 
                         }
                         if(pddta.containsRow(currentContractNumber)){
-                            getDdosDataEvt(reverssementModel, pddta.row(currentContractNumber));
+                            getDdosDataEvt(reverssementModel, pdddos.row(currentContractNumber));
                         }
 
 
@@ -469,8 +469,11 @@ public class RevassMapProcessor implements Tasklet {
 
     private void getPDDDOSBloc01(ReverssementModel reverssementModel, Map<String, String> row) {
         try{
+            String dateEffet= row.get(PDDDOS_BLOCK_201).substring(265, 275);
+
             reverssementModel.setDate1Ech(new LocalDate(row.get(PDDDOS_BLOCK_201).substring(275, 285)));
 //            reverssementModel.setTypeTauxEmprunt(row.get(PDDDOS_BLOCK_10).substring(402,403));
+            if(!dateEffet.equals("0000-00-00"))reverssementModel.setDateEffet(new LocalDate(dateEffet));
 
         }
         catch(IllegalFieldValueException e)
@@ -701,8 +704,7 @@ public class RevassMapProcessor implements Tasklet {
     private void getRevassData(ReverssementModel reverssementModel, String revassValue) {
       reverssementModel.setNumContratFiliale(revassValue.substring(166, 201).trim().substring(1));
 //        reverssementModel.setModePaiement(revassValue.substring(400, 405).trim());
-        reverssementModel.setDateEffet(new LocalDate(revassValue.substring(410, 420).trim()));
-        System.out.println("debugREva"+revassValue.substring(167, 177)+"////"+revassValue.substring(410, 420));
+//        reverssementModel.setDateEffet(new LocalDate(revassValue.substring(410, 420).trim()));
         reverssementModel.setDureeSousc(Integer.parseInt(revassValue.substring(313, 316).trim()));
 //        reverssementModel.setPrimeAssurance(new BigInteger(revassValue.substring(493, 511).trim()).multiply(BigInteger.valueOf(100)));
 
