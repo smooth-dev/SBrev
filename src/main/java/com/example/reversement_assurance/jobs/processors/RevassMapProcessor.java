@@ -45,6 +45,10 @@ public class RevassMapProcessor implements Tasklet {
 
         log.info("Revass : cre size : {}, pdddos size : {}, revass size : {}", cre.size(), pdddos.size(), revass.size());
 
+        List<String> contractsFromRevass = new ArrayList<>();
+
+        List<String> contractsFromEvt = new ArrayList<>();
+
 
 
 
@@ -53,16 +57,23 @@ public class RevassMapProcessor implements Tasklet {
             if (pdddos.containsRow(entry.getKey()) ) {
                 // make declarationModel
                 try {
+
+                        //check if key exists in pdddos
+
+
+
                     String montant =pdddos.row(entry.getKey()).get(PDDDOS_BLOCK_50).substring(282, 298);
                     if(montant.equals("0000000000000000") || entry.getKey().contains("E"))continue;
 
                     currentContractNumber = entry.getKey();
+
                     String cre06Value = entry.getValue();
 
                     ReverssementModel reverssementModel = new ReverssementModel();
                   //  getCreData(reverssementModel, cre06Value);
                     setCreBusinessLogic(reverssementModel);
-                    getDdosData(reverssementModel, pdddos.row(entry.getKey()));
+                    boolean skipNoMatricule = getDdosData(reverssementModel, pdddos.row(currentContractNumber));
+                    if(skipNoMatricule) continue;
                     getPDDDOS10(reverssementModel, pdddos.row(entry.getKey()));
                     setPdddosBusinessLogic(reverssementModel);
                     getRevassData(reverssementModel, revass.get(entry.getKey()));
@@ -78,6 +89,8 @@ public class RevassMapProcessor implements Tasklet {
 
 
                     reverssementModel.setContractNumber(currentContractNumber);
+                    contractsFromRevass.add(currentContractNumber);
+
                     counterRevass++;
 
                     BatchContext.getInstance().getReverssementModels().add(reverssementModel);
@@ -90,12 +103,14 @@ public class RevassMapProcessor implements Tasklet {
         }
 
 
+
+
         Map<String, Map<String, String>> map = pdevt.rowMap();
 
 
 
         for (String row : map.keySet()) {
-             
+
 //row = id Contract
             Map<String, String> tmp = map.get(row);
 
@@ -109,8 +124,9 @@ public class RevassMapProcessor implements Tasklet {
                      
                     try {
                         String montant =pdddos.row(row).get(PDDDOS_BLOCK_50).substring(282, 298);
-                        if(montant.equals("0000000000000000")||row.contains("E")) continue;
                         currentContractNumber = row;
+                        if(montant.equals("0000000000000000")||row.contains("E")||contractsFromRevass.contains(currentContractNumber)) continue;
+
                         ReverssementModel reverssementModel = new ReverssementModel();
                         setCreBusinessLogic(reverssementModel);
 
@@ -121,7 +137,8 @@ public class RevassMapProcessor implements Tasklet {
                         reverssementModel.setContractNumber(currentContractNumber);
 
                         setCreBusinessLogic(reverssementModel);
-                        getDdosData(reverssementModel, pdddos.row(currentContractNumber));
+                        boolean skipNoMatricule = getDdosData(reverssementModel, pdddos.row(currentContractNumber));
+                        if(skipNoMatricule) continue;
                         getPDDDOS10(reverssementModel, pdddos.row(currentContractNumber));
                         setPdddosBusinessLogic(reverssementModel);
                         getRevassData(reverssementModel, revass.get(currentContractNumber));
@@ -137,10 +154,15 @@ public class RevassMapProcessor implements Tasklet {
 
                         // TODO: check why we using pddta in the getDdosDataEvt function
                         if(pddta.containsRow(currentContractNumber)){
-                            getDdosDataEvt(reverssementModel, pddta.row(currentContractNumber));
+//                            getDdosDataEvt(reverssementModel, pddta.row(currentContractNumber));
+
+                            boolean skipNoMatricule2 = getDdosDataEvt(reverssementModel, pdddos.row(currentContractNumber));
+                            if(skipNoMatricule2) continue;
                         }
 
                         counterEvt++;
+                        contractsFromEvt.add(currentContractNumber);
+
                         BatchContext.getInstance().getReverssementModels().add(reverssementModel);
 
 
@@ -155,8 +177,11 @@ public class RevassMapProcessor implements Tasklet {
 
             }
         }
-        System.out.println("counter check(Revass)"+counterRevass);
-        System.out.println("counter check(Evt)"+counterEvt);
+        System.out.println("Assurance contracts From revass"+contractsFromRevass);
+        System.out.println("Assurance contracts From evt"+contractsFromEvt);
+
+        System.out.println("Assurance counter check(Revass)"+counterRevass);
+        System.out.println("Assurance counter check(Evt)"+counterEvt);
 
 
 
@@ -342,9 +367,9 @@ public class RevassMapProcessor implements Tasklet {
      * @param reverssementModel
      * @param row
      */
-    private void getDdosData(ReverssementModel reverssementModel, Map<String, String> row) throws NullPointerException, StringIndexOutOfBoundsException {
+    private boolean getDdosData(ReverssementModel reverssementModel, Map<String, String> row) throws NullPointerException, StringIndexOutOfBoundsException {
         //PDDDOS ( Donnée Complémentaire Code Enr =05 / Bloc 02)
-        getPDDDOS05Bloc02_04(reverssementModel, row);
+        boolean skipNoMatricule=getPDDDOS05Bloc02_04(reverssementModel, row);
         //PDDDOS ( Donnée Complémentaire Code Enr =05 / Bloc 03)
         getPDDDOS05Bloc03(reverssementModel, row);
         //PDDOST-RES FONC-50
@@ -356,13 +381,13 @@ public class RevassMapProcessor implements Tasklet {
         //PDDDOS BLOC 50
         getPDDDOSBloc50(reverssementModel, row);
 
-
+return skipNoMatricule;
     }
 
 
-    private void getDdosDataEvt(ReverssementModel reverssementModel, Map<String, String> row) throws NullPointerException, StringIndexOutOfBoundsException {
+    private boolean getDdosDataEvt(ReverssementModel reverssementModel, Map<String, String> row) throws NullPointerException, StringIndexOutOfBoundsException {
         //PDDDOS ( Donnée Complémentaire Code Enr =05 / Bloc 02)
-        getPDDDOS05Bloc02_04(reverssementModel, row);
+        boolean skipNoMatricule=getPDDDOS05Bloc02_04(reverssementModel, row);
         //PDDDOS ( Donnée Complémentaire Code Enr =05 / Bloc 03)
         getPDDDOS05Bloc03(reverssementModel, row);
         //PDDOST-RES FONC-50
@@ -374,15 +399,24 @@ public class RevassMapProcessor implements Tasklet {
         //PDDDOS BLOC 50
         getPDDDOSBloc50(reverssementModel, row);
 
+        return skipNoMatricule;
 
     }
 
 
 
-    private void getPDDDOS05Bloc02_04(ReverssementModel reverssementModel, Map<String, String> row) {
+    private boolean getPDDDOS05Bloc02_04(ReverssementModel reverssementModel, Map<String, String> row) {
+
+
         try {
+            if(!row.containsKey(PDDDOS_DONNEES_COMPLEMENTAIRES_BLOCK_02)||row.get(PDDDOS_DONNEES_COMPLEMENTAIRES_BLOCK_02).substring(263, 271).trim().isEmpty()) return true;
+
             reverssementModel.setNumClient(row.get(PDDDOS_DONNEES_COMPLEMENTAIRES_BLOCK_02).substring(263, 271).trim());
 
+            System.out.println("Verif numclient@"+row.get(PDDDOS_DONNEES_COMPLEMENTAIRES_BLOCK_02).substring(263, 271).trim().isEmpty()+"#dc"+row.get(PDDDOS_DONNEES_COMPLEMENTAIRES_BLOCK_02).substring(27, 38));
+
+
+            System.out.println("nonEmptue"+row.get(PDDDOS_DONNEES_COMPLEMENTAIRES_BLOCK_02).substring(27, 38));
             reverssementModel.setNumCompteClient(row.get(PDDDOS_BLOCK_04).substring(244, 263));
             reverssementModel.setNomClient(row.get(PDDDOS_DONNEES_COMPLEMENTAIRES_BLOCK_02).substring(233, 243));
             reverssementModel.setPrenomClient(row.get(PDDDOS_DONNEES_COMPLEMENTAIRES_BLOCK_02).substring(243, 253));
@@ -391,6 +425,7 @@ public class RevassMapProcessor implements Tasklet {
         } catch (NullPointerException | IllegalArgumentException | StringIndexOutOfBoundsException e) {
             log.error("Error while processing contract number: {} on Block 05 sub Block 02 \n \t Exception name: {}", currentContractNumber, e.getClass());
         }
+        return false;
     }
 
     private void getPDDDOS05Bloc03(ReverssementModel reverssementModel, Map<String, String> row) {
@@ -717,7 +752,7 @@ public class RevassMapProcessor implements Tasklet {
 
 
     private void getRevassData(ReverssementModel reverssementModel, String revassValue) {
-      reverssementModel.setNumContratFiliale(revassValue.substring(166, 201).trim().substring(1));
+      reverssementModel.setNumContratFiliale(revassValue.substring(166, 177).trim());
 //        reverssementModel.setModePaiement(revassValue.substring(400, 405).trim());
 //        reverssementModel.setDateEffet(new LocalDate(revassValue.substring(410, 420).trim()));
         reverssementModel.setDureeSousc(Integer.parseInt(revassValue.substring(313, 316).trim()));

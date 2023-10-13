@@ -47,7 +47,13 @@ public class DeclarationMapProcessor implements Tasklet {
         log.info("cre size : {}, pdddos size : {}, pdevt size : {}, pddta sizeee : {}", cre.size(), pdddos.size(), pdevt.size(), pddta.size());
         //    
 
+        int counterRevass = 0;
+        int counterEvt = 0;
 
+
+        List<String> contractsFromCre = new ArrayList<>();
+
+        List<String> contractsFromEvt = new ArrayList<>();
          
 
         List<String> contracts = new ArrayList<>();
@@ -97,6 +103,10 @@ public class DeclarationMapProcessor implements Tasklet {
                     getPdevtBusinessLogic(declarationModel);
                     setMiscBusinessLogic(declarationModel);
                     declarationModel.setContractNumber(entry.getKey());
+
+                    contractsFromCre.add(currentContractNumber);
+                    counterRevass++;
+
                     BatchContext.getInstance().getDeclarationModels().add(declarationModel);
                 } catch (NullPointerException | StringIndexOutOfBoundsException e) {
                     log.error("credebug{} Error while processing contract number: {}  \n \t Exception name: {}", currentContractNumber,currentContractNumber, e.getClass());
@@ -141,7 +151,7 @@ public class DeclarationMapProcessor implements Tasklet {
 //                             
 
                         currentContractNumber = row;
-
+                       if (contractsFromCre.contains(currentContractNumber)) continue;
 
                         DeclarationModel declarationModel = new DeclarationModel();
                         String cre06Value = cre.get(row);
@@ -177,6 +187,8 @@ public class DeclarationMapProcessor implements Tasklet {
                         setMiscBusinessLogic(declarationModel);
                         declarationModel.setContractNumber(currentContractNumber);
 
+                        counterEvt++;
+                        contractsFromEvt.add(currentContractNumber);
                          
                          
 
@@ -205,7 +217,11 @@ public class DeclarationMapProcessor implements Tasklet {
 
 
         // ########### boucle EVT #######################
+        System.out.println("Declaration contracts From cre"+contractsFromCre);
+        System.out.println("Declaration contracts From evt"+contractsFromEvt);
 
+        System.out.println("Declaration counter check(Revass)"+counterRevass);
+        System.out.println("Declaration counter check(Evt)"+counterEvt);
 
 
 
@@ -648,7 +664,7 @@ public class DeclarationMapProcessor implements Tasklet {
             declarationModel.setTypeClient(cre06Value.substring(999, 1004).trim());
             declarationModel.setNumCompteClient(cre06Value.substring(1541, 1575).trim());
             declarationModel.setPopulation(cre06Value.substring(1024, 1029).trim());
-            declarationModel.setNumContratFiliale(cre06Value.substring(291, 325).trim());
+            declarationModel.setNumContratFiliale(cre06Value.substring(291, 303).trim());
 //            declarationModel.setCodeProduit("0000002");
             declarationModel.setDateEffet(new LocalDate(cre06Value.substring(1718, 1728).trim()));
             declarationModel.setDureeSousc(Integer.parseInt(cre06Value.substring(1460, 1463).trim()));
@@ -828,7 +844,7 @@ public class DeclarationMapProcessor implements Tasklet {
             declarationModel.setCodePhase(codevenementABB);
 
 
-            declarationModel.setNumContratFiliale(evenementSameMonth.substring(27, 38).trim());
+            declarationModel.setNumContratFiliale(evenementSameMonth.substring(27, 39).trim());
 
         }
         int primeAssurance=0;
@@ -885,7 +901,7 @@ public class DeclarationMapProcessor implements Tasklet {
             declarationModel.setCodePhase(codevenementABB);
 
 
-            declarationModel.setNumContratFiliale(evenementSameMonth.substring(27, 38).trim());
+            declarationModel.setNumContratFiliale(evenementSameMonth.substring(27, 39).trim());
 
         }
         int primeAssurance=0;

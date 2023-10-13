@@ -137,7 +137,7 @@ public class PDDTAReader {
 
     private void handleBlock(String line, String blockCode) {
 
-        String contractNumber = line.substring(24, 41).trim();
+        String contractNumber = line.substring(24,37).trim();
         String montantAssurance = line.substring(935, 951);
 
 
