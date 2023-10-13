@@ -5,7 +5,6 @@ import com.example.reversement_assurance.model.DeclarationModel;
 import com.example.reversement_assurance.model.ReverssementModel;
 import com.google.common.collect.Table;
 import org.apache.commons.lang3.StringUtils;
-import org.jetbrains.annotations.NotNull;
 import org.joda.time.IllegalFieldValueException;
 import org.joda.time.LocalDate;
 import org.joda.time.format.DateTimeFormatterBuilder;
@@ -18,6 +17,7 @@ import org.springframework.batch.core.step.tasklet.Tasklet;
 import org.springframework.batch.repeat.RepeatStatus;
 import org.springframework.stereotype.Component;
 
+import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.math.RoundingMode;
@@ -36,10 +36,13 @@ public class DeclarationMapProcessor implements Tasklet {
     @Override
     public RepeatStatus execute(@NotNull StepContribution stepContribution, @NotNull ChunkContext chunkContext) throws Exception {
 
-        Table<String, String, String> pdddos = BatchContext.getInstance().getPdddos();
-        HashMap<String, String> cre = BatchContext.getInstance().getCre06();
-        Table<String, String, String> pdevt = BatchContext.getInstance().getPdevt();
-            Table<String, String, String> pddta = BatchContext.getInstance().getPddTa();
+
+
+        // Recuperation des maps contenant les infos de chaque dossiers dans chaque fichier plat
+             Table<String, String, String> pdddos = BatchContext.getInstance().getPdddos();
+             HashMap<String, String> cre = BatchContext.getInstance().getCre06();
+             Table<String, String, String> pdevt = BatchContext.getInstance().getPdevt();
+             Table<String, String, String> pddta = BatchContext.getInstance().getPddTa();
 
         log.info("cre size : {}, pdddos size : {}, pdevt size : {}, pddta sizeee : {}", cre.size(), pdddos.size(), pdevt.size(), pddta.size());
         //    
@@ -59,7 +62,7 @@ public class DeclarationMapProcessor implements Tasklet {
         log.info("contracts found : {}", Arrays.toString(contracts.toArray()));
 
 
-
+    // ########### boucle DEBLOCAGE #######################
         // ###### this first loop reads "deblocage" events (06)
          for (Map.Entry<String, String> entry : cre.entrySet()) {
 
@@ -102,7 +105,10 @@ public class DeclarationMapProcessor implements Tasklet {
                 log.warn("{} not found in PDDDOS OR/AND PDDEVT, ignoring .... ", entry.getKey());
             }
         }
+// ########### boucle DEBLOCAGE #######################
 
+
+        // ########### boucle EVT #######################
 
         // ###### this first loop reads "deblocage" events (015,019,016...)
 
@@ -114,13 +120,13 @@ public class DeclarationMapProcessor implements Tasklet {
             // check if row is already inserted
             Map<String, String> tmp = map.get(row);
 
-           if(row.contains("E")) continue;
+           if(row.contains("E")) continue; // row ici est le numero de dossier si c'est un dossier CEXXXXXXX on ne le gere pas
 
              
 
 
             for (Map.Entry<String, String> pair : tmp.entrySet()) {
-                 
+
 
                 if(pair.getKey().startsWith(PDEVT_BLOCK_EVT) )
 
@@ -150,7 +156,7 @@ public class DeclarationMapProcessor implements Tasklet {
                         getPDDDOS03And05Bloc03Evt(declarationModel, pdddos.row(currentContractNumber));
                           setPdddosBusinessLogic(declarationModel,currentContractNumber);
 
-
+                      // si l'evenement est  P117 on ne le gere pas
                         if (pdevt.containsRow(currentContractNumber)) {
                             boolean isEvtModif117= getPdevtDataEVT(declarationModel, pdevt.row(currentContractNumber),pair.getKey());
                               
@@ -198,6 +204,7 @@ public class DeclarationMapProcessor implements Tasklet {
         }
 
 
+        // ########### boucle EVT #######################
 
 
 
@@ -417,7 +424,7 @@ public class DeclarationMapProcessor implements Tasklet {
                 break;
                 case "3":
                 case "4":
-                    declarationModel.setCodePhase("P777");
+                    declarationModel.setCodePhase("P117");
                     break;
                 case "5":
                     declarationModel.setCodePhase("P006");

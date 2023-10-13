@@ -128,11 +128,16 @@ public class PDEVTReader {
         String contractNumber = line.substring(24, 41).trim();
         if (pdevt.containsRow(contractNumber)) {
             BatchContext.getInstance().setUniqueEvt(num+1);
-            log.warn("Contract {} found again in PDEVT in block {}", contractNumber, PDEVT_BLOCK_EVT);
+            log.warn("Contract {} found again in PDEVTSAME NOT UNI in block {}", contractNumber, PDEVT_BLOCK_EVT);
+            System.out.println(pdevt.row(contractNumber));
+
             pdevt.put(contractNumber, PDEVT_BLOCK_EVT+BatchContext.getInstance().getUniqueEvt(), line);
 
         }
         else {
+            log.warn("Contract {} found again in PDEVTSAME UNI in block {}", contractNumber, PDEVT_BLOCK_EVT);
+            System.out.println(pdevt.row(contractNumber));
+
             pdevt.put(contractNumber, PDEVT_BLOCK_EVT, line);
         }
 

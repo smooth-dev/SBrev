@@ -20,9 +20,7 @@ import org.springframework.stereotype.Component;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.math.RoundingMode;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 import static com.example.reversement_assurance.jobs.batch_context.BatchConsts.*;
 import static com.example.reversement_assurance.jobs.batch_context.BatchConsts.PDDDOS_BLOCK_50;
@@ -42,8 +40,13 @@ public class RevassMapProcessor implements Tasklet {
         Table<String, String, String> pdevt = BatchContext.getInstance().getPdevt();
         Table<String, String, String> pddta = BatchContext.getInstance().getPddTa();
 
+        int counterRevass = 0;
+        int counterEvt = 0;
 
         log.info("Revass : cre size : {}, pdddos size : {}, revass size : {}", cre.size(), pdddos.size(), revass.size());
+
+
+
 
         for (Map.Entry<String, String> entry : revass.entrySet()) {
             //check if key exists in pdddos
@@ -75,6 +78,8 @@ public class RevassMapProcessor implements Tasklet {
 
 
                     reverssementModel.setContractNumber(currentContractNumber);
+                    counterRevass++;
+
                     BatchContext.getInstance().getReverssementModels().add(reverssementModel);
                 } catch (NullPointerException | StringIndexOutOfBoundsException e) {
                     log.error("Error while processing contract number: {} \n \t Exception name: {}", currentContractNumber, e.getClass());
@@ -88,13 +93,15 @@ public class RevassMapProcessor implements Tasklet {
         Map<String, Map<String, String>> map = pdevt.rowMap();
 
 
+
         for (String row : map.keySet()) {
              
 //row = id Contract
             Map<String, String> tmp = map.get(row);
-             
 
             for (Map.Entry<String, String> pair : tmp.entrySet()) {
+
+
                 if(pair.getKey().startsWith(PDEVT_BLOCK_EVT))
 
 
@@ -133,7 +140,7 @@ public class RevassMapProcessor implements Tasklet {
                             getDdosDataEvt(reverssementModel, pddta.row(currentContractNumber));
                         }
 
-
+                        counterEvt++;
                         BatchContext.getInstance().getReverssementModels().add(reverssementModel);
 
 
@@ -148,8 +155,11 @@ public class RevassMapProcessor implements Tasklet {
 
             }
         }
+        System.out.println("counter check(Revass)"+counterRevass);
+        System.out.println("counter check(Evt)"+counterEvt);
 
-        
+
+
         return RepeatStatus.FINISHED;
     }
 

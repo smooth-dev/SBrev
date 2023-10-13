@@ -6,7 +6,6 @@ import com.example.reversement_assurance.model.output_files.DeclarationModelOutp
 import com.example.reversement_assurance.model.ppdos.*;
 import com.example.reversement_assurance.utils.GeneralUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.jetbrains.annotations.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.batch.core.configuration.annotation.StepScope;
@@ -15,6 +14,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.util.Assert;
 
+import javax.validation.constraints.NotNull;
 import java.lang.reflect.Field;
 import java.math.BigInteger;
 import java.util.Objects;
