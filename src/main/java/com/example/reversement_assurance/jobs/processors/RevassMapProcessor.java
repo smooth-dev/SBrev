@@ -539,6 +539,9 @@ return skipNoMatricule;
             String dateEffet= row.get(PDDDOS_BLOCK_201).substring(265, 275);
 
             reverssementModel.setDate1Ech(new LocalDate(row.get(PDDDOS_BLOCK_201).substring(275, 285)));
+            reverssementModel.setDureeSousc(Integer.parseInt(row.get(PDDDOS_BLOCK_201).substring(263, 266)));
+
+
 //            reverssementModel.setTypeTauxEmprunt(row.get(PDDDOS_BLOCK_10).substring(402,403));
             if(!dateEffet.equals("0000-00-00"))reverssementModel.setDateEffet(new LocalDate(dateEffet));
 
@@ -602,7 +605,7 @@ return skipNoMatricule;
             reverssementModel.setPopulation(cre06Value.substring(1024, 1029).trim());
             reverssementModel.setCodeProduit("0000002");
           //  reverssementModel.setDateEffet(new LocalDate(cre06Value.substring(1718, 1728).trim()));
-            reverssementModel.setDureeSousc(Integer.parseInt(cre06Value.substring(1460, 1463).trim()));
+
         } catch (IndexOutOfBoundsException e) {
             log.error("Error while getting data from cre06Q for Dossier {} , stack {}", this.currentContractNumber, e);
         }
@@ -755,7 +758,10 @@ return skipNoMatricule;
       reverssementModel.setNumContratFiliale(revassValue.substring(166, 177).trim());
 //        reverssementModel.setModePaiement(revassValue.substring(400, 405).trim());
 //        reverssementModel.setDateEffet(new LocalDate(revassValue.substring(410, 420).trim()));
-        reverssementModel.setDureeSousc(Integer.parseInt(revassValue.substring(313, 316).trim()));
+//        reverssementModel.setDureeSousc(Integer.parseInt(revassValue.substring(313, 316).trim()));
+//        System.out.println(
+//                "dureeSouscFrom: Revass" +  revassValue.substring(313, 316)
+//        );
 //        reverssementModel.setPrimeAssurance(new BigInteger(revassValue.substring(493, 511).trim()).multiply(BigInteger.valueOf(100)));
 
 
