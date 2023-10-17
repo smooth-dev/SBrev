@@ -564,8 +564,8 @@ public class DeclarationMapProcessor implements Tasklet {
           
 
         if(declarationModel.getDureeSousc()==null) {
-            declarationModel.setDureeSousc(Integer.parseInt(row.get(PDDDOS_BLOCK_201).substring(263, 266)));
-            System.out.println("check34"+row.get(PDDDOS_BLOCK_201).substring(263, 266)+"//"+row.get(PDDDOS_BLOCK_01).substring(623, 626));
+            declarationModel.setDureeSousc(Integer.parseInt(row.get(PDDDOS_BLOCK_201).substring(262,265)));
+            System.out.println("check34"+row.get(PDDDOS_BLOCK_201).substring(262,265)+"//"+row.get(PDDDOS_BLOCK_01).substring(623, 626));
 
         }
         if(declarationModel.getMontantCredit()==null) declarationModel.setMontantCredit(new BigInteger(row.get(PDDDOS_BLOCK_01).substring(432, 448)));
@@ -602,8 +602,8 @@ public class DeclarationMapProcessor implements Tasklet {
               
 
             if(declarationModel.getDureeSousc()==null) {
-                declarationModel.setDureeSousc(Integer.parseInt(row.get(PDDDOS_BLOCK_201).substring(263, 266)));
-                System.out.println("check34"+row.get(PDDDOS_BLOCK_201).substring(263, 266)+"//"+row.get(PDDDOS_BLOCK_01).substring(623, 626));
+                declarationModel.setDureeSousc(Integer.parseInt(row.get(PDDDOS_BLOCK_201).substring(262,265)));
+                System.out.println("check34"+row.get(PDDDOS_BLOCK_201).substring(262,265)+"//"+row.get(PDDDOS_BLOCK_01).substring(623, 626));
 
             }
             if(declarationModel.getMontantCredit()==null) declarationModel.setMontantCredit(new BigInteger(row.get(PDDDOS_BLOCK_01).substring(432, 448)));

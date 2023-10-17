@@ -539,7 +539,7 @@ return skipNoMatricule;
             String dateEffet= row.get(PDDDOS_BLOCK_201).substring(265, 275);
 
             reverssementModel.setDate1Ech(new LocalDate(row.get(PDDDOS_BLOCK_201).substring(275, 285)));
-            reverssementModel.setDureeSousc(Integer.parseInt(row.get(PDDDOS_BLOCK_201).substring(263, 266)));
+            reverssementModel.setDureeSousc(Integer.parseInt(row.get(PDDDOS_BLOCK_201).substring(262,265)));
 
 
 //            reverssementModel.setTypeTauxEmprunt(row.get(PDDDOS_BLOCK_10).substring(402,403));
