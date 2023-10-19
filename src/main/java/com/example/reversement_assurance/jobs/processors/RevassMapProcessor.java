@@ -123,6 +123,8 @@ public class RevassMapProcessor implements Tasklet {
                 {
                      
                     try {
+                        System.out.println("checkooi3nt"+pdevt.row(currentContractNumber).get(pair.getKey()).substring(27,37));
+
                         String montant =pdddos.row(row).get(PDDDOS_BLOCK_50).substring(282, 298);
                         currentContractNumber = row;
                         if(montant.equals("0000000000000000")||row.contains("E")||contractsFromRevass.contains(currentContractNumber)) continue;
@@ -206,7 +208,7 @@ public class RevassMapProcessor implements Tasklet {
 
 
 
-
+// TODO : check if this condition is useless (always executed when the containing fct is called , always true)
         if(evenementSameMonth!=null) {
             String codeEvenement = evenementSameMonth.substring(178, 181);
             System.out.println("debug23:"+evenementSameMonth);
@@ -413,10 +415,10 @@ return skipNoMatricule;
 
             reverssementModel.setNumClient(row.get(PDDDOS_DONNEES_COMPLEMENTAIRES_BLOCK_02).substring(263, 271).trim());
 
-            System.out.println("Verif numclient@"+row.get(PDDDOS_DONNEES_COMPLEMENTAIRES_BLOCK_02).substring(263, 271).trim().isEmpty()+"#dc"+row.get(PDDDOS_DONNEES_COMPLEMENTAIRES_BLOCK_02).substring(27, 38));
+           // System.out.println("Verif numclient@"+row.get(PDDDOS_DONNEES_COMPLEMENTAIRES_BLOCK_02).substring(263, 271).trim().isEmpty()+"#dc"+row.get(PDDDOS_DONNEES_COMPLEMENTAIRES_BLOCK_02).substring(27, 38));
 
 
-            System.out.println("nonEmptue"+row.get(PDDDOS_DONNEES_COMPLEMENTAIRES_BLOCK_02).substring(27, 38));
+         //   System.out.println("nonEmptue"+row.get(PDDDOS_DONNEES_COMPLEMENTAIRES_BLOCK_02).substring(27, 38));
             reverssementModel.setNumCompteClient(row.get(PDDDOS_BLOCK_04).substring(244, 263));
             reverssementModel.setNomClient(row.get(PDDDOS_DONNEES_COMPLEMENTAIRES_BLOCK_02).substring(233, 243));
             reverssementModel.setPrenomClient(row.get(PDDDOS_DONNEES_COMPLEMENTAIRES_BLOCK_02).substring(243, 253));
@@ -454,8 +456,8 @@ return skipNoMatricule;
 
     private void getPDDDOS_RES_FONC_50(ReverssementModel reverssementModel, Map<String, String> row) {
         try {
-            System.out.println("debug54:"+row.get(PDDDOS_BLOCK_50));
-            System.out.println("debug54:"+row.get(PDDDOS_BLOCK_50).substring(143, 144));
+//            System.out.println("debug54:"+row.get(PDDDOS_BLOCK_50));
+//            System.out.println("debug54:"+row.get(PDDDOS_BLOCK_50).substring(143, 144));
 
             String codePhaseFromPddos = row.get(PDDDOS_BLOCK_50).substring(143, 144);
 
@@ -756,6 +758,7 @@ return skipNoMatricule;
 
     private void getRevassData(ReverssementModel reverssementModel, String revassValue) {
       reverssementModel.setNumContratFiliale(revassValue.substring(166, 177).trim());
+        System.out.println(revassValue.substring(166, 177).trim()+"/// log34 ///\\/"+revassValue.substring(166, 178).trim());
 //        reverssementModel.setModePaiement(revassValue.substring(400, 405).trim());
 //        reverssementModel.setDateEffet(new LocalDate(revassValue.substring(410, 420).trim()));
 //        reverssementModel.setDureeSousc(Integer.parseInt(revassValue.substring(313, 316).trim()));

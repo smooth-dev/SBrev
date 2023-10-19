@@ -1,6 +1,5 @@
 package com.example.reversement_assurance.jobs.validators;
 
-import com.example.reversement_assurance.configuration.ApplicationProperties;
 import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.JobParametersInvalidException;
 import org.springframework.batch.core.JobParametersValidator;

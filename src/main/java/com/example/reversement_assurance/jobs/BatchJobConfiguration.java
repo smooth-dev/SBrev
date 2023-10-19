@@ -34,10 +34,6 @@ public class BatchJobConfiguration {
     private JobParametersValidator outPathValidator;
 
     @Autowired
-    @Qualifier(ERRPATH_VALIDATOR)
-    private JobParametersValidator errPathValidator;
-
-    @Autowired
     @Qualifier("cr06-reader-step")
     private Step cr06ReaderStep;
 
@@ -93,7 +89,6 @@ public class BatchJobConfiguration {
                 .get(Constants.JOB_NAME)
                 .validator(inPathValidator)
                 .validator(outPathValidator)
-  //              .validator(errPathValidator)
                 .start(cr06ReaderStep)
                 .next(pdddosReaderStep)
                 .next(revassReaderStep)

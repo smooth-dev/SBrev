@@ -83,6 +83,7 @@ public class PDEVTReader {
                                         if(LIST_EVENEMENTS.contains(codeEvenement)
                                                 && dateEvenement.getMonthOfYear()==dateTraitement.getMonthOfYear()
                                                 && dateTraitement.getYear()==dateTraitement.getYear()) {
+                                            System.out.println("checkooint"+line.substring(27,37));
                                             handleBlock00(line);
                                         }
 

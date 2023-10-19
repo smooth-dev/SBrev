@@ -1,7 +1,6 @@
 package com.example.reversement_assurance;
 
 import ch.qos.logback.classic.Level;
-import com.example.reversement_assurance.configuration.ApplicationProperties;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.configuration.annotation.EnableBatchProcessing;
 import org.springframework.batch.core.configuration.annotation.JobBuilderFactory;

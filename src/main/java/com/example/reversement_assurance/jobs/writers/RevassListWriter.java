@@ -121,7 +121,7 @@ public class RevassListWriter {
                     detailClient.setTauxSurprime(StringUtils.leftPad(reverssementModel.getTauxSurprime().toString(), 7, "0"));
 //                    detailClient.setFiler(StringUtils.rightPad(reverssementModel.getFiler(), 79, " "));
                    detailClient.setFiler(StringUtils.leftPad("", 81, " "));
-                    return detailClient.toString();
+                    return detailClient.toStringDebug2();
                 })
                 .footerCallback(abbFooter)
                 .headerCallback(abbHeader)

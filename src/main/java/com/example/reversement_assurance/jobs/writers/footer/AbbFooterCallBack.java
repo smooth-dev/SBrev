@@ -1,7 +1,6 @@
 package com.example.reversement_assurance.jobs.writers.footer;
 
 import com.example.reversement_assurance.jobs.batch_context.BatchContext;
-import com.example.reversement_assurance.jobs.listners.ItemCountListener;
 import com.example.reversement_assurance.model.DeclarationModel;
 import com.example.reversement_assurance.model.ReverssementModel;
 import org.apache.commons.lang3.StringUtils;
@@ -20,16 +19,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static com.example.reversement_assurance.configuration.Constants.ITEM_COUNT_LISTENER;
-import static com.example.reversement_assurance.jobs.processors.PddRevJoinProcessor.faultyLines;
-import static com.example.reversement_assurance.jobs.processors.PddRevJoinProcessor.totalPrimeAssurance;
+
 
 @Component("abb-footer-callback")
 public class AbbFooterCallBack  implements FlatFileFooterCallback {
     Logger log = LoggerFactory.getLogger(AbbFooterCallBack.class);
 
-    @Autowired
-    @Qualifier(ITEM_COUNT_LISTENER)
-    ItemCountListener itemCountListener;
+
 
     @Override
     public void writeFooter(Writer writer) throws IOException {
