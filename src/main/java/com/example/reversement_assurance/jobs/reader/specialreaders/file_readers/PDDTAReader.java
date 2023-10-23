@@ -126,7 +126,7 @@ public class PDDTAReader {
 //                                }
 
                              catch (Exception e) {
-                                log.error("Error while reading PDDTA file : {} dossier ll : {}", e.getMessage(),line.substring(27, 37) );
+                                log.error("Error while reading PDDTA file : {} dossier  : {} \n line : {}", e.getMessage(),line.substring(27, 37), line);
 //                                SimpleRejectLinesWriter.writeReject("D:\\Work\\Batch ABB\\Project\\error.txt", line, e.getMessage(), true);
                             }
                             return line;
@@ -140,7 +140,9 @@ public class PDDTAReader {
         String contractNumber = line.substring(24,37).trim();
         String montantAssurance = line.substring(935, 951);
 
+        // TODO : clean
 
+        System.out.println("ctrct"+contractNumber);
 
         if (pddTa.row(contractNumber).containsKey(blockCode)) {
             log.warn("Contract {} found again in PDDTA in block {}", contractNumber, blockCode);

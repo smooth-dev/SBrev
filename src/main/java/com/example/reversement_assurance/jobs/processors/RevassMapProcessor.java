@@ -83,9 +83,19 @@ public class RevassMapProcessor implements Tasklet {
                     if(pdevt.containsRow(entry.getKey())){
                         getPdevtData(reverssementModel, pdevt.row(entry.getKey()));
                     }
+                    System.out.println(
+                            "chekcing numContrat"+ entry.getKey()
+                    );
                     if(pddta.containsRow(entry.getKey())){
+                        System.out.println(
+                                "chekcing in TA numContrat"+ entry.getKey()
+                        );
                         getPddTaData(reverssementModel, pddta.row(entry.getKey()));
+
                     }
+//                    else{
+//                        System.out.println("badContract"+entry.getKey());
+//                    }
 
 
                     reverssementModel.setContractNumber(currentContractNumber);
@@ -318,17 +328,27 @@ public class RevassMapProcessor implements Tasklet {
         try {
             String date1Ech = row.get(PDDTA_BLOCK_FIRSTMONTH).substring(136, 146);
 
+            String Pddtadata = null;
             if(row.get(PDDTA_BLOCK_CURRENTMONTH) == null)
             {
-
+                Pddtadata= row.get(PDDTA_BLOCK_FIRSTMONTH);
                 reverssementModel.setPrimeAssurance(row.get(PDDTA_BLOCK_FIRSTMONTH).substring(939, 950));
 
             }
             else {
+                Pddtadata= row.get(PDDTA_BLOCK_CURRENTMONTH);
+
                 reverssementModel.setPrimeAssurance(row.get(PDDTA_BLOCK_CURRENTMONTH).substring(939, 950));
 
             }
 
+            // TODO : clean
+            String numContr = Pddtadata.substring(26, 38);
+
+//            if("CI111000737".equals(numContr))
+//                System.out.println("primessuranceSFefright"+numContr+"prime=>"+Pddtadata.substring(939, 950)+"");
+//            else
+                System.out.println("primessuranceSFefwrong =>"+numContr);
                
             if(reverssementModel.getDate1Ech()==null)reverssementModel.setDate1Ech(new LocalDate(row.get(PDDTA_BLOCK_FIRSTMONTH).substring(136, 146)));
 
