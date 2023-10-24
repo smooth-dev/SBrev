@@ -274,8 +274,10 @@ public class RevassMapProcessor implements Tasklet {
         }
 
         String evenementSameMonth =(row.get(PDEVT_BLOCK_00));
+        String montantPrime = "0";
 
         if(evenementSameMonth!=null) {
+             montantPrime = row.get(PDEVT_BLOCK_00P).substring(570,581);
             System.out.println("debug 34:"+evenementSameMonth);
             String codeEvenement = evenementSameMonth.substring(178, 181);
             if(codeEvenement.equals("048"))
@@ -283,6 +285,8 @@ public class RevassMapProcessor implements Tasklet {
             reverssementModel.setCodePhase(mapCodephase(codeEvenement));
 
         }
+        else  if (row.get(PDEVT_BLOCK_00PDEBL)!=null)          montantPrime = row.get(PDEVT_BLOCK_00PDEBL).substring(570,581);
+
         int primeAssurance=0;
 
         try {
@@ -290,7 +294,7 @@ public class RevassMapProcessor implements Tasklet {
                
                
 //
-           String montantPrime = row.get(PDEVT_BLOCK_00P).substring(570,581);
+
 
             primeAssurance=Integer.parseInt(montantPrime);
              
@@ -328,6 +332,8 @@ public class RevassMapProcessor implements Tasklet {
         try {
             String date1Ech = row.get(PDDTA_BLOCK_FIRSTMONTH).substring(136, 146);
 
+
+            System.out.println("date1erEchedd"+date1Ech+"id:"+ row.get(PDDTA_BLOCK_FIRSTMONTH).substring(28,38));
             String Pddtadata = null;
             if(row.get(PDDTA_BLOCK_CURRENTMONTH) == null)
             {
@@ -662,7 +668,7 @@ return skipNoMatricule;
             String indicSaisi= row.get(PDDDOS_BLOCK_10).substring(143, 144);
 
 
-            if(typePalier.equals("S") && montantEch.equals("00000000000000000") && indicSaisi.equals("1"))
+            if(typePalier.equals("S") && montantEch.equals("00000000000000000") && !indicSaisi.equals("1"))
             {
 
                 Integer periode = Integer.parseInt(row.get(PDDDOS_BLOCK_10).substring(253, 256));

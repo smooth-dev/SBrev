@@ -327,6 +327,7 @@ public class DeclarationMapProcessor implements Tasklet {
         //PDDDOS BLOC 50
         getPDDDOSBloc50(declarationModel, row);
 
+        System.out.println("debufign2x"+row.get(PDDDOS_BLOCK_10).substring(27, 37));
 
         getPDDDOS10(declarationModel, row);
         getPDDDOSBloc101(declarationModel, row);
@@ -352,14 +353,17 @@ public class DeclarationMapProcessor implements Tasklet {
 
 
     private void getPDDDOS10(DeclarationModel declarationModel, Map<String, String> row) {
+
+        System.out.println("debufign2x"+row.get(PDDDOS_BLOCK_10).substring(27, 37));
         try {
             String typePalier= row.get(PDDDOS_BLOCK_10).substring(248, 249);
             String montantEch= row.get(PDDDOS_BLOCK_10).substring(273, 290);
             String indicSaisi= row.get(PDDDOS_BLOCK_10).substring(143, 144);
 
 
-            if(typePalier.equals("S") && montantEch.equals("00000000000000000") && indicSaisi.equals("1"))
+            if(typePalier.equals("S") && montantEch.equals("00000000000000000") && !indicSaisi.equals("1"))
             {
+                System.out.println("debufign2w"+row.get(PDDDOS_BLOCK_10).substring(27, 37)+"kkk"+row.get(PDDDOS_BLOCK_10).substring(256, 259));
 
                 Integer periode = Integer.parseInt(row.get(PDDDOS_BLOCK_10).substring(253, 256));
                 Integer nbrTerme = Integer.parseInt(row.get(PDDDOS_BLOCK_10).substring(256, 259));
@@ -368,15 +372,20 @@ public class DeclarationMapProcessor implements Tasklet {
 
             }
             else {
+                System.out.println("debufign2"+row.get(PDDDOS_BLOCK_10).substring(27, 37)+"kkk"+row.get(PDDDOS_BLOCK_10).substring(256, 259));
                 declarationModel.setDureeDiffere(0);//265
             }
 
 
 
         } catch (StringIndexOutOfBoundsException e) {
+            System.out.println("debufign2z"+row.get(PDDDOS_BLOCK_10).substring(27, 37)+"kkk"+row.get(PDDDOS_BLOCK_10).substring(256, 259));
+
             declarationModel.setDureeDiffere(0);
             log.error("Error while processing contract number: {} on Bloc 10 \n \t Exception name: {}", currentContractNumber, e.getMessage());
         } catch (NullPointerException e) {
+            System.out.println("debufign2zz"+row.get(PDDDOS_BLOCK_10).substring(27, 37)+"kkk"+row.get(PDDDOS_BLOCK_10).substring(256, 259));
+
             declarationModel.setDureeDiffere(0);
 
                 log.error("Bloc 10 is not refered for contract number: {} ,defaulted duree Differe  to EMPTY_STRING", currentContractNumber);

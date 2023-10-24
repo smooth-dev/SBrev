@@ -62,13 +62,14 @@ public class PDDTAReader {
                          int counter=0;
                         //Verifier si same month stocker
 
-                                      
+                        System.out.println(dateEvenement+"debuf334"+line.substring(27, 37));
 
                                    handleBlock(line, PDDTA_BLOCK_FIRSTMONTH);// TOFIX : le pro
                                    if(!montantAssurance.equals("00000000000000000"))  {
                                        if (dateEvenement.getMonthOfYear() == dateTraitement.getMonthOfYear()
                                                && dateEvenement.getYear() == dateTraitement.getYear()) {
-
+// TODO : clean
+//                                           System.out.println("iddossisq"+);
                                            handleBlock(line, PDDTA_BLOCK_CURRENTMONTH);
 
 
@@ -142,7 +143,7 @@ public class PDDTAReader {
 
         // TODO : clean
 
-        System.out.println("ctrct"+contractNumber);
+        System.out.println("ctrct"+contractNumber+"der"+line.substring(136, 146));
 
         if (pddTa.row(contractNumber).containsKey(blockCode)) {
             log.warn("Contract {} found again in PDDTA in block {}", contractNumber, blockCode);
