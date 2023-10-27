@@ -90,7 +90,9 @@ public class DeclarationMapProcessor implements Tasklet {
 
                     setCreBusinessLogic(declarationModel);
 
-                    getDdosData(declarationModel, pdddos.row(entry.getKey()));
+                    boolean skipNoMatricule = getDdosData(declarationModel, pdddos.row(currentContractNumber));
+                    if(skipNoMatricule) continue;
+
                     setPdddosBusinessLogic(declarationModel,currentContractNumber);
                     boolean isEvtModif117= getPdevtData(declarationModel, pdevt.row(entry.getKey()));
                       
@@ -161,7 +163,9 @@ public class DeclarationMapProcessor implements Tasklet {
 
                         setCreBusinessLogicEvt(declarationModel, String.valueOf(currentContractNumber.charAt(3)));
 
-                        getDdosDataEvt(declarationModel, pdddos.row(currentContractNumber));
+
+                        boolean skipNoMatricule2 =   getDdosDataEvt(declarationModel, pdddos.row(currentContractNumber));
+                        if(skipNoMatricule2) continue;
 
                         getPDDDOS03And05Bloc03Evt(declarationModel, pdddos.row(currentContractNumber));
                           setPdddosBusinessLogic(declarationModel,currentContractNumber);
@@ -217,11 +221,11 @@ public class DeclarationMapProcessor implements Tasklet {
 
 
         // ########### boucle EVT #######################
-        System.out.println("Declaration contracts From cre"+contractsFromCre);
-        System.out.println("Declaration contracts From evt"+contractsFromEvt);
+          System.out.println("Declaration contracts From cre"+contractsFromCre);
+          System.out.println("Declaration contracts From evt"+contractsFromEvt);
 
-        System.out.println("Declaration counter check(Revass)"+counterRevass);
-        System.out.println("Declaration counter check(Evt)"+counterEvt);
+          System.out.println("Declaration counter check(Revass)"+counterRevass);
+          System.out.println("Declaration counter check(Evt)"+counterEvt);
 
 
 
@@ -268,9 +272,9 @@ public class DeclarationMapProcessor implements Tasklet {
      */
 
 
-    private void getDdosData(DeclarationModel declarationModel, Map<String, String> row) throws NullPointerException, StringIndexOutOfBoundsException {
+    private boolean getDdosData(DeclarationModel declarationModel, Map<String, String> row) throws NullPointerException, StringIndexOutOfBoundsException {
         //PDDDOS ( Donnée Complémentaire Code Enr =05 / Bloc 02)
-        getPDDDOS05Bloc02(declarationModel, row);
+        boolean skipNoMatricule=getPDDDOS05Bloc02(declarationModel, row);
         //PDDDOS ( Donnée Complémentaire Code Enr =05 / Bloc 03)
         getPDDDOS03And05Bloc03(declarationModel, row);
         //PDDOST-RES FONC-50
@@ -286,13 +290,16 @@ public class DeclarationMapProcessor implements Tasklet {
         getPDDDOS10(declarationModel, row);
         getPDDDOSBloc101(declarationModel, row);
 
+        return skipNoMatricule;
+
     }
 
 
-    private void getPDDDOS05Bloc02(DeclarationModel declarationModel, Map<String, String> row) {
+    private boolean getPDDDOS05Bloc02(DeclarationModel declarationModel, Map<String, String> row) {
         try {
 
-             
+            if(!row.containsKey(PDDDOS_DONNEES_COMPLEMENTAIRES_BLOCK_02)||row.get(PDDDOS_DONNEES_COMPLEMENTAIRES_BLOCK_02).substring(263, 271).trim().isEmpty()) return true;
+
             declarationModel.setNumClient(row.get(PDDDOS_DONNEES_COMPLEMENTAIRES_BLOCK_02).substring(263, 271).trim());
             declarationModel.setNomClient(row.get(PDDDOS_DONNEES_COMPLEMENTAIRES_BLOCK_02).substring(233, 243));
             declarationModel.setPrenomClient(row.get(PDDDOS_DONNEES_COMPLEMENTAIRES_BLOCK_02).substring(243, 253));
@@ -306,13 +313,14 @@ public class DeclarationMapProcessor implements Tasklet {
         }catch (IllegalArgumentException e) {
             log.error("Error while processing contract number: {} on Block 05 sub Block 02 \n \t Exception name: {}", currentContractNumber, e.getClass());
         }
+        return false;
+
     }
 
 
-    private void getDdosDataEvt(DeclarationModel declarationModel, Map<String, String> row) throws NullPointerException, StringIndexOutOfBoundsException {
-        //PDDDOS ( Donnée Complémentaire Code Enr =04 / Bloc 01)
+    private boolean getDdosDataEvt(DeclarationModel declarationModel, Map<String, String> row) throws NullPointerException, StringIndexOutOfBoundsException {
         //PDDDOS ( Donnée Complémentaire Code Enr =05 / Bloc 02)
-        getPDDDOS05Bloc02(declarationModel, row);
+        boolean skipNoMatricule=getPDDDOS05Bloc02(declarationModel, row);
         //PDDDOS ( Donnée Complémentaire Code Enr =05 / Bloc 03)
         getPDDDOS03And05Bloc03(declarationModel, row);
         //PDDOST-RES FONC-50
@@ -327,7 +335,7 @@ public class DeclarationMapProcessor implements Tasklet {
         //PDDDOS BLOC 50
         getPDDDOSBloc50(declarationModel, row);
 
-        System.out.println("debufign2x"+row.get(PDDDOS_BLOCK_10).substring(27, 37));
+        //  System.out.println("debufign2x"+row.get(PDDDOS_BLOCK_10).substring(27, 37));
 
         getPDDDOS10(declarationModel, row);
         getPDDDOSBloc101(declarationModel, row);
@@ -335,6 +343,7 @@ public class DeclarationMapProcessor implements Tasklet {
         getPDDDOSBloc0401(declarationModel, row);
 
 
+        return skipNoMatricule;
 
 
     }
@@ -354,16 +363,16 @@ public class DeclarationMapProcessor implements Tasklet {
 
     private void getPDDDOS10(DeclarationModel declarationModel, Map<String, String> row) {
 
-        System.out.println("debufign2x"+row.get(PDDDOS_BLOCK_10).substring(27, 37));
+        //  System.out.println("debufign2x"+row.get(PDDDOS_BLOCK_10).substring(27, 37));
         try {
             String typePalier= row.get(PDDDOS_BLOCK_10).substring(248, 249);
             String montantEch= row.get(PDDDOS_BLOCK_10).substring(273, 290);
             String indicSaisi= row.get(PDDDOS_BLOCK_10).substring(143, 144);
 
 
-            if(typePalier.equals("S") && montantEch.equals("00000000000000000") && !indicSaisi.equals("1"))
+            if(typePalier.equals("S") && montantEch.equals("00000000000000000") )
             {
-                System.out.println("debufign2w"+row.get(PDDDOS_BLOCK_10).substring(27, 37)+"kkk"+row.get(PDDDOS_BLOCK_10).substring(256, 259));
+                //  System.out.println("debufign2w"+row.get(PDDDOS_BLOCK_10).substring(27, 37)+"kkk"+row.get(PDDDOS_BLOCK_10).substring(256, 259));
 
                 Integer periode = Integer.parseInt(row.get(PDDDOS_BLOCK_10).substring(253, 256));
                 Integer nbrTerme = Integer.parseInt(row.get(PDDDOS_BLOCK_10).substring(256, 259));
@@ -372,19 +381,19 @@ public class DeclarationMapProcessor implements Tasklet {
 
             }
             else {
-                System.out.println("debufign2"+row.get(PDDDOS_BLOCK_10).substring(27, 37)+"kkk"+row.get(PDDDOS_BLOCK_10).substring(256, 259));
+                //  System.out.println("debufign2"+row.get(PDDDOS_BLOCK_10).substring(27, 37)+"kkk"+row.get(PDDDOS_BLOCK_10).substring(256, 259));
                 declarationModel.setDureeDiffere(0);//265
             }
 
 
 
         } catch (StringIndexOutOfBoundsException e) {
-            System.out.println("debufign2z"+row.get(PDDDOS_BLOCK_10).substring(27, 37)+"kkk"+row.get(PDDDOS_BLOCK_10).substring(256, 259));
+            //  System.out.println("debufign2z"+row.get(PDDDOS_BLOCK_10).substring(27, 37)+"kkk"+row.get(PDDDOS_BLOCK_10).substring(256, 259));
 
             declarationModel.setDureeDiffere(0);
             log.error("Error while processing contract number: {} on Bloc 10 \n \t Exception name: {}", currentContractNumber, e.getMessage());
         } catch (NullPointerException e) {
-            System.out.println("debufign2zz"+row.get(PDDDOS_BLOCK_10).substring(27, 37)+"kkk"+row.get(PDDDOS_BLOCK_10).substring(256, 259));
+            //  System.out.println("debufign2zz"+row.get(PDDDOS_BLOCK_10).substring(27, 37)+"kkk"+row.get(PDDDOS_BLOCK_10).substring(256, 259));
 
             declarationModel.setDureeDiffere(0);
 
@@ -532,7 +541,7 @@ public class DeclarationMapProcessor implements Tasklet {
 
         if(declarationModel.getDureeSousc()==null) {
             declarationModel.setDureeSousc(Integer.parseInt(row.get(PDDDOS_BLOCK_201).substring(263, 266)));
-            System.out.println("check34"+row.get(PDDDOS_BLOCK_201).substring(263, 266)+"//"+row.get(PDDDOS_BLOCK_01).substring(623, 626));
+            //  System.out.println("check34"+row.get(PDDDOS_BLOCK_201).substring(263, 266)+"//"+row.get(PDDDOS_BLOCK_01).substring(623, 626));
         }
         if(declarationModel.getMontantCredit()==null) declarationModel.setMontantCredit(new BigInteger(row.get(PDDDOS_BLOCK_01).substring(432, 448)));
 
@@ -574,7 +583,7 @@ public class DeclarationMapProcessor implements Tasklet {
 
         if(declarationModel.getDureeSousc()==null) {
             declarationModel.setDureeSousc(Integer.parseInt(row.get(PDDDOS_BLOCK_201).substring(262,265)));
-            System.out.println("check34"+row.get(PDDDOS_BLOCK_201).substring(262,265)+"//"+row.get(PDDDOS_BLOCK_01).substring(623, 626));
+            //  System.out.println("check34"+row.get(PDDDOS_BLOCK_201).substring(262,265)+"//"+row.get(PDDDOS_BLOCK_01).substring(623, 626));
 
         }
         if(declarationModel.getMontantCredit()==null) declarationModel.setMontantCredit(new BigInteger(row.get(PDDDOS_BLOCK_01).substring(432, 448)));
@@ -612,7 +621,7 @@ public class DeclarationMapProcessor implements Tasklet {
 
             if(declarationModel.getDureeSousc()==null) {
                 declarationModel.setDureeSousc(Integer.parseInt(row.get(PDDDOS_BLOCK_201).substring(262,265)));
-                System.out.println("check34"+row.get(PDDDOS_BLOCK_201).substring(262,265)+"//"+row.get(PDDDOS_BLOCK_01).substring(623, 626));
+                //  System.out.println("check34"+row.get(PDDDOS_BLOCK_201).substring(262,265)+"//"+row.get(PDDDOS_BLOCK_01).substring(623, 626));
 
             }
             if(declarationModel.getMontantCredit()==null) declarationModel.setMontantCredit(new BigInteger(row.get(PDDDOS_BLOCK_01).substring(432, 448)));
@@ -858,7 +867,7 @@ public class DeclarationMapProcessor implements Tasklet {
             declarationModel.setCodePhase(codevenementABB);
 
 
-            declarationModel.setNumContratFiliale(evenementSameMonth.substring(27, 39).trim());
+            declarationModel.setNumContratFiliale(evenementSameMonth.substring(27, 37).trim());
 
         }
         int primeAssurance=0;

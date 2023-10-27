@@ -63,15 +63,17 @@ public class RevassListWriter {
                     DetailClient detailClient = new DetailClient();
                     detailClient.setEnteteLigne("1");
 
+                    Integer dureeSouscCalcule=reverssementModel.getDureeSousc()+reverssementModel.getDureeDiffere();
 
+                    System.out.println("debeds"+reverssementModel.getNumContratFiliale() + "//" +reverssementModel.getDureeDiffere()+"//"+reverssementModel.getDureeSousc()+"\n"+dureeSouscCalcule);
                     detailClient.setNumClient(StringUtils.leftPad(reverssementModel.getNumClient(), 8, " "));
                     detailClient.setNomClient(StringUtils.rightPad(reverssementModel.getNomClient(), 30, " "));
                     detailClient.setPrenomClient(StringUtils.rightPad(reverssementModel.getPrenomClient(), 30, " "));
                     detailClient.setDateNaisClient(reverssementModel.getDateNaisClient()==null?"00000000":DateTimeFormat.forPattern("ddMMyyyy").print(reverssementModel.getDateNaisClient()));
                     detailClient.setNumCinClient(StringUtils.rightPad(reverssementModel.getNumCinClient(), 12, " "));
                     detailClient.setTypeClient(reverssementModel.getTypeClient().equals("ENTRE")?"E":"P");
-                    detailClient.setAdrClient1(StringUtils.rightPad(reverssementModel.getAdrClient1(), 30, " "));
-                    detailClient.setAdrClient2(StringUtils.rightPad(reverssementModel.getAdrClient2(), 30, " "));
+                    detailClient.setAdrClient1(alphaNumStringFrom(StringUtils.rightPad(reverssementModel.getAdrClient1(), 30, " ")));
+                    detailClient.setAdrClient2(alphaNumStringFrom(StringUtils.rightPad(reverssementModel.getAdrClient2(), 30, " ")));
                     detailClient.setCodePostal(StringUtils.rightPad(reverssementModel.getCodePostal(), 10, " "));
 //                    detailClient.setCodeVille(StringUtils.rightPad(reverssementModel.getCodeVille(), 3, " "));
                     detailClient.setCodeVille(StringUtils.rightPad(" ", 3, " "));
@@ -88,7 +90,8 @@ public class RevassListWriter {
                     detailClient.setPeriodicite(StringUtils.leftPad(reverssementModel.getPeriodicite(), 1, "0"));
                     detailClient.setTypeConvention(StringUtils.rightPad(reverssementModel.getTypeConvention(), 1, " "));
                     detailClient.setDateEffet(DateTimeFormat.forPattern("ddMMyyyy").print(reverssementModel.getDateEffet()));
-                    detailClient.setDureeSousc(StringUtils.leftPad(reverssementModel.getDureeSousc().toString(), 3, "0"));
+
+                    detailClient.setDureeSousc(StringUtils.leftPad(dureeSouscCalcule.toString(), 3, "0"));
                     detailClient.setPrimeAssurance(StringUtils.leftPad(reverssementModel.getPrimeAssurance().toString(), 12, "0"));
 //                    if(reverssementModel.getTauxAssurance().toString().equals("273"))    
                     detailClient.setTauxAssurance(StringUtils.leftPad(reverssementModel.getTauxAssurance().toString(), 7, "0"));
@@ -121,13 +124,18 @@ public class RevassListWriter {
                     detailClient.setTauxSurprime(StringUtils.leftPad(reverssementModel.getTauxSurprime().toString(), 7, "0"));
 //                    detailClient.setFiler(StringUtils.rightPad(reverssementModel.getFiler(), 79, " "));
                    detailClient.setFiler(StringUtils.leftPad("", 81, " "));
-                    return detailClient.toStringDebug2();
+                    return detailClient.toString();
                 })
                 .footerCallback(abbFooter)
                 .headerCallback(abbHeader)
                 .build();
     }
 
+// some special chars like TAB are considered as one char but effectively take 2 places or more so the rendered output looks skewd
+    private String alphaNumStringFrom(String input)
+    {
+        return input.replaceAll("[^a-zA-Z0-9_-]", " ");
+    }
 
     final void nullOverride(ReverssementModel reverssementModel, Field field) throws IllegalAccessException {
         if(field.getType().equals(String.class)) {

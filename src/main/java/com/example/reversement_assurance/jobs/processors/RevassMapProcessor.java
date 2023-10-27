@@ -668,7 +668,7 @@ return skipNoMatricule;
             String indicSaisi= row.get(PDDDOS_BLOCK_10).substring(143, 144);
 
 
-            if(typePalier.equals("S") && montantEch.equals("00000000000000000") && !indicSaisi.equals("1"))
+            if(typePalier.equals("S") && montantEch.equals("00000000000000000") )
             {
 
                 Integer periode = Integer.parseInt(row.get(PDDDOS_BLOCK_10).substring(253, 256));
@@ -783,7 +783,7 @@ return skipNoMatricule;
 
 
     private void getRevassData(ReverssementModel reverssementModel, String revassValue) {
-      reverssementModel.setNumContratFiliale(revassValue.substring(166, 177).trim());
+      reverssementModel.setNumContratFiliale(revassValue.substring(167, 177).trim());
         System.out.println(revassValue.substring(166, 177).trim()+"/// log34 ///\\/"+revassValue.substring(166, 178).trim());
 //        reverssementModel.setModePaiement(revassValue.substring(400, 405).trim());
 //        reverssementModel.setDateEffet(new LocalDate(revassValue.substring(410, 420).trim()));

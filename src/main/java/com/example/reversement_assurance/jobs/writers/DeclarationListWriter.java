@@ -67,6 +67,8 @@ public class DeclarationListWriter {
                         }
                     }
                     DetailClient detailClient = new DetailClient();
+                    Integer dureeSouscCalcule=declarationModel.getDureeSousc()+declarationModel.getDureeDiffere();
+
                     detailClient.setEnteteLigne("1");
                     detailClient.setNumClient(StringUtils.leftPad(declarationModel.getNumClient(), 8, " ")); // 8+1 car on a jouté le 1
                     detailClient.setNomClient(StringUtils.rightPad(declarationModel.getNomClient(), 30, " "));
@@ -76,8 +78,8 @@ public class DeclarationListWriter {
                     detailClient.setDateNaisClient(declarationModel.getDateNaisClient()==null?"00000000": DateTimeFormat.forPattern("ddMMyyyy").print(declarationModel.getDateNaisClient()));
                     detailClient.setNumCinClient(StringUtils.rightPad(declarationModel.getNumCinClient(), 12, " "));
                     detailClient.setTypeClient(declarationModel.getTypeClient().equals("ENTRE")?"E":"P");
-                    detailClient.setAdrClient1(StringUtils.rightPad(declarationModel.getAdrClient1(), 30, " "));
-                    detailClient.setAdrClient2(StringUtils.rightPad(declarationModel.getAdrClient2(), 30, " "));
+                    detailClient.setAdrClient1(alphaNumStringFrom(StringUtils.rightPad(declarationModel.getAdrClient1(), 30, " ")));
+                    detailClient.setAdrClient2(alphaNumStringFrom(StringUtils.rightPad(declarationModel.getAdrClient2(), 30, " ")));
                     detailClient.setCodePostal(StringUtils.rightPad(declarationModel.getCodePostal(), 10, " "));
 //                    detailClient.setCodeVille(StringUtils.rightPad(declarationModel.getCodeVille(), 3, " "));
                     detailClient.setCodeVille(StringUtils.rightPad(" ", 3, " "));
@@ -94,7 +96,7 @@ public class DeclarationListWriter {
                        detailClient.setDateEffet(DateTimeFormat.forPattern("ddMMyyyy").print(declarationModel.getDateEffet()));
 
 
-                    detailClient.setDureeSousc(StringUtils.leftPad(declarationModel.getDureeSousc().toString(), 3, "0"));
+                    detailClient.setDureeSousc(StringUtils.leftPad(dureeSouscCalcule.toString(), 3, "0"));
                     detailClient.setPrimeAssurance(StringUtils.leftPad(declarationModel.getPrimeAssurance().toString(), 12, "0"));
 //                    if(declarationModel.getTauxAssurance().toString().equals("273"))    
                     detailClient.setTauxAssurance(StringUtils.leftPad(declarationModel.getTauxAssurance().toString(), 7, "0"));
@@ -123,11 +125,19 @@ public class DeclarationListWriter {
                     detailClient.setFiler(StringUtils.leftPad("", 81, " "));
 
 
-                    return detailClient.toStringDebug2();
+                    return detailClient.toString();
                 })
                 .footerCallback(abbFooter)
                 .headerCallback(abbHeader)
                 .build();
+    }
+
+
+
+    // some special chars like TAB are considered as one char but effectively take 2 places or more so the rendered output looks skewd
+    private String alphaNumStringFrom(String input)
+    {
+        return input.replaceAll("[^a-zA-Z0-9_-]", " ");
     }
 
     /**
