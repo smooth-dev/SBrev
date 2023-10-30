@@ -83,13 +83,9 @@ public class RevassMapProcessor implements Tasklet {
                     if(pdevt.containsRow(entry.getKey())){
                         getPdevtData(reverssementModel, pdevt.row(entry.getKey()));
                     }
-                    System.out.println(
-                            "chekcing numContrat"+ entry.getKey()
-                    );
+                    //  System.out.println(                            "chekcing numContrat"+ entry.getKey());
                     if(pddta.containsRow(entry.getKey())){
-                        System.out.println(
-                                "chekcing in TA numContrat"+ entry.getKey()
-                        );
+                        //  System.out.println(                                "chekcing in TA numContrat"+ entry.getKey());
                         getPddTaData(reverssementModel, pddta.row(entry.getKey()));
 
                     }
@@ -133,7 +129,7 @@ public class RevassMapProcessor implements Tasklet {
                 {
                      
                     try {
-                        System.out.println("checkooi3nt"+pdevt.row(currentContractNumber).get(pair.getKey()).substring(27,37));
+                        //  System.out.println("checkooi3nt"+pdevt.row(currentContractNumber).get(pair.getKey()).substring(27,37));
 
                         String montant =pdddos.row(row).get(PDDDOS_BLOCK_50).substring(282, 298);
                         currentContractNumber = row;
@@ -189,11 +185,11 @@ public class RevassMapProcessor implements Tasklet {
 
             }
         }
-        System.out.println("Assurance contracts From revass"+contractsFromRevass);
-        System.out.println("Assurance contracts From evt"+contractsFromEvt);
+        //  System.out.println("Assurance contracts From revass"+contractsFromRevass);
+        //  System.out.println("Assurance contracts From evt"+contractsFromEvt);
 
-        System.out.println("Assurance counter check(Revass)"+counterRevass);
-        System.out.println("Assurance counter check(Evt)"+counterEvt);
+        //  System.out.println("Assurance counter check(Revass)"+counterRevass);
+        //  System.out.println("Assurance counter check(Evt)"+counterEvt);
 
 
 
@@ -221,7 +217,7 @@ public class RevassMapProcessor implements Tasklet {
 // TODO : check if this condition is useless (always executed when the containing fct is called , always true)
         if(evenementSameMonth!=null) {
             String codeEvenement = evenementSameMonth.substring(178, 181);
-            System.out.println("debug23:"+evenementSameMonth);
+            //  System.out.println("debug23:"+evenementSameMonth);
             if(codeEvenement.equals("048"))
                 reverssementModel.setDureeReport(Integer.valueOf((evenementSameMonth.substring(798, 801))));
             reverssementModel.setCodePhase(mapCodephase(codeEvenement));
@@ -278,7 +274,7 @@ public class RevassMapProcessor implements Tasklet {
 
         if(evenementSameMonth!=null) {
              montantPrime = row.get(PDEVT_BLOCK_00P).substring(570,581);
-            System.out.println("debug 34:"+evenementSameMonth);
+            //  System.out.println("debug 34:"+evenementSameMonth);
             String codeEvenement = evenementSameMonth.substring(178, 181);
             if(codeEvenement.equals("048"))
                 reverssementModel.setDureeReport(Integer.valueOf((evenementSameMonth.substring(798, 801))));
@@ -333,7 +329,7 @@ public class RevassMapProcessor implements Tasklet {
             String date1Ech = row.get(PDDTA_BLOCK_FIRSTMONTH).substring(136, 146);
 
 
-            System.out.println("date1erEchedd"+date1Ech+"id:"+ row.get(PDDTA_BLOCK_FIRSTMONTH).substring(28,38));
+            //  System.out.println("date1erEchedd"+date1Ech+"id:"+ row.get(PDDTA_BLOCK_FIRSTMONTH).substring(28,38));
             String Pddtadata = null;
             if(row.get(PDDTA_BLOCK_CURRENTMONTH) == null)
             {
@@ -354,7 +350,7 @@ public class RevassMapProcessor implements Tasklet {
 //            if("CI111000737".equals(numContr))
 //                System.out.println("primessuranceSFefright"+numContr+"prime=>"+Pddtadata.substring(939, 950)+"");
 //            else
-                System.out.println("primessuranceSFefwrong =>"+numContr);
+                //  System.out.println("primessuranceSFefwrong =>"+numContr);
                
             if(reverssementModel.getDate1Ech()==null)reverssementModel.setDate1Ech(new LocalDate(row.get(PDDTA_BLOCK_FIRSTMONTH).substring(136, 146)));
 
@@ -784,7 +780,7 @@ return skipNoMatricule;
 
     private void getRevassData(ReverssementModel reverssementModel, String revassValue) {
       reverssementModel.setNumContratFiliale(revassValue.substring(167, 177).trim());
-        System.out.println(revassValue.substring(166, 177).trim()+"/// log34 ///\\/"+revassValue.substring(166, 178).trim());
+        //  System.out.println(revassValue.substring(166, 177).trim()+"/// log34 ///\\/"+revassValue.substring(166, 178).trim());
 //        reverssementModel.setModePaiement(revassValue.substring(400, 405).trim());
 //        reverssementModel.setDateEffet(new LocalDate(revassValue.substring(410, 420).trim()));
 //        reverssementModel.setDureeSousc(Integer.parseInt(revassValue.substring(313, 316).trim()));

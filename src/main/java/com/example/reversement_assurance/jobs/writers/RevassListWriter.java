@@ -65,7 +65,7 @@ public class RevassListWriter {
 
                     Integer dureeSouscCalcule=reverssementModel.getDureeSousc()+reverssementModel.getDureeDiffere();
 
-                    System.out.println("debeds"+reverssementModel.getNumContratFiliale() + "//" +reverssementModel.getDureeDiffere()+"//"+reverssementModel.getDureeSousc()+"\n"+dureeSouscCalcule);
+                    //  System.out.println("debeds"+reverssementModel.getNumContratFiliale() + "//" +reverssementModel.getDureeDiffere()+"//"+reverssementModel.getDureeSousc()+"\n"+dureeSouscCalcule);
                     detailClient.setNumClient(StringUtils.leftPad(reverssementModel.getNumClient(), 8, " "));
                     detailClient.setNomClient(StringUtils.rightPad(reverssementModel.getNomClient(), 30, " "));
                     detailClient.setPrenomClient(StringUtils.rightPad(reverssementModel.getPrenomClient(), 30, " "));
@@ -124,7 +124,7 @@ public class RevassListWriter {
                     detailClient.setTauxSurprime(StringUtils.leftPad(reverssementModel.getTauxSurprime().toString(), 7, "0"));
 //                    detailClient.setFiler(StringUtils.rightPad(reverssementModel.getFiler(), 79, " "));
                    detailClient.setFiler(StringUtils.leftPad("", 81, " "));
-                    return detailClient.toString();
+                    return detailClient.toStringDebug2();
                 })
                 .footerCallback(abbFooter)
                 .headerCallback(abbHeader)

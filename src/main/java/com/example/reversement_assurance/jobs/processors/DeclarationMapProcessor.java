@@ -221,11 +221,11 @@ public class DeclarationMapProcessor implements Tasklet {
 
 
         // ########### boucle EVT #######################
-          System.out.println("Declaration contracts From cre"+contractsFromCre);
-          System.out.println("Declaration contracts From evt"+contractsFromEvt);
+          //  System.out.println("Declaration contracts From cre"+contractsFromCre);
+          //  System.out.println("Declaration contracts From evt"+contractsFromEvt);
 
-          System.out.println("Declaration counter check(Revass)"+counterRevass);
-          System.out.println("Declaration counter check(Evt)"+counterEvt);
+          //  System.out.println("Declaration counter check(Revass)"+counterRevass);
+          //  System.out.println("Declaration counter check(Evt)"+counterEvt);
 
 
 
@@ -521,7 +521,9 @@ public class DeclarationMapProcessor implements Tasklet {
 
 
         try{
+            System.out.println("debug(("+row.get(PDDDOS_BLOCK_12).substring(27, 37));
             declarationModel.setTauxAssurance(new BigInteger(row.get(PDDDOS_BLOCK_12).substring(459, 461).trim()));
+            System.out.println("debug((Fin");
         }catch(Exception e){
 
             log.error("Error while processing contract number: {} on Block 12 Taux Assurance \n \t Exception name: {}", currentContractNumber, e.getClass());
@@ -740,6 +742,7 @@ public class DeclarationMapProcessor implements Tasklet {
          
 //        if ("001".equals(declarationModel.getModePaiement())) declarationModel.setModePaiement("U");
 //        else declarationModel.setModePaiement("P");
+        System.out.println("derger[Begin]:"+declarationModel.getNumContratFiliale()+"//");
 
         String tauxAssurance="0";
         String natureAssurance="";
@@ -757,6 +760,7 @@ public class DeclarationMapProcessor implements Tasklet {
          
         BigDecimal  tauxAssBigAnnuel= new BigDecimal(tauxAssurance);
         BigDecimal tauxAssBigMensuel=tauxAssBigAnnuel;
+        System.out.println("tauxnulldebug:"+declarationModel.getNumContratFiliale()+"//"+tauxAssurance);
         if(LIST_TAUX_TO_DIVIDE.contains(natureAssurance)){
             tauxAssBigMensuel= tauxAssBigAnnuel.divide(BigDecimal.valueOf(12));
         }
@@ -779,6 +783,7 @@ public class DeclarationMapProcessor implements Tasklet {
 //        declarationModel.setMontantCredit(declarationModel.getMontantCredit().multiply(BigInteger.valueOf(10)));
          
         declarationModel.setDureeReport(0);//TODO: to be implemented
+        System.out.println("derger[END]:"+declarationModel.getNumContratFiliale()+"//");
     }
 
     public static BigDecimal montant12ToBigDecimal(String montant) {

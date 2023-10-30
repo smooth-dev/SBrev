@@ -83,7 +83,7 @@ public class PDEVTReader {
                                         if(LIST_EVENEMENTS.contains(codeEvenement)
                                                 && dateEvenement.getMonthOfYear()==dateTraitement.getMonthOfYear()
                                                 && dateTraitement.getYear()==dateTraitement.getYear()) {
-                                            System.out.println("checkooint"+line.substring(27,37));
+                                            //  System.out.println("checkooint"+line.substring(27,37));
                                             handleBlock00(line);
                                         }
 
@@ -137,7 +137,7 @@ public class PDEVTReader {
 //        }
 //        else {
 //            log.warn("Contract {} found again in PDEVTSAME UNI in block {}", contractNumber, PDEVT_BLOCK_EVT);
-            System.out.println(pdevt.row(contractNumber));
+            //  System.out.println(pdevt.row(contractNumber));
 
             pdevt.put(contractNumber, PDEVT_BLOCK_EVT, line);
        // }
